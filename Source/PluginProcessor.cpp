@@ -12,7 +12,7 @@
 //==============================================================================
 EssentiaTestAudioProcessor::EssentiaTestAudioProcessor()
 #ifndef JucePlugin_PreferredChannelConfigurations
-     : AudioProcessor (BusesProperties()
+     : MagicProcessor (BusesProperties()
                      #if ! JucePlugin_IsMidiEffect
                       #if ! JucePlugin_IsSynth
                        .withInput  ("Input",  juce::AudioChannelSet::stereo(), true)
@@ -24,6 +24,8 @@ EssentiaTestAudioProcessor::EssentiaTestAudioProcessor()
 {
     cout<<"Init"<<endl;
     audioAnalyzer.setup(44100, 1024, 1);
+    
+    analyser = magicState.createAndAddObject<foleys::MagicAnalyser>("input");
 }
 
 EssentiaTestAudioProcessor::~EssentiaTestAudioProcessor()
@@ -100,6 +102,8 @@ void EssentiaTestAudioProcessor::prepareToPlay (double sampleRate, int samplesPe
     // initialisation that you need..
     cout<< samplesPerBlock << "-- "<< getTotalNumInputChannels() << endl;
     audioAnalyzer.reset(sampleRate, samplesPerBlock, getTotalNumInputChannels());
+    
+    analyser->prepareToPlay (sampleRate, samplesPerBlock);
 }
 
 void EssentiaTestAudioProcessor::releaseResources()
@@ -163,31 +167,8 @@ void EssentiaTestAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer,
     }
     audioAnalyzer.analyze(buffer);
     cout<< audioAnalyzer.getValue(RMS, 0)<< endl;
-}
-
-//==============================================================================
-bool EssentiaTestAudioProcessor::hasEditor() const
-{
-    return true; // (change this to false if you choose to not supply an editor)
-}
-
-juce::AudioProcessorEditor* EssentiaTestAudioProcessor::createEditor()
-{
-    return new EssentiaTestAudioProcessorEditor (*this);
-}
-
-//==============================================================================
-void EssentiaTestAudioProcessor::getStateInformation (juce::MemoryBlock& destData)
-{
-    // You should use this method to store your parameters in the memory block.
-    // You could do that either as raw data, or use the XML or ValueTree classes
-    // as intermediaries to make it easy to save and load complex data.
-}
-
-void EssentiaTestAudioProcessor::setStateInformation (const void* data, int sizeInBytes)
-{
-    // You should use this method to restore your parameters from this memory block,
-    // whose contents will have been created by the getStateInformation() call.
+    
+    analyser->pushSamples (buffer);
 }
 
 //==============================================================================

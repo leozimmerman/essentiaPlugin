@@ -14,7 +14,7 @@
 //==============================================================================
 /**
 */
-class EssentiaTestAudioProcessor  : public juce::AudioProcessor
+class EssentiaTestAudioProcessor  : public foleys::MagicProcessor
 {
 public:
     //==============================================================================
@@ -32,10 +32,6 @@ public:
     void processBlock (juce::AudioBuffer<float>&, juce::MidiBuffer&) override;
 
     //==============================================================================
-    juce::AudioProcessorEditor* createEditor() override;
-    bool hasEditor() const override;
-
-    //==============================================================================
     const juce::String getName() const override;
 
     bool acceptsMidi() const override;
@@ -50,13 +46,11 @@ public:
     const juce::String getProgramName (int index) override;
     void changeProgramName (int index, const juce::String& newName) override;
 
-    //==============================================================================
-    void getStateInformation (juce::MemoryBlock& destData) override;
-    void setStateInformation (const void* data, int sizeInBytes) override;
-
 private:
     
     ofxAudioAnalyzer audioAnalyzer;
+    
+    foleys::MagicPlotSource* analyser = nullptr;
     //==============================================================================
     
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (EssentiaTestAudioProcessor)

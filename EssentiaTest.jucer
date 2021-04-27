@@ -72,11 +72,14 @@
   </MAINGROUP>
   <JUCEOPTIONS JUCE_STRICT_REFCOUNTEDPOINTER="1" JUCE_VST3_CAN_REPLACE_VST2="0"/>
   <EXPORTFORMATS>
-    <XCODE_MAC targetFolder="Builds/MacOSX">
+    <XCODE_MAC targetFolder="Builds/MacOSX" externalLibraries="essentia&#10;fftw3f"
+               xcodeValidArchs="i386,x86_64">
       <CONFIGURATIONS>
         <CONFIGURATION isDebug="1" name="Debug" targetName="EssentiaTest" headerPath="../../Libs/essentia/include/essentia&#10;../../Libs/fftw3f/include&#10;../../Source/ofxAudioAnalyzer/algorithms&#10;../../Source/ofxAudioAnalyzer"
                        libraryPath="../../Libs/essentia/lib&#10;../../Libs/fftw3f/lib"/>
-        <CONFIGURATION isDebug="0" name="Release" targetName="EssentiaTest"/>
+        <CONFIGURATION isDebug="0" name="Release" targetName="EssentiaTest" headerPath="../../Libs/essentia/include/essentia&#10;../../Libs/fftw3f/include&#10;../../Source/ofxAudioAnalyzer/algorithms&#10;../../Source/ofxAudioAnalyzer"
+                       libraryPath="../../Libs/essentia/lib&#10;../../Libs/fftw3f/lib"
+                       defines="FOLEYS_SHOW_GUI_EDITOR_PALLETTE=0"/>
       </CONFIGURATIONS>
       <MODULEPATHS>
         <MODULEPATH id="juce_audio_basics" path="../../modules"/>
@@ -91,10 +94,14 @@
         <MODULEPATH id="juce_graphics" path="../../modules"/>
         <MODULEPATH id="juce_gui_basics" path="../../modules"/>
         <MODULEPATH id="juce_gui_extra" path="../../modules"/>
+        <MODULEPATH id="foleys_gui_magic" path="modules"/>
+        <MODULEPATH id="juce_dsp" path="../../modules"/>
+        <MODULEPATH id="juce_cryptography" path="../../modules"/>
       </MODULEPATHS>
     </XCODE_MAC>
   </EXPORTFORMATS>
   <MODULES>
+    <MODULE id="foleys_gui_magic" showAllCode="1" useLocalCopy="0" useGlobalPath="0"/>
     <MODULE id="juce_audio_basics" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
     <MODULE id="juce_audio_devices" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
     <MODULE id="juce_audio_formats" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
@@ -103,7 +110,9 @@
     <MODULE id="juce_audio_processors" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
     <MODULE id="juce_audio_utils" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
     <MODULE id="juce_core" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_cryptography" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
     <MODULE id="juce_data_structures" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_dsp" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
     <MODULE id="juce_events" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
     <MODULE id="juce_graphics" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
     <MODULE id="juce_gui_basics" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
