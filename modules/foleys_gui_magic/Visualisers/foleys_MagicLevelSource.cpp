@@ -38,6 +38,13 @@
 namespace foleys
 {
 
+void MagicLevelSource::setValue(float value) {
+    _value = value;
+    if (value > _maxRegisteredValue) {
+        _maxRegisteredValue = value;
+    }
+}
+
 void MagicLevelSource::pushSamples (const juce::AudioBuffer<float>& buffer)
 {
     for (int c=0; c < std::min (buffer.getNumChannels(), int (channelDatas.size())); ++c)
@@ -75,20 +82,14 @@ void MagicLevelSource::pushSamples (const juce::AudioBuffer<float>& buffer)
     }
 }
 
-float MagicLevelSource::getRMSvalue (int channel) const
+float MagicLevelSource::getValue (int channel) const
 {
-    if (juce::isPositiveAndBelow (channel, channelDatas.size()))
-        return channelDatas [size_t (channel)].rms.load();
-
-    return 0.0f;
+    return _value;
 }
 
 float MagicLevelSource::getMaxValue (int channel) const
 {
-    if (juce::isPositiveAndBelow (channel, channelDatas.size()))
-        return channelDatas [size_t (channel)].max.load();
-
-    return 0.0f;
+    return _maxRegisteredValue;
 }
 
 void MagicLevelSource::setupSource (int numChannels, double sampleRate, int maxKeepMS, int rmsWindowMS)

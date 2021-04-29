@@ -11,6 +11,7 @@
 #include <JuceHeader.h>
 
 #include "ofxAudioAnalyzer.h"
+#include "AnalyzerSource.h"
 //==============================================================================
 /**
 */
@@ -47,10 +48,8 @@ public:
     void changeProgramName (int index, const juce::String& newName) override;
 
 private:
-    
     ofxAudioAnalyzer audioAnalyzer;
-    
-    foleys::MagicPlotSource* analyser = nullptr;
+    foleys::MagicLevelSource* outputMeter  = nullptr;
     //==============================================================================
     
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (EssentiaTestAudioProcessor)

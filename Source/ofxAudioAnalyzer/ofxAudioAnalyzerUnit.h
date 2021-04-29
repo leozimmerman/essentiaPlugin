@@ -24,8 +24,6 @@
 
 #pragma once
 
-//
-
 #include "ofxAudioAnalyzerAlgorithms.h"
 #include "ofxAANetwork.h"
 

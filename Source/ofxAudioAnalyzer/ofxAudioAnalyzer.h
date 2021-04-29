@@ -34,18 +34,18 @@ class ofxAudioAnalyzer{
     
     void setup(int sampleRate, int bufferSize, int channels);
     void reset(int sampleRate, int bufferSize, int channels);
-    void analyze(juce::AudioBuffer<float>& buffer);
+    void analyze(const juce::AudioBuffer<float>& buffer);
     void exit();
     
-    int getSampleRate() {return _samplerate;}
-    int getBufferSize() {return _buffersize;}
-    int getChannelsNum(){return _channels;}
+    int getSampleRate() const {return _samplerate;}
+    int getBufferSize() const {return _buffersize;}
+    int getChannelsNum() const {return _channels;}
     
     ///Gets value of single output  Algorithms.
     ///\param algorithm
     ///\param channel: starting from 0 (for stereo setup, 0 and 1)
     ///\param smooth: smoothing amount. 0.0=non smoothing, 1.0=fixed value
-    float getValue(ofxAAValue valueType, int channel, float smooth=0.0, bool normalized=false);
+    float getValue(ofxAAValue valueType, int channel, float smooth=0.0, bool normalized=false) const;
     
     ///Gets values of vector output Algorithms.
     ///\param algorithm
@@ -54,7 +54,7 @@ class ofxAudioAnalyzer{
     vector<float>& getValues(ofxAABinsValue valueType, int channel, float smooth, bool normalized);
     
     ///Returns if there is an onset in the speciefied channel.
-    bool getOnsetValue(int channel);
+    bool getOnsetValue(int channel) const;
     
     ///Pointers for the audio analyzing units.
     ///Use very carefully!

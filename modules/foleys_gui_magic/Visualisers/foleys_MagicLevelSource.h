@@ -48,9 +48,10 @@ public:
     /**
      Send new sample values to the measurement.
      */
+    void setValue(float value);
     void pushSamples (const juce::AudioBuffer<float>& buffer);
 
-    float getRMSvalue (int channel) const;
+    float getValue (int channel) const;
     float getMaxValue (int channel) const;
 
     /**
@@ -77,6 +78,9 @@ public:
     //==============================================================================
 
 private:
+    
+    float _value = 0.0;
+    float _maxRegisteredValue = 0.0;
 
     struct ChannelData
     {

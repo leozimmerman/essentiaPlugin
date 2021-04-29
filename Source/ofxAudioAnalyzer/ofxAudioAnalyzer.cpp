@@ -69,7 +69,7 @@ void ofxAudioAnalyzer::reset(int sampleRate, int bufferSize, int channels){
     
 }
 //-------------------------------------------------------
-void ofxAudioAnalyzer::analyze(juce::AudioBuffer<float>& buffer){
+void ofxAudioAnalyzer::analyze(const juce::AudioBuffer<float>& buffer){
    
     if(buffer.getNumChannels() != _channels){
         juce::Logger::outputDebugString("ofxAudioAnalyzer: inBuffer channels number incorrect.");
@@ -108,7 +108,7 @@ void ofxAudioAnalyzer::exit(){
     }
 }
 //-------------------------------------------------------
-float ofxAudioAnalyzer::getValue(ofxAAValue valueType, int channel, float smooth, bool normalized){
+float ofxAudioAnalyzer::getValue(ofxAAValue valueType, int channel, float smooth, bool normalized) const {
     if (channel >= _channels){
         juce::Logger::outputDebugString("ofxAudioAnalyzer: channel for getting value is incorrect.");
         return 0.0;
@@ -128,7 +128,7 @@ vector<float>& ofxAudioAnalyzer::getValues(ofxAABinsValue valueType, int channel
     
 }
 //-------------------------------------------------------
-bool ofxAudioAnalyzer::getOnsetValue(int channel){
+bool ofxAudioAnalyzer::getOnsetValue(int channel) const {
     
     if (channel >= _channels){
         juce::Logger::outputDebugString("ofxAudioAnalyzer: channel for getting value is incorrect.");

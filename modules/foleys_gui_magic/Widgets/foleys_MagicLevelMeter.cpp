@@ -75,7 +75,6 @@ void MagicLevelMeter::paint (juce::Graphics& g)
     const auto barFillColour = findColour (barFillColourId);
     const auto outlineColour = findColour (outlineColourId);
 
-    const auto infinity = -100.0f;
     for (int i=0; i < numChannels; ++i)
     {
         auto bar = bounds.removeFromLeft (width).reduced (1);
@@ -85,11 +84,23 @@ void MagicLevelMeter::paint (juce::Graphics& g)
         g.drawRect (bar, 1.0f);
         bar.reduce (1, 1);
         g.setColour (barFillColour);
-        g.fillRect (bar.withTop (juce::jmap (juce::Decibels::gainToDecibels (source->getRMSvalue (i), infinity),
-                                             infinity, 0.0f, bar.getBottom(), bar.getY())));
-        g.drawHorizontalLine (juce::roundToInt (juce::jmap (juce::Decibels::gainToDecibels (source->getMaxValue (i), infinity),
-                                                            infinity, 0.0f, bar.getBottom (), bar.getY ())),
+        g.fillRect (bar.withTop (juce::jmap (source->getValue(i),
+                                             0.0f,
+                                             1.0f,
+                                             bar.getBottom(),
+                                             bar.getY())));
+        
+        g.drawHorizontalLine (juce::roundToInt (juce::jmap (source->getMaxValue (i),
+                                                            0.0f,
+                                                            1.0f,
+                                                            bar.getBottom (),
+                                                            bar.getY ())),
                               static_cast<float>(bar.getX ()), static_cast<float>(bar.getRight ()));
+     
+        g.setColour(juce::Colours::yellow);
+        g.drawSingleLineText(std::to_string(source->getValue(i)), 10 + i*width, bar.getBottom (), juce::Justification::left);
+        g.setColour(juce::Colours::red);
+        g.drawSingleLineText(std::to_string(source->getMaxValue(i)), 10 + i*width, bar.getBottom() - 15, juce::Justification::left);
     }
 }
 

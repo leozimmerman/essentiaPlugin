@@ -22,10 +22,8 @@ EssentiaTestAudioProcessor::EssentiaTestAudioProcessor()
                        )
 #endif
 {
-    cout<<"Init"<<endl;
-    audioAnalyzer.setup(44100, 1024, 1);
-    
-    analyser = magicState.createAndAddObject<foleys::MagicAnalyser>("input");
+    outputMeter  = magicState.createAndAddObject<foleys::MagicLevelSource>("outputMeter");
+    audioAnalyzer.setup(44100, 1024, 1); ///*** this can be polished
 }
 
 EssentiaTestAudioProcessor::~EssentiaTestAudioProcessor()
@@ -100,10 +98,8 @@ void EssentiaTestAudioProcessor::prepareToPlay (double sampleRate, int samplesPe
 {
     // Use this method as the place to do any pre-playback
     // initialisation that you need..
-    cout<< samplesPerBlock << "-- "<< getTotalNumInputChannels() << endl;
-    audioAnalyzer.reset(sampleRate, samplesPerBlock, getTotalNumInputChannels());
-    
-    analyser->prepareToPlay (sampleRate, samplesPerBlock);
+    outputMeter->setupSource (getTotalNumOutputChannels(), sampleRate, 500, 200);
+    audioAnalyzer.reset(sampleRate, samplesPerBlock, getTotalNumOutputChannels());
 }
 
 void EssentiaTestAudioProcessor::releaseResources()
@@ -165,10 +161,11 @@ void EssentiaTestAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer,
 
         // ..do something to the data...
     }
-    audioAnalyzer.analyze(buffer);
-    cout<< audioAnalyzer.getValue(RMS, 0)<< endl;
     
-    analyser->pushSamples (buffer);
+    audioAnalyzer.analyze(buffer);
+    
+    ///outputMeter->pushSamples (buffer);
+    outputMeter->setValue(audioAnalyzer.getValue(POWER, 0));
 }
 
 //==============================================================================
