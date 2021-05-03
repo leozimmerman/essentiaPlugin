@@ -48,11 +48,14 @@ public:
     /**
      Send new sample values to the measurement.
      */
-    void setValue(float value);
-    void pushSamples (const juce::AudioBuffer<float>& buffer);
+    void setValues(float value, float normalizedValue);
+    void resetMaxValue() { _maxRegisteredValue = 0; }
+//    void setMaxEstimatedValue(float value) { _maxEstimatedValue = value; }
 
     float getValue (int channel) const;
+    float getNormalizedValue () const { return _normalizedValue; }
     float getMaxValue (int channel) const;
+//    float getMaxEstimatedValue() const { return _maxEstimatedValue; }
 
     /**
      Setup the source to measure a signal.
@@ -70,34 +73,18 @@ public:
     void setNumChannels (int numChannels);
     int getNumChannels() const;
 
-    /**
-     Set the number of samples to be averaged. They are stored in 64 samples blocks to minimise calculation overhead.
-     */
-    void setRmsLength (int numSamples);
 
     //==============================================================================
 
 private:
     
     float _value = 0.0;
+    float _normalizedValue = 0.0;
     float _maxRegisteredValue = 0.0;
+    int _numChannels = 0;
+    
+    std::vector<float> _valueHistory;
 
-    struct ChannelData
-    {
-        ChannelData()=default;
-        ChannelData (const ChannelData& other);
-
-        std::atomic<float> max;
-        std::atomic<float> rms;
-        std::atomic<float> overall;
-
-        std::vector<float> rmsHistory;
-        int                rmsPointer = 0;
-        int                maxCountDown = 0;
-    };
-
-    std::vector<ChannelData> channelDatas;
-    int rmsHistorySize = 22050;
     int maxCountDownInitial = 100;
 
     JUCE_DECLARE_WEAK_REFERENCEABLE (MagicLevelSource)

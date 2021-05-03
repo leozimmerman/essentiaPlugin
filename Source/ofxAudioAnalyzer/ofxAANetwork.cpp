@@ -156,7 +156,7 @@ namespace ofxaa {
         
         strongDecay = new ofxAASingleOutputAlgorithm(StrongDecay, sr, fs);
         strongDecay->maxEstimatedValue = STRONG_DECAY_MAX_VALUE;
-        algorithms.push_back(strongDecay);
+//        algorithms.push_back(strongDecay);
         
         flatnessSFX = new ofxAASingleOutputAlgorithm(FlatnessSFX, sr, fs);
         flatnessSFX->maxEstimatedValue = FLATNESS_SFX_MAX_VALUE;
@@ -168,7 +168,7 @@ namespace ofxaa {
         
         tcToTotal = new ofxAASingleOutputAlgorithm(TCToTotal, sr, fs);
         tcToTotal->isNormalizedByDefault = true;
-        algorithms.push_back(tcToTotal);
+       // algorithms.push_back(tcToTotal);
         
         derivativeSFX = new ofxAAOneVectorOutputAlgorithm(DerivativeSFX, sr, fs, 2);
 //        algorithms.push_back(derivativeSFX);
@@ -468,7 +468,7 @@ namespace ofxaa {
         //TODO: Should this also be connected to envelop_accumulated?
         strongDecay->algorithm->input("signal").set(envelope_acummulated->outputValues);
         strongDecay->algorithm->output("strongDecay").set(strongDecay->outputValue);
-        
+
         flatnessSFX->algorithm->input("envelope").set(envelope_acummulated->outputValues);
         flatnessSFX->algorithm->output("flatness").set(flatnessSFX->outputValue);
         

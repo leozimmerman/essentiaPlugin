@@ -11,11 +11,11 @@
 #include <JuceHeader.h>
 
 #include "ofxAudioAnalyzer.h"
-#include "AnalyzerSource.h"
 //==============================================================================
 /**
 */
-class EssentiaTestAudioProcessor  : public foleys::MagicProcessor
+class EssentiaTestAudioProcessor  : public foleys::MagicProcessor,
+                                    private juce::AudioProcessorValueTreeState::Listener
 {
 public:
     //==============================================================================
@@ -46,11 +46,22 @@ public:
     void setCurrentProgram (int index) override;
     const juce::String getProgramName (int index) override;
     void changeProgramName (int index, const juce::String& newName) override;
+    
+    void parameterChanged (const juce::String& param, float value) override;
 
 private:
     ofxAudioAnalyzer audioAnalyzer;
+    
     foleys::MagicLevelSource* outputMeter  = nullptr;
+    
     //==============================================================================
+    
+    std::atomic<bool>* resetMax  = nullptr;
+    std::atomic<float>* smoothing  = nullptr;
+    std::atomic<float>* maxEstimated  = nullptr;
+    
+    
+    juce::AudioProcessorValueTreeState treeState;
     
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (EssentiaTestAudioProcessor)
 };

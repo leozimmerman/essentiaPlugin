@@ -84,7 +84,8 @@ void MagicLevelMeter::paint (juce::Graphics& g)
         g.drawRect (bar, 1.0f);
         bar.reduce (1, 1);
         g.setColour (barFillColour);
-        g.fillRect (bar.withTop (juce::jmap (source->getValue(i),
+        float value = source->getNormalizedValue();
+        g.fillRect (bar.withTop (juce::jmap (value,
                                              0.0f,
                                              1.0f,
                                              bar.getBottom(),
@@ -95,12 +96,14 @@ void MagicLevelMeter::paint (juce::Graphics& g)
                                                             1.0f,
                                                             bar.getBottom (),
                                                             bar.getY ())),
-                              static_cast<float>(bar.getX ()), static_cast<float>(bar.getRight ()));
+                              static_cast<float>(bar.getX ()), static_cast<float>(bar.getRight ())); ///***remove
      
         g.setColour(juce::Colours::yellow);
         g.drawSingleLineText(std::to_string(source->getValue(i)), 10 + i*width, bar.getBottom (), juce::Justification::left);
         g.setColour(juce::Colours::red);
         g.drawSingleLineText(std::to_string(source->getMaxValue(i)), 10 + i*width, bar.getBottom() - 15, juce::Justification::left);
+        g.setColour(juce::Colours::blue);
+        g.drawSingleLineText(std::to_string(source->getNormalizedValue()), 10 + i*width, bar.getBottom() - 30, juce::Justification::left);
     }
 }
 

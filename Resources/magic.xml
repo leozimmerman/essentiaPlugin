@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<magic>
+  <Styles>
+    <Style name="default">
+      <Nodes/>
+      <Classes>
+        <plot-view border="2" background-color="black" border-color="silver" display="contents"/>
+        <nomargin margin="0" padding="0" border="0"/>
+        <group margin="5" padding="5" border="2" flex-direction="column"/>
+      </Classes>
+      <Types>
+        <Slider border="0" slider-textbox="textbox-below"/>
+        <ToggleButton border="0" max-height="50" caption-size="0" text="Active"/>
+        <TextButton border="0" max-height="50" caption-size="0"/>
+        <ComboBox border="0" max-height="50" caption-size="0"/>
+        <Plot border="0" margin="0" padding="0" background-color="00000000"
+              radius="0"/>
+        <XYDragComponent border="0" margin="0" padding="0" background-color="00000000"
+                         radius="0"/>
+      </Types>
+      <Palettes>
+        <default/>
+      </Palettes>
+    </Style>
+  </Styles>
+  <View>
+    <View flex-direction="column">
+      <ComboBox parameter="algorithmType" height="" max-height="50"/>
+      <Slider parameter="smoothing" slider-type="linear-horizontal" max-height="100"/>
+      <Slider parameter="maxEstimated" slider-type="rotary" slider-text="FFFFFFFF"
+              max-height="100"/>
+      <TextButton parameter="resetMax" text="Reset Peak" max-height="50"/>
+      <Meter source="outputMeter"/>
+    </View>
+  </View>
+</magic>

@@ -9,6 +9,45 @@
 #include "PluginProcessor.h"
 #include "PluginEditor.h"
 
+/**
+ TODO:
+
+ - Add algorithm switch
+ - Set standard Max estimated value for algorithm
+ - Encapsulate meter structures to make four of them
+ - Remove algorithms that are not going to be used from network
+ - Add ONSET meter
+ - Add OSC send panel
+ - Check state saving
+ */
+
+
+namespace IDs
+{
+    static juce::String algorithmType  { "algorithmType" };
+    static juce::String smoothing  { "smoothing" };
+    static juce::String resetMax  { "resetMax" };
+    static juce::String maxEstimated  { "maxEstimated" };
+
+
+    static juce::Identifier oscilloscope { "oscilloscope" };
+}
+
+juce::AudioProcessorValueTreeState::ParameterLayout createParameterLayout()
+{
+    juce::AudioProcessorValueTreeState::ParameterLayout layout;
+    auto generator = std::make_unique<juce::AudioProcessorParameterGroup>("Meter", TRANS ("Meter"), "|");
+    auto options = juce::StringArray ("None", "SPECTRAL_ROLLOFF", "Power", "Square");
+    generator->addChild (std::make_unique<juce::AudioParameterChoice>(IDs::algorithmType, "Type", options, 0),
+                         std::make_unique<juce::AudioParameterFloat>(IDs::smoothing, "Smoothing", juce::NormalisableRange<float>(0.0, 1.0, 0.01), 0.5f),
+                         std::make_unique<juce::AudioParameterFloat>(IDs::maxEstimated, "Max Estimated", juce::NormalisableRange<float>(0.0, 100000.0, 0.01), 1.0f),
+                         std::make_unique<juce::AudioParameterBool>(IDs::resetMax, "Enabled", true));
+
+    layout.add (std::move (generator));
+
+    return layout;
+}
+
 //==============================================================================
 EssentiaTestAudioProcessor::EssentiaTestAudioProcessor()
 #ifndef JucePlugin_PreferredChannelConfigurations
@@ -19,11 +58,24 @@ EssentiaTestAudioProcessor::EssentiaTestAudioProcessor()
                       #endif
                        .withOutput ("Output", juce::AudioChannelSet::stereo(), true)
                      #endif
-                       )
+                       ),
 #endif
+    treeState (*this, nullptr, "PARAMETERS", createParameterLayout())
 {
     outputMeter  = magicState.createAndAddObject<foleys::MagicLevelSource>("outputMeter");
+    
     audioAnalyzer.setup(44100, 1024, 1); ///*** this can be polished
+    
+    
+    smoothing = treeState.getRawParameterValue (IDs::smoothing);
+    jassert (smoothing != nullptr);
+    
+    treeState.addParameterListener (IDs::algorithmType, this);
+    treeState.addParameterListener (IDs::smoothing, this);
+    treeState.addParameterListener (IDs::resetMax, this);
+    treeState.addParameterListener (IDs::maxEstimated, this);
+    
+    magicState.setGuiValueTree (BinaryData::magic_xml, BinaryData::magic_xmlSize);
 }
 
 EssentiaTestAudioProcessor::~EssentiaTestAudioProcessor()
@@ -31,6 +83,19 @@ EssentiaTestAudioProcessor::~EssentiaTestAudioProcessor()
 }
 
 //==============================================================================
+
+void EssentiaTestAudioProcessor::parameterChanged (const juce::String& param, float value)
+{
+    if (param == IDs::algorithmType) {
+        cout<<"type: "<<value<<endl;
+    } else if (param == IDs::smoothing) {
+        cout<<"smoothing: "<<value<<endl;
+    } else if (param == IDs::resetMax) {
+        outputMeter->resetMaxValue();
+    } else if (param == IDs::maxEstimated) {
+       /// audioAnalyzer.setMaxEstimatedValue(0, POWER, value);
+    }
+}
 
 const juce::String EssentiaTestAudioProcessor::getName() const
 {
@@ -100,6 +165,7 @@ void EssentiaTestAudioProcessor::prepareToPlay (double sampleRate, int samplesPe
     // initialisation that you need..
     outputMeter->setupSource (getTotalNumOutputChannels(), sampleRate, 500, 200);
     audioAnalyzer.reset(sampleRate, samplesPerBlock, getTotalNumOutputChannels());
+    magicState.prepareToPlay (sampleRate, samplesPerBlock);
 }
 
 void EssentiaTestAudioProcessor::releaseResources()
@@ -149,23 +215,12 @@ void EssentiaTestAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer,
     for (auto i = totalNumInputChannels; i < totalNumOutputChannels; ++i)
         buffer.clear (i, 0, buffer.getNumSamples());
 
-    // This is the place where you'd normally do the guts of your plugin's
-    // audio processing...
-    // Make sure to reset the state if your inner loop is processing
-    // the samples and the outer loop is handling the channels.
-    // Alternatively, you can process the samples with the channels
-    // interleaved by keeping the same state.
-    for (int channel = 0; channel < totalNumInputChannels; ++channel)
-    {
-        auto* channelData = buffer.getWritePointer (channel);
 
-        // ..do something to the data...
-    }
-    
-    audioAnalyzer.analyze(buffer);
-    
-    ///outputMeter->pushSamples (buffer);
-    outputMeter->setValue(audioAnalyzer.getValue(POWER, 0));
+
+   audioAnalyzer.analyze(buffer);
+
+    auto normValue = audioAnalyzer.getValue(POWER, 0, *smoothing, true);
+    outputMeter->setValues(audioAnalyzer.getValue(POWER, 0, *smoothing, false), normValue);
 }
 
 //==============================================================================
