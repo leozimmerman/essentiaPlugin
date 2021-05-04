@@ -42,7 +42,7 @@ MagicLevelMeter::MagicLevelMeter()
 {
     setColour (backgroundColourId, juce::Colours::transparentBlack);
     setColour (barBackgroundColourId, juce::Colours::darkgrey);
-    setColour (barFillColourId, juce::Colours::darkgreen);
+    setColour (barFillColourId, juce::Colours::lightgreen);
     setColour (outlineColourId, juce::Colours::silver);
     setColour (tickmarkColourId, juce::Colours::silver);
 
@@ -91,7 +91,7 @@ void MagicLevelMeter::paint (juce::Graphics& g)
                                              bar.getBottom(),
                                              bar.getY())));
         
-        g.drawHorizontalLine (juce::roundToInt (juce::jmap (source->getMaxValue (i),
+        g.drawHorizontalLine (juce::roundToInt (juce::jmap (source->getMaxValue(),
                                                             0.0f,
                                                             1.0f,
                                                             bar.getBottom (),
@@ -99,9 +99,9 @@ void MagicLevelMeter::paint (juce::Graphics& g)
                               static_cast<float>(bar.getX ()), static_cast<float>(bar.getRight ())); ///***remove
      
         g.setColour(juce::Colours::yellow);
-        g.drawSingleLineText(std::to_string(source->getValue(i)), 10 + i*width, bar.getBottom (), juce::Justification::left);
+        g.drawSingleLineText(std::to_string(source->getValue()), 10 + i*width, bar.getBottom (), juce::Justification::left);
         g.setColour(juce::Colours::red);
-        g.drawSingleLineText(std::to_string(source->getMaxValue(i)), 10 + i*width, bar.getBottom() - 15, juce::Justification::left);
+        g.drawSingleLineText(std::to_string(source->getMaxValue()), 10 + i*width, bar.getBottom() - 15, juce::Justification::left);
         g.setColour(juce::Colours::blue);
         g.drawSingleLineText(std::to_string(source->getNormalizedValue()), 10 + i*width, bar.getBottom() - 30, juce::Justification::left);
     }

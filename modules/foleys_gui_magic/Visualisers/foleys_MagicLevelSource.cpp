@@ -46,12 +46,12 @@ void MagicLevelSource::setValues(float value, float normalizedValue) {
     }
 }
 
-float MagicLevelSource::getValue (int channel) const
+float MagicLevelSource::getValue () const
 {
     return _value;
 }
 
-float MagicLevelSource::getMaxValue (int channel) const
+float MagicLevelSource::getMaxValue () const
 {
     return _maxRegisteredValue;
 }
@@ -64,7 +64,11 @@ void MagicLevelSource::setupSource (int numChannels, double sampleRate, int maxK
 
 void MagicLevelSource::setNumChannels (int numChannels)
 {
-    _numChannels = numChannels;
+    if (numChannels > 0) {
+        _numChannels = 1;
+    } else {
+        _numChannels = 0;
+    }
 }
 
 int MagicLevelSource::getNumChannels() const

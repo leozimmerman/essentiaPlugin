@@ -11,6 +11,8 @@
 #include <JuceHeader.h>
 
 #include "ofxAudioAnalyzer.h"
+using namespace std;
+
 //==============================================================================
 /**
 */
@@ -52,13 +54,18 @@ public:
 private:
     ofxAudioAnalyzer audioAnalyzer;
     
+    //==============================================================================
+    void setOfxaaValue(ofxAAValue value);
+    ofxAAValue currentOfxaaValue = NONE;
     foleys::MagicLevelSource* outputMeter  = nullptr;
+    
+    atomic<bool>* resetMax  = nullptr;
+    atomic<float>* smoothing  = nullptr;
+    atomic<float>* maxEstimated  = nullptr;
     
     //==============================================================================
     
-    std::atomic<bool>* resetMax  = nullptr;
-    std::atomic<float>* smoothing  = nullptr;
-    std::atomic<float>* maxEstimated  = nullptr;
+
     
     
     juce::AudioProcessorValueTreeState treeState;

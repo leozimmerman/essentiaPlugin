@@ -61,6 +61,8 @@
             file="Source/ofxAudioAnalyzer/ofxAudioAnalyzerUnit.h"/>
     </GROUP>
     <GROUP id="{2094C181-A987-B8CA-0C24-B1C939A168AB}" name="Source">
+      <FILE id="TYryDi" name="StringUtils.cpp" compile="1" resource="0" file="Source/StringUtils.cpp"/>
+      <FILE id="hdQhsE" name="StringUtils.h" compile="0" resource="0" file="Source/StringUtils.h"/>
       <FILE id="Po0dmH" name="PluginProcessor.cpp" compile="1" resource="0"
             file="Source/PluginProcessor.cpp"/>
       <FILE id="sIt9QF" name="PluginProcessor.h" compile="0" resource="0"

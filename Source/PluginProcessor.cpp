@@ -8,14 +8,14 @@
 
 #include "PluginProcessor.h"
 #include "PluginEditor.h"
-
+#include "StringUtils.h"
 /**
  TODO:
 
- - Add algorithm switch
- - Set standard Max estimated value for algorithm
+ 
  - Encapsulate meter structures to make four of them
  - Remove algorithms that are not going to be used from network
+ 
  - Add ONSET meter
  - Add OSC send panel
  - Check state saving
@@ -33,11 +33,18 @@ namespace IDs
     static juce::Identifier oscilloscope { "oscilloscope" };
 }
 
+vector<ofxAAValue> availableValues { RMS, SPECTRAL_CENTROID, RMS, LOUDNESS } ;
+
 juce::AudioProcessorValueTreeState::ParameterLayout createParameterLayout()
 {
     juce::AudioProcessorValueTreeState::ParameterLayout layout;
     auto generator = std::make_unique<juce::AudioProcessorParameterGroup>("Meter", TRANS ("Meter"), "|");
-    auto options = juce::StringArray ("None", "SPECTRAL_ROLLOFF", "Power", "Square");
+    
+    auto options = juce::StringArray ("-NONE-");
+    for (auto ofxaaValue : availableValues) {
+        auto name = utils::valueTypeToString(ofxaaValue);
+        options.add(name);
+    }
     generator->addChild (std::make_unique<juce::AudioParameterChoice>(IDs::algorithmType, "Type", options, 0),
                          std::make_unique<juce::AudioParameterFloat>(IDs::smoothing, "Smoothing", juce::NormalisableRange<float>(0.0, 1.0, 0.01), 0.5f),
                          std::make_unique<juce::AudioParameterFloat>(IDs::maxEstimated, "Max Estimated", juce::NormalisableRange<float>(0.0, 100000.0, 0.01), 1.0f),
@@ -87,14 +94,28 @@ EssentiaTestAudioProcessor::~EssentiaTestAudioProcessor()
 void EssentiaTestAudioProcessor::parameterChanged (const juce::String& param, float value)
 {
     if (param == IDs::algorithmType) {
-        cout<<"type: "<<value<<endl;
+        if (value == 0) {
+            setOfxaaValue(NONE);
+        } else {
+            int index = value - 1;
+            if (index < availableValues.size()) {
+                auto value = availableValues[index];
+                setOfxaaValue(value);
+            }
+        }
     } else if (param == IDs::smoothing) {
-        cout<<"smoothing: "<<value<<endl;
     } else if (param == IDs::resetMax) {
         outputMeter->resetMaxValue();
     } else if (param == IDs::maxEstimated) {
-       /// audioAnalyzer.setMaxEstimatedValue(0, POWER, value);
+        if (currentOfxaaValue != NONE) {
+            audioAnalyzer.setMaxEstimatedValue(0, currentOfxaaValue, value);
+        }
     }
+}
+
+void EssentiaTestAudioProcessor::setOfxaaValue(ofxAAValue value) {
+    currentOfxaaValue = value;
+    outputMeter->resetMaxValue();
 }
 
 const juce::String EssentiaTestAudioProcessor::getName() const
@@ -199,28 +220,25 @@ bool EssentiaTestAudioProcessor::isBusesLayoutSupported (const BusesLayout& layo
   #endif
 }
 #endif
-
 void EssentiaTestAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer, juce::MidiBuffer& midiMessages)
 {
     juce::ScopedNoDenormals noDenormals;
     auto totalNumInputChannels  = getTotalNumInputChannels();
     auto totalNumOutputChannels = getTotalNumOutputChannels();
-
-    // In case we have more outputs than inputs, this code clears any output
-    // channels that didn't contain input data, (because these aren't
-    // guaranteed to be empty - they may contain garbage).
-    // This is here to avoid people getting screaming feedback
-    // when they first compile a plugin, but obviously you don't need to keep
-    // this code if your algorithm always overwrites all the output channels.
+    
     for (auto i = totalNumInputChannels; i < totalNumOutputChannels; ++i)
         buffer.clear (i, 0, buffer.getNumSamples());
-
-
-
-   audioAnalyzer.analyze(buffer);
-
-    auto normValue = audioAnalyzer.getValue(POWER, 0, *smoothing, true);
-    outputMeter->setValues(audioAnalyzer.getValue(POWER, 0, *smoothing, false), normValue);
+    
+    
+    
+    audioAnalyzer.analyze(buffer);
+    
+    if (currentOfxaaValue != NONE) {
+        outputMeter->setValues(audioAnalyzer.getValue(currentOfxaaValue, 0, *smoothing, false),
+                               audioAnalyzer.getValue(currentOfxaaValue, 0, *smoothing, true));
+    } else {
+        outputMeter->setValues(0.0, 0.0);
+    }
 }
 
 //==============================================================================

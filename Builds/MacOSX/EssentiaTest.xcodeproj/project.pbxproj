@@ -47,6 +47,7 @@
 		73696273A164C471BBB71FAE /* CoreAudio.framework */ = {isa = PBXBuildFile; fileRef = DFDAFCA70BE6CE1C9C17594A; };
 		73AC7D785FC859F4B7F84E24 /* ofxAASingleOutputAlgorithm.cpp */ = {isa = PBXBuildFile; fileRef = 1B1D933AA49B2109A71BBD57; };
 		748E1EE7653AA6ACF5152174 /* include_juce_audio_devices.mm */ = {isa = PBXBuildFile; fileRef = BFC0F328511769B9B327409D; };
+		77B00DA7E273E8E417973786 /* StringUtils.cpp */ = {isa = PBXBuildFile; fileRef = F83CCDB36E93BE1F669DD470; };
 		7930645FDB7D67EA43C894D1 /* include_juce_core.mm */ = {isa = PBXBuildFile; fileRef = 0480EC84AC31181BAFC4E473; };
 		889F0B8DA999F5D3CE295B75 /* PluginEditor.cpp */ = {isa = PBXBuildFile; fileRef = 7F356001BE558E133E0C142A; };
 		898AEE76122116C5099AC9F7 /* include_juce_graphics.mm */ = {isa = PBXBuildFile; fileRef = C45CBAC261B031FAE0B1EA9A; };
@@ -113,6 +114,7 @@
 		54F29C32E45AEE9A3CC44D8E /* juce_dsp */ /* juce_dsp */ = {isa = PBXFileReference; lastKnownFileType = folder; name = juce_dsp; path = /Users/leo/Development/JUCE/modules/juce_dsp; sourceTree = "<absolute>"; };
 		561C8F780CB696C17E396CE1 /* juce_events */ /* juce_events */ = {isa = PBXFileReference; lastKnownFileType = folder; name = juce_events; path = /Users/leo/Development/JUCE/modules/juce_events; sourceTree = "<absolute>"; };
 		56EE0332DFD257D2D208A02A /* ofxAAFactory.h */ /* ofxAAFactory.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ofxAAFactory.h; path = ../../Source/ofxAudioAnalyzer/ofxAAFactory.h; sourceTree = SOURCE_ROOT; };
+		59EDAD97F4A9F76A66244D8A /* StringUtils.h */ /* StringUtils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = StringUtils.h; path = ../../Source/StringUtils.h; sourceTree = SOURCE_ROOT; };
 		5B3C5645EA3D9D62FC0B4281 /* include_juce_audio_plugin_client_utils.cpp */ /* include_juce_audio_plugin_client_utils.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = include_juce_audio_plugin_client_utils.cpp; path = ../../JuceLibraryCode/include_juce_audio_plugin_client_utils.cpp; sourceTree = SOURCE_ROOT; };
 		5CAEA0CA515FD05DA8C5F014 /* ofxAudioAnalyzer.cpp */ /* ofxAudioAnalyzer.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = ofxAudioAnalyzer.cpp; path = ../../Source/ofxAudioAnalyzer/ofxAudioAnalyzer.cpp; sourceTree = SOURCE_ROOT; };
 		5DFC2D73F6F0356CF415BB55 /* juce_data_structures */ /* juce_data_structures */ = {isa = PBXFileReference; lastKnownFileType = folder; name = juce_data_structures; path = /Users/leo/Development/JUCE/modules/juce_data_structures; sourceTree = "<absolute>"; };
@@ -172,6 +174,7 @@
 		EF2508C9057997CAED462B3F /* Shared Code */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libEssentiaTest.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		F3EB72D715C2E611FA737322 /* CoreMIDI.framework */ /* CoreMIDI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMIDI.framework; path = System/Library/Frameworks/CoreMIDI.framework; sourceTree = SDKROOT; };
 		F460A46C3893072DFB00C577 /* Standalone Plugin */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EssentiaTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		F83CCDB36E93BE1F669DD470 /* StringUtils.cpp */ /* StringUtils.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = StringUtils.cpp; path = ../../Source/StringUtils.cpp; sourceTree = SOURCE_ROOT; };
 		FB2F2B91D93BCF218E519BF6 /* foleys_gui_magic */ /* foleys_gui_magic */ = {isa = PBXFileReference; lastKnownFileType = folder; name = foleys_gui_magic; path = ../../modules/foleys_gui_magic; sourceTree = SOURCE_ROOT; };
 		FF1188C63020C12ACEB775C1 /* ofxAudioAnalyzerUnit.cpp */ /* ofxAudioAnalyzerUnit.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = ofxAudioAnalyzerUnit.cpp; path = ../../Source/ofxAudioAnalyzer/ofxAudioAnalyzerUnit.cpp; sourceTree = SOURCE_ROOT; };
 		FF51F0909138BE41DE3804D8 /* ofxAATwoVectorsOutputAlgorithm.h */ /* ofxAATwoVectorsOutputAlgorithm.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ofxAATwoVectorsOutputAlgorithm.h; path = ../../Source/ofxAudioAnalyzer/algorithms/ofxAATwoVectorsOutputAlgorithm.h; sourceTree = SOURCE_ROOT; };
@@ -351,6 +354,8 @@
 		9057C776BF8909D293047AF8 /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				F83CCDB36E93BE1F669DD470,
+				59EDAD97F4A9F76A66244D8A,
 				BFDC87A227A377A2BA30E16E,
 				31C9BD3BA47A953D220A26F0,
 				7F356001BE558E133E0C142A,
@@ -689,6 +694,7 @@
 				EE5004E9096F58BA7F089782,
 				033ED939C27400973BD486D6,
 				058B276F2B4FCAAF65158CCF,
+				77B00DA7E273E8E417973786,
 				8F885089D898C52B7F4D6FA1,
 				889F0B8DA999F5D3CE295B75,
 				F09B570C4DFE2C2024468DE8,

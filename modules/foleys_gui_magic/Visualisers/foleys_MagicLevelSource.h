@@ -52,10 +52,9 @@ public:
     void resetMaxValue() { _maxRegisteredValue = 0; }
 //    void setMaxEstimatedValue(float value) { _maxEstimatedValue = value; }
 
-    float getValue (int channel) const;
+    float getValue () const;
     float getNormalizedValue () const { return _normalizedValue; }
-    float getMaxValue (int channel) const;
-//    float getMaxEstimatedValue() const { return _maxEstimatedValue; }
+    float getMaxValue () const;
 
     /**
      Setup the source to measure a signal.
