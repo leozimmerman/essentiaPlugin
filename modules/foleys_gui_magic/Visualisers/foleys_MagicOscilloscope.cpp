@@ -43,100 +43,37 @@ MagicOscilloscope::MagicOscilloscope (int channelToDisplay)
   : channel (channelToDisplay)
 {
 }
+void MagicOscilloscope::pushValue(const float value) {
+   
+    if (values.size() == 0) return ;
+    
+    for (unsigned long i = values.size()-1; i>0 ; --i) {
+        values[i] = values[i-1];
+    }
+    values[0] = value;
+    resetLastDataFlag();
+}
 
 void MagicOscilloscope::pushSamples (const juce::AudioBuffer<float>& buffer)
 {
-    auto w = writePosition.load();
-    const auto numSamples = buffer.getNumSamples();
-    const auto available  = samples.getNumSamples() - w;
-
-    if (channel < 0)
-    {
-        // mono summing all channels and average
-        const auto gain = 1.0f / buffer.getNumChannels();
-        if (available >= numSamples)
-        {
-            samples.copyFrom (0, w, buffer.getReadPointer (0), numSamples, gain);
-            for (int c = 1; c < buffer.getNumChannels(); ++c)
-                samples.addFrom (0, w, buffer.getReadPointer (c), numSamples, gain);
-        }
-        else
-        {
-            samples.copyFrom (0, w, buffer.getReadPointer (0),            available, gain);
-            samples.copyFrom (0, 0, buffer.getReadPointer (0, available), numSamples - available, gain);
-            for (int c = 1; c < buffer.getNumChannels(); ++c)
-            {
-                samples.addFrom (0, w, buffer.getReadPointer (c),            available, gain);
-                samples.addFrom (0, 0, buffer.getReadPointer (c, available), numSamples - available, gain);
-            }
-        }
-    }
-    else
-    {
-        // plotting individual channel
-        if (available >= numSamples)
-        {
-            samples.copyFrom (0, w, buffer.getReadPointer (channel), numSamples);
-        }
-        else
-        {
-            samples.copyFrom (0, w, buffer.getReadPointer (channel),            available);
-            samples.copyFrom (0, 0, buffer.getReadPointer (channel, available), numSamples - available);
-        }
-    }
-
-    if (available > numSamples)
-        writePosition.store (w + numSamples);
-    else
-        writePosition.store (numSamples - available);
-
-    resetLastDataFlag();
+    juce::Logger::outputDebugString("Magic Oscilloscope: deprecated pushShamples() called");
 }
 
 void MagicOscilloscope::createPlotPaths (juce::Path& path, juce::Path& filledPath, juce::Rectangle<float> bounds, MagicPlotComponent&)
 {
-    if (sampleRate < 20.0f)
-        return;
 
-    const auto  numToDisplay = int (0.01 * sampleRate) - 1;
-    const auto* data = samples.getReadPointer (0);
-
-    auto pos = writePosition.load() - numToDisplay;
-    if (pos < 0)
-        pos += samples.getNumSamples();
-
-    // trigger
-    auto sign = data [pos] > 0.0f;
-    auto bail = int (sampleRate / 20.0f);
-
-    while (sign == false && --bail > 0)
-    {
-        if (--pos < 0)
-            pos += samples.getNumSamples();
-
-        sign = data [pos] > 0.0f;
-    }
-
-    while (sign == true && --bail > 0)
-    {
-        if (--pos < 0)
-            pos += samples.getNumSamples();
-
-        sign = data [pos] > 0.0f;
-    }
-
+    int pos = 0;
+    
     path.clear();
     path.startNewSubPath (bounds.getX(),
-                          juce::jmap (data [pos], -1.0f, 1.0f, bounds.getBottom(), bounds.getY()));
+                          juce::jmap (values [pos], 0.0f, 1.0f, bounds.getBottom(), bounds.getY()));
 
-    for (int i = 1; i < numToDisplay; ++i)
+    for (int i = 1; i < values.size(); ++i)
     {
         ++pos;
-        if (pos >= samples.getNumSamples())
-            pos -= samples.getNumSamples();
 
-        path.lineTo (juce::jmap (float (i),   0.0f, float (numToDisplay), bounds.getX(), bounds.getRight()),
-                     juce::jmap (data [pos], -1.0f, 1.0f,                 bounds.getBottom(), bounds.getY()));
+        path.lineTo (juce::jmap (float (i),   0.0f, float (values.size()), bounds.getX(), bounds.getRight()),
+                     juce::jmap (values [pos], 0.0f, 1.0f,                 bounds.getBottom(), bounds.getY()));
     }
 
     filledPath = path;
@@ -151,7 +88,10 @@ void MagicOscilloscope::prepareToPlay (double sampleRateToUse, int)
 
     samples.setSize (1, static_cast<int> (sampleRate));
     samples.clear();
-
+    
+    values.clear();
+    values.resize(sampleRate, 0.0);
+    
     writePosition.store (0);
 }
 

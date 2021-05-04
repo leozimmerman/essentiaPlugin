@@ -71,6 +71,8 @@ EssentiaTestAudioProcessor::EssentiaTestAudioProcessor()
 {
     outputMeter  = magicState.createAndAddObject<foleys::MagicLevelSource>("outputMeter");
     
+    oscilloscope = magicState.createAndAddObject<foleys::MagicOscilloscope>("historyPlot"); 
+    
     audioAnalyzer.setup(44100, 1024, 1); ///*** this can be polished
     
     
@@ -187,6 +189,9 @@ void EssentiaTestAudioProcessor::prepareToPlay (double sampleRate, int samplesPe
     outputMeter->setupSource (getTotalNumOutputChannels(), sampleRate, 500, 200);
     audioAnalyzer.reset(sampleRate, samplesPerBlock, getTotalNumOutputChannels());
     magicState.prepareToPlay (sampleRate, samplesPerBlock);
+    
+    
+    oscilloscope->prepareToPlay (750, 0);
 }
 
 void EssentiaTestAudioProcessor::releaseResources()
@@ -236,8 +241,10 @@ void EssentiaTestAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer,
     if (currentOfxaaValue != NONE) {
         outputMeter->setValues(audioAnalyzer.getValue(currentOfxaaValue, 0, *smoothing, false),
                                audioAnalyzer.getValue(currentOfxaaValue, 0, *smoothing, true));
+        oscilloscope->pushValue(audioAnalyzer.getValue(currentOfxaaValue, 0, *smoothing, true));
     } else {
         outputMeter->setValues(0.0, 0.0);
+        oscilloscope->pushValue(0.0);
     }
 }
 

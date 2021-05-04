@@ -98,7 +98,7 @@ void MagicLevelMeter::paint (juce::Graphics& g)
                                                             bar.getY ())),
                               static_cast<float>(bar.getX ()), static_cast<float>(bar.getRight ())); ///***remove
      
-        g.setColour(juce::Colours::yellow);
+        g.setColour(juce::Colours::orange);
         g.drawSingleLineText(std::to_string(source->getValue()), 10 + i*width, bar.getBottom (), juce::Justification::left);
         g.setColour(juce::Colours::red);
         g.drawSingleLineText(std::to_string(source->getMaxValue()), 10 + i*width, bar.getBottom() - 15, juce::Justification::left);

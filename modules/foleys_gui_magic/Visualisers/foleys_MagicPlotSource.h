@@ -57,7 +57,7 @@ public:
      responsibility to put that into a FIFO and return as quickly as possible.
      */
     virtual void pushSamples (const juce::AudioBuffer<float>& buffer)=0;
-
+    virtual void pushValue(const float value)=0;
     /**
      This is the callback that creates the plot for drawing.
 
