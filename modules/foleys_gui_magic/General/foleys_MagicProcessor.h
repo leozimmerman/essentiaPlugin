@@ -90,6 +90,8 @@ public:
     void setCurrentProgram (int index) override             { juce::ignoreUnused (index); }
     const juce::String getProgramName (int index) override  { juce::ignoreUnused (index); return "default"; }
     void changeProgramName (int index, const juce::String& newName) override { juce::ignoreUnused (index, newName); }
+    
+    MagicProcessorState magicState { *this };
 
     //==============================================================================
 #ifdef JucePlugin_Name
@@ -130,7 +132,7 @@ public:
 #endif
 
 protected:
-    MagicProcessorState magicState { *this };
+    
 
 private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (MagicProcessor)

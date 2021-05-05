@@ -37,15 +37,19 @@ static const unsigned char temp_binary_data_0[] =
 "  </Styles>\r\n"
 "  <View>\r\n"
 "    <View flex-direction=\"column\">\r\n"
-"      <ComboBox parameter=\"algorithmType\" height=\"\" max-height=\"50\"/>\r\n"
-"      <Slider parameter=\"smoothing\" slider-type=\"linear-horizontal\" max-height=\"100\"/>\r\n"
-"      <Slider parameter=\"maxEstimated\" slider-type=\"rotary\" slider-text=\"FFFFFFFF\"\r\n"
-"              max-height=\"100\"/>\r\n"
-"      <TextButton parameter=\"resetMax\" text=\"Reset Peak\" max-height=\"50\"/>\r\n"
-"      <Meter source=\"outputMeter\"/>\r\n"
+"      <ComboBox parameter=\"algorithmType:0\" height=\"\" max-height=\"50\"/>\r\n"
+"      <Slider parameter=\"smoothing:0\" slider-type=\"linear-horizontal\" max-height=\"50\"\r\n"
+"              slider-textbox=\"textbox-right\"/>\r\n"
+"      <Slider parameter=\"maxEstimated:0\" slider-type=\"inc-dec-buttons\" slider-text=\"FFFFFFFF\"\r\n"
+"              max-height=\"40\" slider-textbox=\"textbox-right\" caption=\"max.est.\"\r\n"
+"              caption-placement=\"centred-left\" caption-size=\"20\"/>\r\n"
+"      <TextButton parameter=\"resetMax:0\" text=\"Reset Peak\" max-height=\"45\"/>\r\n"
+"      <Plot source=\"historyPlot:0\" max-height=\"100\"/>\r\n"
+"      <Meter source=\"outputMeter:0\"/>\r\n"
 "    </View>\r\n"
 "  </View>\r\n"
-"</magic>\r\n";
+"</magic>\r\n"
+"\0\r\n";
 
 const char* magic_xml = (const char*) temp_binary_data_0;
 
@@ -60,7 +64,7 @@ const char* getNamedResource (const char* resourceNameUTF8, int& numBytes)
 
     switch (hash)
     {
-        case 0x7ee40a85:  numBytes = 1465; return magic_xml;
+        case 0x7ee40a85:  numBytes = 1702; return magic_xml;
         default: break;
     }
 

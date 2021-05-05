@@ -9,7 +9,7 @@
 namespace BinaryData
 {
     extern const char*   magic_xml;
-    const int            magic_xmlSize = 1465;
+    const int            magic_xmlSize = 1702;
 
     // Number of elements in the namedResourceList and originalFileNames arrays.
     const int namedResourceListSize = 1;

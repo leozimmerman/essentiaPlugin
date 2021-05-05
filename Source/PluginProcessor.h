@@ -9,15 +9,15 @@
 #pragma once
 
 #include <JuceHeader.h>
-
 #include "ofxAudioAnalyzer.h"
+#include "MeterUnit.h"
+
 using namespace std;
 
 //==============================================================================
 /**
 */
-class EssentiaTestAudioProcessor  : public foleys::MagicProcessor,
-                                    private juce::AudioProcessorValueTreeState::Listener
+class EssentiaTestAudioProcessor  : public foleys::MagicProcessor
 {
 public:
     //==============================================================================
@@ -48,27 +48,13 @@ public:
     void setCurrentProgram (int index) override;
     const juce::String getProgramName (int index) override;
     void changeProgramName (int index, const juce::String& newName) override;
-    
-    void parameterChanged (const juce::String& param, float value) override;
 
 private:
     ofxAudioAnalyzer audioAnalyzer;
-    
-    //==============================================================================
-    void setOfxaaValue(ofxAAValue value);
-    ofxAAValue currentOfxaaValue = NONE;
-    foleys::MagicLevelSource* outputMeter  = nullptr;
-    foleys::MagicPlotSource*  oscilloscope = nullptr;
-    
-    atomic<bool>* resetMax  = nullptr;
-    atomic<float>* smoothing  = nullptr;
-    atomic<float>* maxEstimated  = nullptr;
-    
-    //==============================================================================
-    
-    
-    
+    ///vector<MeterUnit> meterUnits { MeterUnit(0), MeterUnit(1), MeterUnit(2), MeterUnit(3) };
+    MeterUnit unit = MeterUnit(0);
     juce::AudioProcessorValueTreeState treeState;
-    
+    //==============================================================================
+
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (EssentiaTestAudioProcessor)
 };

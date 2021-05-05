@@ -58,7 +58,8 @@ MagicPluginEditor::MagicPluginEditor (MagicProcessorState& stateToUse, std::uniq
 #if FOLEYS_SAVE_EDITED_GUI_IN_PLUGIN_STATE
     auto guiTree = processorState.getValueTree().getChildWithName ("magic");
     if (guiTree.isValid())
-        builder->createGUI (*this); /// setConfigTree (guiTree);
+        ////*** setConfigTree (guiTree);
+        builder->createGUI (*this);
     else
         builder->createGUI (*this);
 #else  // FOLEYS_SAVE_EDITED_GUI_IN_PLUGIN_STATE

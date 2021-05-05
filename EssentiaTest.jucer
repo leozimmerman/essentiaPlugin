@@ -61,6 +61,8 @@
             file="Source/ofxAudioAnalyzer/ofxAudioAnalyzerUnit.h"/>
     </GROUP>
     <GROUP id="{2094C181-A987-B8CA-0C24-B1C939A168AB}" name="Source">
+      <FILE id="QFd7Sf" name="MeterUnit.h" compile="0" resource="0" file="Source/MeterUnit.h"/>
+      <FILE id="FtOYAH" name="MeterUnit.cpp" compile="1" resource="0" file="Source/MeterUnit.cpp"/>
       <FILE id="TYryDi" name="StringUtils.cpp" compile="1" resource="0" file="Source/StringUtils.cpp"/>
       <FILE id="hdQhsE" name="StringUtils.h" compile="0" resource="0" file="Source/StringUtils.h"/>
       <FILE id="Po0dmH" name="PluginProcessor.cpp" compile="1" resource="0"
@@ -72,7 +74,7 @@
       <FILE id="kGqmZO" name="PluginEditor.h" compile="0" resource="0" file="Source/PluginEditor.h"/>
     </GROUP>
     <GROUP id="{E63883A0-6834-96D3-F481-BB1593C4FB84}" name="Resources">
-      <FILE id="P4xy31" name="magic.xml" compile="0" resource="1" file="Resources/magic.xml"/>
+      <FILE id="Yp4sj6" name="magic.xml" compile="0" resource="1" file="Resources/magic.xml"/>
     </GROUP>
   </MAINGROUP>
   <JUCEOPTIONS JUCE_STRICT_REFCOUNTEDPOINTER="1" JUCE_VST3_CAN_REPLACE_VST2="0"/>
