@@ -51,8 +51,13 @@ public:
 
 private:
     ofxAudioAnalyzer audioAnalyzer;
-    ///vector<MeterUnit> meterUnits { MeterUnit(0), MeterUnit(1), MeterUnit(2), MeterUnit(3) };
-    MeterUnit unit = MeterUnit(0);
+    
+    MeterUnit unit0 = MeterUnit(0);
+    MeterUnit unit1 = MeterUnit(1);
+    MeterUnit unit2 = MeterUnit(2);
+    MeterUnit unit3 = MeterUnit(3);
+    vector<MeterUnit*> meterUnits { &unit0, &unit1, &unit2, &unit3 };
+ 
     juce::AudioProcessorValueTreeState treeState;
     //==============================================================================
 

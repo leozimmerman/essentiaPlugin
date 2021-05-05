@@ -21,25 +21,28 @@
  - Check state saving
  */
 
-juce::AudioProcessorValueTreeState::ParameterLayout createParameterLayout(vector<MeterUnit>& meterUnits)
+juce::AudioProcessorValueTreeState::ParameterLayout createParameterLayout(const vector<MeterUnit*>* meterUnits)
 {
     juce::AudioProcessorValueTreeState::ParameterLayout layout;
-    for (auto unit: meterUnits) {
-        auto generator = unit.getParameterGroup();
+    for (auto unit: *meterUnits) {
+        auto generator = unit->getParameterGroup();
         layout.add (std::move (generator));
     }
     return layout;
 }
 
-juce::AudioProcessorValueTreeState::ParameterLayout createParameterLayout(MeterUnit meterUnit)
-{
-    juce::AudioProcessorValueTreeState::ParameterLayout layout;
-    
-    auto generator = meterUnit.getParameterGroup();
-    layout.add (std::move (generator));
-    
-    return layout;
-}
+//juce::AudioProcessorValueTreeState::ParameterLayout createParameterLayout(MeterUnit* meterUnit, MeterUnit* unit2)
+//{
+//    juce::AudioProcessorValueTreeState::ParameterLayout layout;
+//    
+//    auto generator = meterUnit->getParameterGroup();
+//    layout.add (std::move (generator));
+//    
+//    auto generator2 = unit2->getParameterGroup();
+//    layout.add (std::move (generator2));
+//    
+//    return layout;
+//}
 
 //==============================================================================
 EssentiaTestAudioProcessor::EssentiaTestAudioProcessor()
@@ -53,12 +56,13 @@ EssentiaTestAudioProcessor::EssentiaTestAudioProcessor()
                      #endif
                        ),
 #endif
-    treeState (*this, nullptr, "PARAMETERS", createParameterLayout(unit))
+treeState (*this, nullptr, "PARAMETERS", createParameterLayout(&meterUnits))
 {
-    
-    unit.setup(&magicState, &treeState, &audioAnalyzer);
+    for (auto unit: meterUnits)
+        unit->setup(&magicState, &treeState, &audioAnalyzer);
     
     audioAnalyzer.setup(44100, 1024, 1); ///*** this can be polished
+    
     magicState.setGuiValueTree (BinaryData::magic_xml, BinaryData::magic_xmlSize);
 }
 
@@ -135,7 +139,11 @@ void EssentiaTestAudioProcessor::prepareToPlay (double sampleRate, int samplesPe
 {
     audioAnalyzer.reset(sampleRate, samplesPerBlock, getTotalNumOutputChannels());
    
-    unit.prepareToPlay(sampleRate, samplesPerBlock);
+//    unit.prepareToPlay(sampleRate, samplesPerBlock);
+//    unit2.prepareToPlay(sampleRate, samplesPerBlock);
+    
+    for (auto unit: meterUnits)
+        unit->prepareToPlay(sampleRate, samplesPerBlock);
     
     magicState.prepareToPlay (sampleRate, samplesPerBlock);
  
@@ -183,7 +191,12 @@ void EssentiaTestAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer,
     
     audioAnalyzer.analyze(buffer);
     
-    unit.process();
+    for (auto unit: meterUnits)
+        unit->process();
+    
+    
+//    unit.process();
+//    unit2.process();
     
 }
 
