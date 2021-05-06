@@ -29,7 +29,7 @@ void OnsetsMeterUnit::setup(foleys::MagicProcessorState* magicState, juce::Audio
     
     _audioAnalyzer = audioAnalyzer;
     outputMeter  = magicState->createAndAddObject<foleys::MagicLevelSource>(outputMeterId);
-    //oscilloscope = magicState->createAndAddObject<foleys::MagicOscilloscope>(historyPlotId);
+    oscilloscope = magicState->createAndAddObject<foleys::MagicOscilloscope>(historyPlotId);
     
     alpha = treeState->getRawParameterValue (alphaId);
     jassert (alpha != nullptr);
@@ -109,9 +109,9 @@ void OnsetsMeterUnit::process() {
         bool onsetValue = onsetPtr->getValue();//getValue(currentOfxaaValue, 0, *smoothing, false);
         float value = onsetValue ? 1.0 : 0.0;
         outputMeter->setValues(value, value);
-        //oscilloscope->pushValue(normalizedValue);
+        oscilloscope->pushValue(value);
     } else {
         outputMeter->setValues(0.0, 0.0);
-        //oscilloscope->pushValue(0.0);
+        oscilloscope->pushValue(0.0);
     }
 }

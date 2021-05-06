@@ -73,11 +73,8 @@ public:
 
 private:
     int                      channel = -1;
-    double                   sampleRate = 0.0;
-
-    juce::AudioBuffer<float> samples;
+    
     std::vector<float> values;
-    std::atomic<int>         writePosition;
 
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (MagicOscilloscope)
 };

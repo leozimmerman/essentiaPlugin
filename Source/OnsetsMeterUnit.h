@@ -44,6 +44,7 @@ private:
 
     ofxAAValue currentOfxaaValue = NONE;
     foleys::MagicLevelSource* outputMeter  = nullptr;
+    foleys::MagicPlotSource*  oscilloscope = nullptr;
     
     ofxAAOnsetsAlgorithm* onsetPtr = nullptr;
     

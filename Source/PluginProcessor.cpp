@@ -13,10 +13,9 @@
  TODO:
 
  
- - Encapsulate meter structures to make four of them
  - Remove algorithms that are not going to be used from network
  
- - Add ONSET meter
+
  - Add OSC send panel
  - Check state saving
  */

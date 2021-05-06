@@ -30,7 +30,7 @@ void MeterUnit::setup(foleys::MagicProcessorState* magicState, juce::AudioProces
     
     _audioAnalyzer = audioAnalyzer;
     outputMeter  = magicState->createAndAddObject<foleys::MagicLevelSource>(outputMeterId);
-    //oscilloscope = magicState->createAndAddObject<foleys::MagicOscilloscope>(historyPlotId);
+    oscilloscope = magicState->createAndAddObject<foleys::MagicOscilloscope>(historyPlotId);
     
     smoothing = treeState->getRawParameterValue (smoothingId);
     jassert (smoothing != nullptr);
@@ -86,7 +86,7 @@ void MeterUnit::setOfxaaValue(ofxAAValue value) {
 
 void MeterUnit::prepareToPlay (double sampleRate, int samplesPerBlock) {
     outputMeter->setupSource (1); ///*** remove channels
-    //oscilloscope->prepareToPlay (200, 0);
+    oscilloscope->prepareToPlay (50, 0);
 }
 
 void MeterUnit::process() {
@@ -94,9 +94,9 @@ void MeterUnit::process() {
         float value = _audioAnalyzer->getValue(currentOfxaaValue, 0, *smoothing, false);
         float normalizedValue = _audioAnalyzer->getValue(currentOfxaaValue, 0, *smoothing, true);
         outputMeter->setValues(value, normalizedValue);
-        //oscilloscope->pushValue(normalizedValue);
+        oscilloscope->pushValue(normalizedValue);
     } else {
         outputMeter->setValues(0.0, 0.0);
-        //oscilloscope->pushValue(0.0);
+        oscilloscope->pushValue(0.0);
     }
 }

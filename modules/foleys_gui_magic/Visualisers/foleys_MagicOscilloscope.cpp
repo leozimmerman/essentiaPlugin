@@ -34,6 +34,7 @@
  ==============================================================================
  */
 
+#define PLOT_SIZE 150
 
 namespace foleys
 {
@@ -44,13 +45,9 @@ MagicOscilloscope::MagicOscilloscope (int channelToDisplay)
 {
 }
 void MagicOscilloscope::pushValue(const float value) {
-   
     if (values.size() == 0) return ;
-    
-    for (unsigned long i = values.size()-1; i>0 ; --i) {
-        values[i] = values[i-1];
-    }
-    values[0] = value;
+    values.erase(values.begin());
+    values.push_back(value);
     resetLastDataFlag();
 }
 
@@ -84,15 +81,8 @@ void MagicOscilloscope::createPlotPaths (juce::Path& path, juce::Path& filledPat
 
 void MagicOscilloscope::prepareToPlay (double sampleRateToUse, int)
 {
-    sampleRate = sampleRateToUse;
-
-    samples.setSize (1, static_cast<int> (sampleRate));
-    samples.clear();
-    
     values.clear();
-    values.resize(sampleRate, 0.0);
-    
-    writePosition.store (0);
+    values.resize(PLOT_SIZE, 0.0);
 }
 
 
