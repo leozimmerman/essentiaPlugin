@@ -56,10 +56,9 @@ float MagicLevelSource::getMaxValue () const
     return _maxRegisteredValue;
 }
 
-void MagicLevelSource::setupSource (int numChannels, double sampleRate, int maxKeepMS, int rmsWindowMS)
+void MagicLevelSource::setupSource (int numChannels)
 {
     setNumChannels (numChannels);
-    maxCountDownInitial = static_cast<int> (std::ceil (sampleRate * maxKeepMS * 0.001 / 64.0));
 }
 
 void MagicLevelSource::setNumChannels (int numChannels)

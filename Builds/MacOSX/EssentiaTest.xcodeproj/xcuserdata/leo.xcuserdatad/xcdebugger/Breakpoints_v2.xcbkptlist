@@ -24,7 +24,7 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "D6A560CB-47C0-4FDD-B1F4-939FB3C4E8DE"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../../Source/ofxAudioAnalyzer/ofxAudioAnalyzerUnit.cpp"
@@ -34,69 +34,6 @@
             endingLineNumber = "43"
             landmarkName = "ofxAudioAnalyzerUnit::analyze(inBuffer)"
             landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "1F90CD02-37EF-4280-BC9A-25E966E4AE6F"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "../../Source/MeterUnit.cpp"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "42"
-            endingLineNumber = "42"
-            landmarkName = "MeterUnit::~MeterUnit()"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "1F90CD02-37EF-4280-BC9A-25E966E4AE6F - 59bf8d2bd3f571ed"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "MeterUnit::~MeterUnit()"
-                  moduleName = "EssentiaTest"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/leo/Development/JUCE/myProjects/EssentiaTest/Source/MeterUnit.cpp"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "43"
-                  endingLineNumber = "43"
-                  offsetFromSymbolStart = "32">
-               </Location>
-               <Location
-                  uuid = "1F90CD02-37EF-4280-BC9A-25E966E4AE6F - 59bf8d2bd3f571ed"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "MeterUnit::~MeterUnit()"
-                  moduleName = "EssentiaTest"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/leo/Development/JUCE/myProjects/EssentiaTest/Source/MeterUnit.cpp"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "43"
-                  endingLineNumber = "43"
-                  offsetFromSymbolStart = "21">
-               </Location>
-               <Location
-                  uuid = "1F90CD02-37EF-4280-BC9A-25E966E4AE6F - 59bf8d2bd3f571ed"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "MeterUnit::~MeterUnit()"
-                  moduleName = "EssentiaTest"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/leo/Development/JUCE/myProjects/EssentiaTest/Source/MeterUnit.cpp"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "43"
-                  endingLineNumber = "43"
-                  offsetFromSymbolStart = "40">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

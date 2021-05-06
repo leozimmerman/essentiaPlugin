@@ -8,23 +8,7 @@
 #include "MeterUnit.h"
 #include "StringUtils.h"
 
-vector<ofxAAValue> availableValues { RMS, SPECTRAL_CENTROID, RMS, LOUDNESS } ;
-
-namespace IDs
-{
-    static juce::String meter  { "Meter" };
-    static juce::String algorithmType  { "algorithmType" };
-    static juce::String smoothing  { "smoothing" };
-    static juce::String resetMax  { "resetMax" };
-    static juce::String maxEstimated  { "maxEstimated" };
-
-    static juce::String outputMeter  { "outputMeter" };
-    static juce::String historyPlot  { "historyPlot" };
-
-    static juce::String IDwithIdx(juce::String ID, int idx) {
-        return ID +":" + juce::String(idx);
-    }
-}
+vector<ofxAAValue> availableValues { RMS, SPECTRAL_CENTROID, LOUDNESS } ;
 
 MeterUnit::MeterUnit(int idx) {
     _idx = idx;
@@ -101,7 +85,7 @@ void MeterUnit::setOfxaaValue(ofxAAValue value) {
 }
 
 void MeterUnit::prepareToPlay (double sampleRate, int samplesPerBlock) {
-    outputMeter->setupSource (1, sampleRate, 500, 200); ///*** remove channels
+    outputMeter->setupSource (1); ///*** remove channels
     //oscilloscope->prepareToPlay (200, 0);
 }
 

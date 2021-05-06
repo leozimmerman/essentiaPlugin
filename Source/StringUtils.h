@@ -39,6 +39,27 @@
 //#define HPCP_STRING "HPCP"
 //#define TRISTIMULUS_STRING "TRISTIMULUS"
 
+namespace IDs
+{
+    static juce::String meter  { "Meter" };
+    static juce::String algorithmType  { "algorithmType" };
+    static juce::String smoothing  { "smoothing" };
+    static juce::String resetMax  { "resetMax" };
+    static juce::String maxEstimated  { "maxEstimated" };
+
+    static juce::String outputMeter  { "outputMeter" };
+    static juce::String historyPlot  { "historyPlot" };
+
+    static juce::String resetOnsets  { "resetOnsets" };
+    static juce::String alpha  { "alpha" };
+    static juce::String timeTreshold  { "timeTreshold" };
+    static juce::String silenceTreshold  { "silenceTreshold" };
+
+    static juce::String IDwithIdx(juce::String ID, int idx) {
+        return ID +":" + juce::String(idx);
+    }
+}
+
 namespace utils {
     
     static std::map<string, ofxAAValue> valuesMap = {

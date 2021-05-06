@@ -86,7 +86,7 @@ private:
     
     bool usingTimeThreshold;
     float timeThreshold;
-    float lastOnsetTime;
+    long long lastOnsetTime;
     int bufferNumThreshold;
     int lastOnsetBufferNum;
     

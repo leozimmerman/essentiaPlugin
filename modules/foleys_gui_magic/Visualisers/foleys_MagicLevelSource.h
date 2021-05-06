@@ -56,16 +56,7 @@ public:
     float getNormalizedValue () const { return _normalizedValue; }
     float getMaxValue () const;
 
-    /**
-     Setup the source to measure a signal.
-
-     @param numChannels the number of channels that will be sent
-     @param sampleRate the sampleRate the signal is timed in
-     @param maxKeepMS the number of milliseconds to keep the max
-     @param rmsWindowMS the length to calculate the RMS of it
-     */
-    void setupSource (int numChannels, double sampleRate, int maxKeepMS, int rmsWindowMS);
-
+    void setupSource (int numChannels);
     /**
      Set the number of channels to measure. This should be done on a non-realtime thread.
      */
@@ -83,8 +74,6 @@ private:
     int _numChannels = 0;
     
     std::vector<float> _valueHistory;
-
-    int maxCountDownInitial = 100;
 
     JUCE_DECLARE_WEAK_REFERENCEABLE (MagicLevelSource)
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (MagicLevelSource)

@@ -65,7 +65,7 @@ ofxAAOnsetsAlgorithm::ofxAAOnsetsAlgorithm(ofxAAOneVectorOutputAlgorithm* window
     alpha = 0.1;
     timeThreshold = 100.0;
     bufferNumThreshold = 7; //116 ms at 60 fps
-    lastOnsetTime = 0.0;
+    lastOnsetTime = 0;
     lastOnsetBufferNum = 0;
     addHfc = addComplex = addFlux = true;
     hfc_max = complex_max = flux_max = 0.0;
@@ -203,10 +203,10 @@ bool ofxAAOnsetsAlgorithm::onsetTimeThresholdEvaluation(){
     
     bool onsetTimeEvaluation = false;
     
-    float currentTime = juce::Time::getCurrentTime().toMilliseconds();
+    long long currentTime = juce::Time::getCurrentTime().toMilliseconds();
     
     //elapsed time since last onset:
-    float elapsed = currentTime - lastOnsetTime;
+    long long elapsed = currentTime - lastOnsetTime;
     
     if (elapsed>timeThreshold){
         onsetTimeEvaluation = true;

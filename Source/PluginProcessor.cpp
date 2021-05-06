@@ -21,30 +21,21 @@
  - Check state saving
  */
 
-juce::AudioProcessorValueTreeState::ParameterLayout createParameterLayout(const vector<MeterUnit*>* meterUnits)
+juce::AudioProcessorValueTreeState::ParameterLayout createParameterLayout(const vector<MeterUnit*>* meterUnits, OnsetsMeterUnit* oscMeterUnit)
 {
     juce::AudioProcessorValueTreeState::ParameterLayout layout;
     for (auto unit: *meterUnits) {
         auto generator = unit->getParameterGroup();
         layout.add (std::move (generator));
     }
+    auto oscGenerator = oscMeterUnit->getParameterGroup();
+    layout.add(std::move (oscGenerator));
+    
     return layout;
 }
 
-//juce::AudioProcessorValueTreeState::ParameterLayout createParameterLayout(MeterUnit* meterUnit, MeterUnit* unit2)
-//{
-//    juce::AudioProcessorValueTreeState::ParameterLayout layout;
-//    
-//    auto generator = meterUnit->getParameterGroup();
-//    layout.add (std::move (generator));
-//    
-//    auto generator2 = unit2->getParameterGroup();
-//    layout.add (std::move (generator2));
-//    
-//    return layout;
-//}
-
 //==============================================================================
+// MARK: Init
 EssentiaTestAudioProcessor::EssentiaTestAudioProcessor()
 #ifndef JucePlugin_PreferredChannelConfigurations
      : MagicProcessor (BusesProperties()
@@ -56,12 +47,16 @@ EssentiaTestAudioProcessor::EssentiaTestAudioProcessor()
                      #endif
                        ),
 #endif
-treeState (*this, nullptr, "PARAMETERS", createParameterLayout(&meterUnits))
+treeState (*this, nullptr, "PARAMETERS", createParameterLayout(&meterUnits, &onsetsMeterUnit))
 {
-    for (auto unit: meterUnits)
-        unit->setup(&magicState, &treeState, &audioAnalyzer);
     
     audioAnalyzer.setup(44100, 1024, 1); ///*** this can be polished
+    
+    for (auto unit: meterUnits) {
+        unit->setup(&magicState, &treeState, &audioAnalyzer);
+    }
+    
+    onsetsMeterUnit.setup(&magicState, &treeState, &audioAnalyzer);
     
     magicState.setGuiValueTree (BinaryData::magic_xml, BinaryData::magic_xmlSize);
 }
@@ -70,8 +65,36 @@ EssentiaTestAudioProcessor::~EssentiaTestAudioProcessor()
 {
 }
 
-//==============================================================================
+// MARK: Preparte to play
+void EssentiaTestAudioProcessor::prepareToPlay (double sampleRate, int samplesPerBlock)
+{
+    audioAnalyzer.reset(sampleRate, samplesPerBlock, getTotalNumOutputChannels());
+   
+    for (auto unit: meterUnits) {
+        unit->prepareToPlay(sampleRate, samplesPerBlock);
+    }
+    onsetsMeterUnit.prepareToPlay(sampleRate, samplesPerBlock);
+    magicState.prepareToPlay (sampleRate, samplesPerBlock);
+}
 
+// MARK: Process block
+void EssentiaTestAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer, juce::MidiBuffer& midiMessages)
+{
+    juce::ScopedNoDenormals noDenormals;
+    auto totalNumInputChannels  = getTotalNumInputChannels();
+    auto totalNumOutputChannels = getTotalNumOutputChannels();
+    
+    for (auto i = totalNumInputChannels; i < totalNumOutputChannels; ++i)
+        buffer.clear (i, 0, buffer.getNumSamples());
+    
+    audioAnalyzer.analyze(buffer);
+    
+    for (auto unit: meterUnits) {
+        unit->process();
+    }
+    onsetsMeterUnit.process();
+}
+//==============================================================================
 
 const juce::String EssentiaTestAudioProcessor::getName() const
 {
@@ -135,19 +158,7 @@ void EssentiaTestAudioProcessor::changeProgramName (int index, const juce::Strin
 }
 
 //==============================================================================
-void EssentiaTestAudioProcessor::prepareToPlay (double sampleRate, int samplesPerBlock)
-{
-    audioAnalyzer.reset(sampleRate, samplesPerBlock, getTotalNumOutputChannels());
-   
-//    unit.prepareToPlay(sampleRate, samplesPerBlock);
-//    unit2.prepareToPlay(sampleRate, samplesPerBlock);
-    
-    for (auto unit: meterUnits)
-        unit->prepareToPlay(sampleRate, samplesPerBlock);
-    
-    magicState.prepareToPlay (sampleRate, samplesPerBlock);
- 
-}
+
 
 void EssentiaTestAudioProcessor::releaseResources()
 {
@@ -180,25 +191,6 @@ bool EssentiaTestAudioProcessor::isBusesLayoutSupported (const BusesLayout& layo
   #endif
 }
 #endif
-void EssentiaTestAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer, juce::MidiBuffer& midiMessages)
-{
-    juce::ScopedNoDenormals noDenormals;
-    auto totalNumInputChannels  = getTotalNumInputChannels();
-    auto totalNumOutputChannels = getTotalNumOutputChannels();
-    
-    for (auto i = totalNumInputChannels; i < totalNumOutputChannels; ++i)
-        buffer.clear (i, 0, buffer.getNumSamples());
-    
-    audioAnalyzer.analyze(buffer);
-    
-    for (auto unit: meterUnits)
-        unit->process();
-    
-    
-//    unit.process();
-//    unit2.process();
-    
-}
 
 //==============================================================================
 // This creates new instances of the plugin..
