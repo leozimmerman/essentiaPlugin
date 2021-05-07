@@ -102,8 +102,8 @@ void MagicLevelMeter::paint (juce::Graphics& g)
         g.drawSingleLineText(std::to_string(source->getValue()), 10 + i*width, bar.getBottom (), juce::Justification::left);
         g.setColour(juce::Colours::red);
         g.drawSingleLineText(std::to_string(source->getMaxValue()), 10 + i*width, bar.getBottom() - 15, juce::Justification::left);
-        g.setColour(juce::Colours::blue);
-        g.drawSingleLineText(std::to_string(source->getNormalizedValue()), 10 + i*width, bar.getBottom() - 30, juce::Justification::left);
+//        g.setColour(juce::Colours::blue);
+//        g.drawSingleLineText(std::to_string(source->getNormalizedValue()), 10 + i*width, bar.getBottom() - 30, juce::Justification::left);
     }
 }
 

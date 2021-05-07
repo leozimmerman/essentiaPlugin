@@ -89,7 +89,14 @@ void OnsetsMeterUnit::parameterChanged (const juce::String& param, float value)
 void OnsetsMeterUnit::prepareToPlay (double sampleRate, int samplesPerBlock) {
     outputMeter->setupSource (1); ///*** remove channels
     updateOnsetPtr();
-   
+}
+
+bool OnsetsMeterUnit::isEnabled() {
+    return currentOfxaaValue != NONE;
+}
+
+float OnsetsMeterUnit::getValue() {
+    return outputMeter->getNormalizedValue();
 }
 
 void OnsetsMeterUnit::updateOnsetPtr() {

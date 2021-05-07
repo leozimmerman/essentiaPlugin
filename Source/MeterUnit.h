@@ -25,6 +25,9 @@ public:
     int getId() { return _idx; }
     unique_ptr<juce::AudioProcessorParameterGroup> getParameterGroup();
     
+    bool isEnabled();
+    float getValue();
+    
     juce::String meterId;
     juce::String algorithmTypeId;
     juce::String smoothingId;

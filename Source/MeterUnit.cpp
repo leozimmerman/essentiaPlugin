@@ -79,6 +79,14 @@ void MeterUnit::parameterChanged (const juce::String& param, float value)
     }
 }
 
+bool MeterUnit::isEnabled() {
+    return currentOfxaaValue != NONE;
+}
+
+float MeterUnit::getValue() {
+    return outputMeter->getNormalizedValue();
+}
+
 void MeterUnit::setOfxaaValue(ofxAAValue value) {
     currentOfxaaValue = value;
     outputMeter->resetMaxValue();
@@ -90,7 +98,7 @@ void MeterUnit::prepareToPlay (double sampleRate, int samplesPerBlock) {
 }
 
 void MeterUnit::process() {
-    if (currentOfxaaValue != NONE) {
+    if (isEnabled()) {
         float value = _audioAnalyzer->getValue(currentOfxaaValue, 0, *smoothing, false);
         float normalizedValue = _audioAnalyzer->getValue(currentOfxaaValue, 0, *smoothing, true);
         outputMeter->setValues(value, normalizedValue);

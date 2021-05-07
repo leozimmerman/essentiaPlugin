@@ -31,7 +31,7 @@ juce::AudioProcessorValueTreeState::ParameterLayout createParameterLayout(const 
     layout.add(std::move (onsetsGenerator));
     
     auto oscGenerator = std::make_unique<juce::AudioProcessorParameterGroup>("OSC", TRANS ("OSC"), "|");
-    oscGenerator->addChild(std::make_unique<juce::AudioParameterFloat>(IDs::oscPort, "OSC PORT", juce::NormalisableRange<float>(1000, 9999, 1), 9001));
+    oscGenerator->addChild(std::make_unique<juce::AudioParameterFloat>(IDs::oscPort, "OSC PORT", juce::NormalisableRange<float>(1, 65535, 1), 9001));
     layout.add(std::move (oscGenerator));
     return layout;
 }
@@ -94,6 +94,8 @@ void EssentiaTestAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer,
         unit->process();
     }
     onsetsMeterUnit.process();
+    
+    sendOscData();
 }
 //==============================================================================
 // MARK: OSC
@@ -116,13 +118,27 @@ void EssentiaTestAudioProcessor::oscPortHasChanged(int newOscPort) {
 }
 
 void EssentiaTestAudioProcessor::connectOscSender(const juce::String& targetHostName, int targetPortNumber) {
+    oscSender.disconnect();
     if (! oscSender.connect (targetHostName, targetPortNumber)) {
         juce::Logger::outputDebugString(&"Error: could not connect to UDP port:" [ targetPortNumber]);
     }
 }
 
 void EssentiaTestAudioProcessor::sendOscData() {
+    string root = "/analyzer";
+    for (int i=0; i<meterUnits.size(); ++i) {
+        if (meterUnits[i]->isEnabled()) {
+            juce::String address = root + "/" + std::to_string(i+1);
+            juce::OSCAddressPattern addressPattern = juce::OSCAddressPattern(address);
+            oscSender.send(addressPattern, meterUnits[i]->getValue());
+        }
+    }
     
+    if (onsetsMeterUnit.isEnabled()) {
+        juce::String address = root + "/onsets";
+        juce::OSCAddressPattern addressPattern = juce::OSCAddressPattern(address);
+        oscSender.send(addressPattern, onsetsMeterUnit.getValue());
+    }
 }
     
 //==============================================================================

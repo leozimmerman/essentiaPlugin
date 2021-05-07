@@ -24,6 +24,9 @@ public:
     
     void updateOnsetPtr();
     
+    bool isEnabled();
+    float getValue();
+    
     int getId() { return _idx; }
     unique_ptr<juce::AudioProcessorParameterGroup> getParameterGroup();
     
