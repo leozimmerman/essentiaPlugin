@@ -117,6 +117,13 @@ std::unique_ptr<juce::ButtonParameterAttachment> MagicProcessorState::createAtta
     return {};
 }
 
+void MagicProcessorState::setOscIPAdress(const juce::String address) {
+    oscSendIPAddress = address;
+    if (oscListener != nullptr) {
+        oscListener->oscHostHasChanged(oscSendIPAddress);
+    }
+}
+
 juce::AudioProcessor* MagicProcessorState::getProcessor()
 {
     return &processor;

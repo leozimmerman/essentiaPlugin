@@ -39,6 +39,13 @@
 namespace foleys
 {
 
+class OscHostListener
+{
+public:
+    virtual ~OscHostListener() = default;
+    virtual void oscHostHasChanged (juce::String newOscHostAdress) = 0;
+};
+
 /**
 The MagicProcessorState is a subclass of MagicGUIState, that adds AudioProcessor specific functionality.
  It allows for instance connecting to AudioProcessorParameters and supplies a default XML tree* of components
@@ -99,7 +106,9 @@ public:
      @param editor is an optional pointer to the editor to apply the last size to
      */
     void setStateInformation (const void* data, int sizeInBytes, juce::AudioProcessorEditor* editor = nullptr);
-
+    
+    void setOscIPAdress(const juce::String address);
+    void addOscListener(OscHostListener* listener) { oscListener = listener; }
     /**
      Returns a parameter for a parameter ID
      */
@@ -158,6 +167,9 @@ private:
     std::atomic<double> timeInSeconds;
     std::atomic<bool>   isPlaying;
     std::atomic<bool>   isRecording;
+    
+    juce::String oscSendIPAddress = "";
+    OscHostListener* oscListener;
 
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (MagicProcessorState)
 };

@@ -45,7 +45,8 @@ namespace foleys
  that can be baked into the project using the BinaryData of Projucer.
  */
 class MagicPluginEditor  : public juce::AudioProcessorEditor,
-                           public juce::DragAndDropContainer
+                           public juce::DragAndDropContainer,
+                           public juce::Label::Listener
 {
 public:
     /**
@@ -70,6 +71,8 @@ public:
     void paint (juce::Graphics& g) override;
 
     void resized() override;
+    
+    void labelTextChanged (juce::Label* labelThatHasChanged) override;
 
 private:
 
@@ -87,6 +90,8 @@ private:
     std::unique_ptr<MagicGUIBuilder> builder;
 
     juce::TooltipWindow tooltip      { this };
+    
+    juce::Label titleLabel;
 
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (MagicPluginEditor)
 };

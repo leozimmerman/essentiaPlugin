@@ -76,6 +76,14 @@ MagicPluginEditor::MagicPluginEditor (MagicProcessorState& stateToUse, std::uniq
 
     builder->attachToolboxToWindow (*this);
 #endif
+    
+    addAndMakeVisible (titleLabel);
+    titleLabel.setFont (juce::Font (20.0, juce::Font::bold));
+    titleLabel.setEditable(true);
+    titleLabel.setText ("-OSC Host-", juce::dontSendNotification);
+    titleLabel.setColour (juce::Label::textColourId, juce::Colours::lightgreen);
+    titleLabel.setJustificationType (juce::Justification::centredLeft);
+    titleLabel.addListener(this);
 }
 
 MagicPluginEditor::~MagicPluginEditor()
@@ -83,6 +91,10 @@ MagicPluginEditor::~MagicPluginEditor()
 #if JUCE_MODULE_AVAILABLE_juce_opengl && FOLEYS_ENABLE_OPEN_GL_CONTEXT
     oglContext.detach();
 #endif
+}
+
+void MagicPluginEditor::labelTextChanged (juce::Label* labelThatHasChanged) {
+    processorState.setOscIPAdress(labelThatHasChanged->getText());
 }
 
 void MagicPluginEditor::updateSize()
@@ -148,6 +160,8 @@ void MagicPluginEditor::resized()
     builder->updateLayout();
 
     processorState.setLastEditorSize (getWidth(), getHeight());
+    
+    titleLabel.setBounds (10,  getHeight() - 30, 200,  30);
 }
 
 } // namespace foleys

@@ -69,6 +69,7 @@ void MagicProcessor::initialiseBuilder (MagicGUIBuilder& builder)
 juce::AudioProcessorEditor* MagicProcessor::createEditor()
 {
     magicState.updateParameterMap();
+    magicState.addOscListener(this);
 
     auto builder = std::make_unique<MagicGUIBuilder>(magicState);
     initialiseBuilder (*builder);

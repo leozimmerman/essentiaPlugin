@@ -54,7 +54,8 @@ namespace foleys
  magicState.setGuiValueTree (BinaryData::magic_xml, BinaryData::magic_xmlSize);
  \endcode
  */
-class MagicProcessor  : public juce::AudioProcessor
+class MagicProcessor  : public juce::AudioProcessor,
+                        public OscHostListener
 {
 public:
     MagicProcessor();

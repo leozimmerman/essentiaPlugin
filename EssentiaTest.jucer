@@ -61,6 +61,10 @@
             file="Source/ofxAudioAnalyzer/ofxAudioAnalyzerUnit.h"/>
     </GROUP>
     <GROUP id="{2094C181-A987-B8CA-0C24-B1C939A168AB}" name="Source">
+      <FILE id="l1wk69" name="OnsetsMeterUnit.cpp" compile="1" resource="0"
+            file="Source/OnsetsMeterUnit.cpp"/>
+      <FILE id="A3WQRC" name="OnsetsMeterUnit.h" compile="0" resource="0"
+            file="Source/OnsetsMeterUnit.h"/>
       <FILE id="QFd7Sf" name="MeterUnit.h" compile="0" resource="0" file="Source/MeterUnit.h"/>
       <FILE id="FtOYAH" name="MeterUnit.cpp" compile="1" resource="0" file="Source/MeterUnit.cpp"/>
       <FILE id="TYryDi" name="StringUtils.cpp" compile="1" resource="0" file="Source/StringUtils.cpp"/>
@@ -74,7 +78,7 @@
       <FILE id="kGqmZO" name="PluginEditor.h" compile="0" resource="0" file="Source/PluginEditor.h"/>
     </GROUP>
     <GROUP id="{E63883A0-6834-96D3-F481-BB1593C4FB84}" name="Resources">
-      <FILE id="Yp4sj6" name="magic.xml" compile="0" resource="1" file="Resources/magic.xml"/>
+      <FILE id="ZcuUJE" name="magic.xml" compile="0" resource="1" file="Resources/magic.xml"/>
     </GROUP>
   </MAINGROUP>
   <JUCEOPTIONS JUCE_STRICT_REFCOUNTEDPOINTER="1" JUCE_VST3_CAN_REPLACE_VST2="0"/>
@@ -104,6 +108,7 @@
         <MODULEPATH id="foleys_gui_magic" path="modules"/>
         <MODULEPATH id="juce_dsp" path="../../modules"/>
         <MODULEPATH id="juce_cryptography" path="../../modules"/>
+        <MODULEPATH id="juce_osc" path="../../modules"/>
       </MODULEPATHS>
     </XCODE_MAC>
   </EXPORTFORMATS>
@@ -124,6 +129,7 @@
     <MODULE id="juce_graphics" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
     <MODULE id="juce_gui_basics" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
     <MODULE id="juce_gui_extra" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_osc" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
   </MODULES>
   <LIVE_SETTINGS>
     <OSX/>

@@ -18,7 +18,7 @@ using namespace std;
 //==============================================================================
 /**
 */
-class EssentiaTestAudioProcessor  : public foleys::MagicProcessor
+class EssentiaTestAudioProcessor  : public foleys::MagicProcessor, private juce::AudioProcessorValueTreeState::Listener
 {
 public:
     //==============================================================================
@@ -49,8 +49,16 @@ public:
     void setCurrentProgram (int index) override;
     const juce::String getProgramName (int index) override;
     void changeProgramName (int index, const juce::String& newName) override;
-
+    
+    void oscHostHasChanged(juce::String newOscHostAdress) override;
+    void oscPortHasChanged(int newOscPort);
+    void parameterChanged (const juce::String& param, float value) override;
+    
 private:
+    void connectOscSender(const juce::String& targetHostName, int targetPortNumber);
+    void sendOscData();
+    void showConnectionErrorMessage (const juce::String& messageText);
+    
     ofxAudioAnalyzer audioAnalyzer;
     
     MeterUnit unit0 = MeterUnit(0);
@@ -61,6 +69,10 @@ private:
     OnsetsMeterUnit onsetsMeterUnit = OnsetsMeterUnit(99);
  
     juce::AudioProcessorValueTreeState treeState;
+    
+    juce::OSCSender oscSender;
+    juce::String _oscHost;
+    int _oscPort;
     //==============================================================================
 
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (EssentiaTestAudioProcessor)

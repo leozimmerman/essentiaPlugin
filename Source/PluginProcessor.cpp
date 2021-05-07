@@ -20,16 +20,19 @@
  - Check state saving
  */
 
-juce::AudioProcessorValueTreeState::ParameterLayout createParameterLayout(const vector<MeterUnit*>* meterUnits, OnsetsMeterUnit* oscMeterUnit)
+juce::AudioProcessorValueTreeState::ParameterLayout createParameterLayout(const vector<MeterUnit*>* meterUnits, OnsetsMeterUnit* onsetsMeterUnit)
 {
     juce::AudioProcessorValueTreeState::ParameterLayout layout;
     for (auto unit: *meterUnits) {
         auto generator = unit->getParameterGroup();
         layout.add (std::move (generator));
     }
-    auto oscGenerator = oscMeterUnit->getParameterGroup();
-    layout.add(std::move (oscGenerator));
+    auto onsetsGenerator = onsetsMeterUnit->getParameterGroup();
+    layout.add(std::move (onsetsGenerator));
     
+    auto oscGenerator = std::make_unique<juce::AudioProcessorParameterGroup>("OSC", TRANS ("OSC"), "|");
+    oscGenerator->addChild(std::make_unique<juce::AudioParameterFloat>(IDs::oscPort, "OSC PORT", juce::NormalisableRange<float>(1000, 9999, 1), 9001));
+    layout.add(std::move (oscGenerator));
     return layout;
 }
 
@@ -54,9 +57,8 @@ treeState (*this, nullptr, "PARAMETERS", createParameterLayout(&meterUnits, &ons
     for (auto unit: meterUnits) {
         unit->setup(&magicState, &treeState, &audioAnalyzer);
     }
-    
     onsetsMeterUnit.setup(&magicState, &treeState, &audioAnalyzer);
-    
+    treeState.addParameterListener (IDs::oscPort, this);
     magicState.setGuiValueTree (BinaryData::magic_xml, BinaryData::magic_xmlSize);
 }
 
@@ -93,6 +95,36 @@ void EssentiaTestAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer,
     }
     onsetsMeterUnit.process();
 }
+//==============================================================================
+// MARK: OSC
+void EssentiaTestAudioProcessor::parameterChanged (const juce::String& param, float value) {
+    if (param == IDs::oscPort) {
+        oscPortHasChanged(value);
+    }
+}
+
+void EssentiaTestAudioProcessor::oscHostHasChanged (juce::String newOscHostAdress) {
+    _oscHost = newOscHostAdress;
+    std::cout<< "HOST: "<< newOscHostAdress << std::endl;
+    connectOscSender(_oscHost, _oscPort);
+}
+
+void EssentiaTestAudioProcessor::oscPortHasChanged(int newOscPort) {
+    _oscPort = newOscPort;
+    std::cout<< "PORT: "<< newOscPort << std::endl;
+    connectOscSender(_oscHost, _oscPort);
+}
+
+void EssentiaTestAudioProcessor::connectOscSender(const juce::String& targetHostName, int targetPortNumber) {
+    if (! oscSender.connect (targetHostName, targetPortNumber)) {
+        juce::Logger::outputDebugString(&"Error: could not connect to UDP port:" [ targetPortNumber]);
+    }
+}
+
+void EssentiaTestAudioProcessor::sendOscData() {
+    
+}
+    
 //==============================================================================
 
 const juce::String EssentiaTestAudioProcessor::getName() const
