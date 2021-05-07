@@ -12,11 +12,8 @@
 /**
  TODO:
 
- 
  - Remove algorithms that are not going to be used from network
  
-
- - Add OSC send panel
  - Check state saving
  */
 

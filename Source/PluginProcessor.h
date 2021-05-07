@@ -71,8 +71,8 @@ private:
     juce::AudioProcessorValueTreeState treeState;
     
     juce::OSCSender oscSender;
-    juce::String _oscHost;
-    int _oscPort;
+    juce::String _oscHost = "127.0.0.1"; ///*** check on saving test
+    int _oscPort = 0;
     //==============================================================================
 
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (EssentiaTestAudioProcessor)

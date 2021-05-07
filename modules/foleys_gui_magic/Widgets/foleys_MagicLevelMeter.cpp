@@ -49,6 +49,13 @@ MagicLevelMeter::MagicLevelMeter()
     startTimerHz (30);
 }
 
+std::string to_string_with_precision(const float a_value, const int n = 6) {
+    std::ostringstream out;
+    out.precision(n);
+    out << std::fixed << a_value;
+    return out.str();
+}
+
 void MagicLevelMeter::paint (juce::Graphics& g)
 {
     if (auto* lnf = dynamic_cast<LookAndFeelMethods*>(&getLookAndFeel()))
@@ -99,9 +106,11 @@ void MagicLevelMeter::paint (juce::Graphics& g)
                               static_cast<float>(bar.getX ()), static_cast<float>(bar.getRight ())); ///***remove
      
         g.setColour(juce::Colours::orange);
-        g.drawSingleLineText(std::to_string(source->getValue()), 10 + i*width, bar.getBottom (), juce::Justification::left);
+        auto valueString = to_string_with_precision(source->getValue(), 2);
+        auto maxValueString = to_string_with_precision(source->getMaxValue(), 2);
+        g.drawSingleLineText(valueString, 10 + i*width, bar.getBottom (), juce::Justification::left);
         g.setColour(juce::Colours::red);
-        g.drawSingleLineText(std::to_string(source->getMaxValue()), 10 + i*width, bar.getBottom() - 15, juce::Justification::left);
+        g.drawSingleLineText(maxValueString, 10 + i*width, bar.getBottom() - 15, juce::Justification::left);
 //        g.setColour(juce::Colours::blue);
 //        g.drawSingleLineText(std::to_string(source->getNormalizedValue()), 10 + i*width, bar.getBottom() - 30, juce::Justification::left);
     }

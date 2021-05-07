@@ -8,7 +8,41 @@
 #include "MeterUnit.h"
 #include "StringUtils.h"
 
-vector<ofxAAValue> availableValues { RMS, SPECTRAL_CENTROID, LOUDNESS } ;
+vector<ofxAAValue> availableValues {
+    RMS,
+    POWER,
+    ZERO_CROSSING_RATE,
+    LOUDNESS,
+    
+    PITCH_YIN_FREQUENCY,
+    PITCH_YIN_CONFIDENCE,
+    
+    DISSONANCE,
+    HFC,
+    PITCH_SALIENCE,
+    
+    INHARMONICITY,
+    ODD_TO_EVEN,
+    STRONG_PEAK,
+
+    SILENCE_RATE_20dB,
+    SILENCE_RATE_30dB,
+    SILENCE_RATE_60dB,
+    
+    SPECTRAL_KURTOSIS,
+    SPECTRAL_SPREAD,
+    SPECTRAL_SKEWNESS,
+    SPECTRAL_DECREASE,
+    SPECTRAL_ROLLOFF,
+    SPECTRAL_ENERGY,
+    SPECTRAL_ENTROPY,
+    SPECTRAL_CENTROID,
+    SPECTRAL_COMPLEXITY,
+    SPECTRAL_FLUX,
+   
+    HPCP_CREST,
+    HPCP_ENTROPY
+};
 
 MeterUnit::MeterUnit(int idx) {
     _idx = idx;

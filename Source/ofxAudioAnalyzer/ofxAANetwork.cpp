@@ -134,10 +134,10 @@ namespace ofxaa {
         
         //MARK: SFX
         envelope = new ofxAAOneVectorOutputAlgorithm(Envelope, sr, fs);
-        algorithms.push_back(envelope);
+//        algorithms.push_back(envelope);
         
         envelope_acummulated = new ofxAAOneVectorOutputAlgorithm(Envelope, sr, fs);
-        algorithms.push_back(envelope_acummulated);
+//        algorithms.push_back(envelope_acummulated);
         
         sfx_decrease = new ofxAASingleOutputAlgorithm(Decrease, sr, fs);
         sfx_decrease->hasLogarithmicValues = true;
@@ -160,11 +160,11 @@ namespace ofxaa {
         
         flatnessSFX = new ofxAASingleOutputAlgorithm(FlatnessSFX, sr, fs);
         flatnessSFX->maxEstimatedValue = FLATNESS_SFX_MAX_VALUE;
-        algorithms.push_back(flatnessSFX);
+//        algorithms.push_back(flatnessSFX);
         
         maxToTotal = new ofxAASingleOutputAlgorithm(MaxToTotal, sr, fs);
         maxToTotal->isNormalizedByDefault = true;
-        algorithms.push_back(maxToTotal);
+//        algorithms.push_back(maxToTotal);
         
         tcToTotal = new ofxAASingleOutputAlgorithm(TCToTotal, sr, fs);
         tcToTotal->isNormalizedByDefault = true;
@@ -182,7 +182,7 @@ namespace ofxaa {
 //        algorithms.push_back(pitchMelodia); // NOT WORKING
         
         multiPitchKlapuri = new ofxAAVectorVectorOutputAlgorithm(MultiPitchKlapuri, sr, fs);
-        algorithms.push_back(multiPitchKlapuri);
+//        algorithms.push_back(multiPitchKlapuri);
         
         /* Not working: https://github.com/MTG/essentia/issues/835 :
         equalLoudness = new ofxAAOneVectorOutputAlgorithm(EqualLoudness, sr, fs);
@@ -199,7 +199,6 @@ namespace ofxaa {
         
         //MARK: SPECTRAL
         nsgConstantQ = new ofxAANSGConstantQAlgorithm(NSGConstantQ, sr, fs);
-        
 //        algorithms.push_back(nsgConstantQ); // HIGH CPU CONSUMING ALGORITHM
       
         //MARK: -MelBands
@@ -210,24 +209,24 @@ namespace ofxaa {
         
         melBands = new ofxAAOneVectorOutputAlgorithm(MelBands, sr, fs, MELBANDS_NUMBER_BANDS);
         melBands->hasLogarithmicValues = true;
-        algorithms.push_back(melBands);
+        //algorithms.push_back(melBands);
         
         melBands_centralMoments = new ofxAAOneVectorOutputAlgorithm(CentralMoments, sr, fs);
         ofxaa::configureCentralMoments(melBands_centralMoments->algorithm, "pdf", MELBANDS_NUMBER_BANDS-1);
-        algorithms.push_back(melBands_centralMoments);
+        // algorithms.push_back(melBands_centralMoments);
         
         melBands_distributionShape = new ofxAADistributionShapeAlgorithm(sr, fs);
         melBands_distributionShape->setMinEstimatedValues(distributionShapeMinValues);
         melBands_distributionShape->setMaxEstimatedValues(distributionShapeMaxValues);
-        algorithms.push_back(melBands_distributionShape);
+        //algorithms.push_back(melBands_distributionShape);
         
         melBands_flatnessDb = new ofxAASingleOutputAlgorithm(FlatnessDB, sr, fs);
         melBands_flatnessDb->isNormalizedByDefault = true;
-        algorithms.push_back(melBands_flatnessDb);
+        //algorithms.push_back(melBands_flatnessDb);
         
         melBands_crest = new ofxAASingleOutputAlgorithm(Crest, sr, fs);
         melBands_crest->maxEstimatedValue = CREST_MAX_VALUE;
-        algorithms.push_back(melBands_crest);
+        // algorithms.push_back(melBands_crest);
         
         //MARK: -ERB Bands
         gfcc = new ofxAATwoVectorsOutputAlgorithm(Gfcc, sr, fs, GFCC_NUMBER_BANDS, 13);
@@ -255,24 +254,24 @@ namespace ofxaa {
         //MARK: -BarkBands
         barkBands = new ofxAAOneVectorOutputAlgorithm(BarkBands, sr, fs, BARKBANDS_NUMBER_BANDS);
         barkBands->hasLogarithmicValues = true;
-        algorithms.push_back(barkBands);
+//        algorithms.push_back(barkBands);
         
         barkBands_centralMoments = new ofxAAOneVectorOutputAlgorithm(CentralMoments, sr, fs);
         ofxaa::configureCentralMoments(barkBands_centralMoments->algorithm, "pdf", BARKBANDS_NUMBER_BANDS-1);
-        algorithms.push_back(barkBands_centralMoments);
+//        algorithms.push_back(barkBands_centralMoments);
         
         barkBands_distributionShape = new ofxAADistributionShapeAlgorithm(sr, fs);
         barkBands_distributionShape->setMinEstimatedValues(distributionShapeMinValues);
         barkBands_distributionShape->setMaxEstimatedValues(distributionShapeMaxValues);
-        algorithms.push_back(barkBands_distributionShape);
+//        algorithms.push_back(barkBands_distributionShape);
         
         barkBands_flatnessDb = new ofxAASingleOutputAlgorithm(FlatnessDB, sr, fs);
         barkBands_flatnessDb->isNormalizedByDefault = true;
-        algorithms.push_back(barkBands_flatnessDb);
+//        algorithms.push_back(barkBands_flatnessDb);
         
         barkBands_crest = new ofxAASingleOutputAlgorithm(Crest, sr, fs);
         barkBands_crest->maxEstimatedValue = CREST_MAX_VALUE;
-        algorithms.push_back(barkBands_crest);
+//        algorithms.push_back(barkBands_crest);
         
         unaryOperator_square = new ofxAAOneVectorOutputAlgorithm(UnaryOperator, sr, fs);
         algorithms.push_back(unaryOperator_square);
@@ -347,22 +346,22 @@ namespace ofxaa {
         
         spectral_centralMoments = new ofxAAOneVectorOutputAlgorithm(CentralMoments, sr, fs);
         ofxaa::configureCentralMoments(spectral_centralMoments->algorithm, "pdf", sr/2);
-        algorithms.push_back(spectral_centralMoments);
+        //algorithms.push_back(spectral_centralMoments);
         
         spectral_distributionShape = new ofxAADistributionShapeAlgorithm(sr, fs);
         spectral_distributionShape->setMinEstimatedValues(distributionShapeMinValues);
         spectral_distributionShape->setMaxEstimatedValues(distributionShapeMaxValues);
-        algorithms.push_back(spectral_distributionShape);
+        //algorithms.push_back(spectral_distributionShape);
         
         spectralPeaks = new ofxAATwoVectorsOutputAlgorithm(SpectralPeaks, sr, fs);
-        algorithms.push_back(spectralPeaks);
+        //algorithms.push_back(spectralPeaks);
         
         dissonance = new ofxAASingleOutputAlgorithm(Dissonance, sr, fs);
         dissonance->isNormalizedByDefault = true;
         algorithms.push_back(dissonance);
         
         harmonicPeaks = new ofxAATwoVectorsOutputAlgorithm(HarmonicPeaks, sr, fs);
-        algorithms.push_back(harmonicPeaks);
+        //algorithms.push_back(harmonicPeaks);
         
         inharmonicity = new ofxAASingleOutputAlgorithm(Inharmonicity, sr, fs);
         inharmonicity->isNormalizedByDefault = true;
@@ -374,19 +373,19 @@ namespace ofxaa {
         
         tristimulus = new ofxAAOneVectorOutputAlgorithm(Tristimulus, sr, fs, 3);
         tristimulus->isNormalizedByDefault = true;
-        algorithms.push_back(tristimulus);
+        //algorithms.push_back(tristimulus);
         
    
         //MARK: TONAL
         //src: tonalextractor.cpp
         spectralPeaks_hpcp = new ofxAATwoVectorsOutputAlgorithm(SpectralPeaks, sr, fs);
         ofxaa::configureSpectralPeaks(spectralPeaks_hpcp->algorithm, 0.00001, 5000.0, 10000, 40.0, "magnitude");
-        algorithms.push_back(spectralPeaks_hpcp);
+        // algorithms.push_back(spectralPeaks_hpcp);
         
         hpcp = new ofxAAOneVectorOutputAlgorithm(Hpcp, sr, fs, HPCP_SIZE);
         ofxaa::configureHPCP(hpcp->algorithm, true, 500.0, 0, 5000.0, false, 40.0, false, "unitMax", 440, HPCP_SIZE, "squaredCosine", 1.0);
         hpcp->isNormalizedByDefault = true;
-        algorithms.push_back(hpcp);
+        // algorithms.push_back(hpcp);
         
         hpcp_entropy = new ofxAASingleOutputAlgorithm(Entropy, sr, fs);
         hpcp_entropy->maxEstimatedValue = ENTROPY_MAX_VALUE;
@@ -397,7 +396,7 @@ namespace ofxaa {
         algorithms.push_back(hpcp_crest);
         
         chordsDetection = new ofxAATwoTypesVectorOutputAlgorithm(ChordsDetection, sr, fs);
-        algorithms.push_back(chordsDetection);
+        // algorithms.push_back(chordsDetection);
         
         onsets = new ofxAAOnsetsAlgorithm(windowing, sr, fs);
         algorithms.push_back(onsets);
