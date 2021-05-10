@@ -8,11 +8,11 @@
     <key>CFBundleIconFile</key>
     <string></string>
     <key>CFBundleIdentifier</key>
-    <string>com.yourcompany.EssentiaTest</string>
+    <string>com.OleoLab.EssentiaPlugin</string>
     <key>CFBundleName</key>
-    <string>EssentiaTest</string>
+    <string>EssentiaPlugin</string>
     <key>CFBundleDisplayName</key>
-    <string>EssentiaTest</string>
+    <string>EssentiaPlugin</string>
     <key>CFBundlePackageType</key>
     <string>BNDL</string>
     <key>CFBundleSignature</key>
@@ -29,11 +29,11 @@
     <array>
       <dict>
         <key>name</key>
-        <string>yourcompany: EssentiaTest</string>
+        <string>Oleo Lab: EssentiaPlugin</string>
         <key>description</key>
-        <string>EssentiaTest</string>
+        <string>EssentiaPlugin</string>
         <key>factoryFunction</key>
-        <string>EssentiaTestAUFactory</string>
+        <string>EssentiaPluginAUFactory</string>
         <key>manufacturer</key>
         <string>Manu</string>
         <key>type</key>

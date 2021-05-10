@@ -45,8 +45,8 @@
 #if ! JUCE_DONT_DECLARE_PROJECTINFO
 namespace ProjectInfo
 {
-    const char* const  projectName    = "EssentiaTest";
-    const char* const  companyName    = "";
+    const char* const  projectName    = "EssentiaPlugin";
+    const char* const  companyName    = "Oleo Lab";
     const char* const  versionString  = "1.0.0";
     const int          versionNumber  = 0x10000;
 }

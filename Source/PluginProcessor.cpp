@@ -11,9 +11,8 @@
 #include "StringUtils.h"
 /**
  TODO:
- - Fix initial window size
- - Check state saving
  - Rename project
+ - Upload repo
  - Debug
  */
 

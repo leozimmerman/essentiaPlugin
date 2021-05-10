@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<JUCERPROJECT id="bhBawh" name="EssentiaPlugin" projectType="audioplug" useAppConfig="0"
+              addUsingNamespaceToJuceHeader="0" displaySplashScreen="1" jucerFormatVersion="1"
+              companyName="Oleo Lab">
+  <MAINGROUP id="KbgizU" name="EssentiaPlugin">
+    <GROUP id="{5A311EF0-835E-CBDB-19D7-F249356217F3}" name="ofxAudioAnalyzer">
+      <FILE id="m9W9dN" name="ofxAAAlgorithmTypes.h" compile="0" resource="0"
+            file="Source/ofxAudioAnalyzer/algorithms/ofxAAAlgorithmTypes.h"/>
+      <FILE id="kN8sog" name="ofxAABaseAlgorithm.cpp" compile="1" resource="0"
+            file="Source/ofxAudioAnalyzer/algorithms/ofxAABaseAlgorithm.cpp"/>
+      <FILE id="v4sg7l" name="ofxAABaseAlgorithm.h" compile="0" resource="0"
+            file="Source/ofxAudioAnalyzer/algorithms/ofxAABaseAlgorithm.h"/>
+      <FILE id="tBwVzb" name="ofxAAConfigurations.cpp" compile="1" resource="0"
+            file="Source/ofxAudioAnalyzer/ofxAAConfigurations.cpp"/>
+      <FILE id="eCenGi" name="ofxAAConfigurations.h" compile="0" resource="0"
+            file="Source/ofxAudioAnalyzer/ofxAAConfigurations.h"/>
+      <FILE id="oa03NY" name="ofxAADistributionShapeAlgorithm.h" compile="0"
+            resource="0" file="Source/ofxAudioAnalyzer/algorithms/ofxAADistributionShapeAlgorithm.h"/>
+      <FILE id="zaK1A4" name="ofxAAFactory.cpp" compile="1" resource="0"
+            file="Source/ofxAudioAnalyzer/ofxAAFactory.cpp"/>
+      <FILE id="uJWpKl" name="ofxAAFactory.h" compile="0" resource="0" file="Source/ofxAudioAnalyzer/ofxAAFactory.h"/>
+      <FILE id="lrnA3r" name="ofxAANetwork.cpp" compile="1" resource="0"
+            file="Source/ofxAudioAnalyzer/ofxAANetwork.cpp"/>
+      <FILE id="bw8NTI" name="ofxAANetwork.h" compile="0" resource="0" file="Source/ofxAudioAnalyzer/ofxAANetwork.h"/>
+      <FILE id="hj2yx5" name="ofxAANSGConstantQAlgorithm.h" compile="0" resource="0"
+            file="Source/ofxAudioAnalyzer/algorithms/ofxAANSGConstantQAlgorithm.h"/>
+      <FILE id="VpceZR" name="ofxAAOneVectorOutputAlgorithm.cpp" compile="1"
+            resource="0" file="Source/ofxAudioAnalyzer/algorithms/ofxAAOneVectorOutputAlgorithm.cpp"/>
+      <FILE id="aR0LzL" name="ofxAAOneVectorOutputAlgorithm.h" compile="0"
+            resource="0" file="Source/ofxAudioAnalyzer/algorithms/ofxAAOneVectorOutputAlgorithm.h"/>
+      <FILE id="OxTeaL" name="ofxAAOnsetsAlgorithm.cpp" compile="1" resource="0"
+            file="Source/ofxAudioAnalyzer/algorithms/ofxAAOnsetsAlgorithm.cpp"/>
+      <FILE id="WzmGGb" name="ofxAAOnsetsAlgorithm.h" compile="0" resource="0"
+            file="Source/ofxAudioAnalyzer/algorithms/ofxAAOnsetsAlgorithm.h"/>
+      <FILE id="ZyZYGP" name="ofxAASingleOutputAlgorithm.cpp" compile="1"
+            resource="0" file="Source/ofxAudioAnalyzer/algorithms/ofxAASingleOutputAlgorithm.cpp"/>
+      <FILE id="dB8u5C" name="ofxAASingleOutputAlgorithm.h" compile="0" resource="0"
+            file="Source/ofxAudioAnalyzer/algorithms/ofxAASingleOutputAlgorithm.h"/>
+      <FILE id="EetkxN" name="ofxAATwoTypesVectorOutputAlgorithm.cpp" compile="1"
+            resource="0" file="Source/ofxAudioAnalyzer/algorithms/ofxAATwoTypesVectorOutputAlgorithm.cpp"/>
+      <FILE id="gq7YZ2" name="ofxAATwoTypesVectorOutputAlgorithm.h" compile="0"
+            resource="0" file="Source/ofxAudioAnalyzer/algorithms/ofxAATwoTypesVectorOutputAlgorithm.h"/>
+      <FILE id="TkGMb0" name="ofxAATwoVectorsOutputAlgorithm.cpp" compile="1"
+            resource="0" file="Source/ofxAudioAnalyzer/algorithms/ofxAATwoVectorsOutputAlgorithm.cpp"/>
+      <FILE id="GGjDzg" name="ofxAATwoVectorsOutputAlgorithm.h" compile="0"
+            resource="0" file="Source/ofxAudioAnalyzer/algorithms/ofxAATwoVectorsOutputAlgorithm.h"/>
+      <FILE id="b8Nt7O" name="ofxAAValues.h" compile="0" resource="0" file="Source/ofxAudioAnalyzer/algorithms/ofxAAValues.h"/>
+      <FILE id="FUb2XK" name="ofxAAVectorComplexOutputAlgorithm.h" compile="0"
+            resource="0" file="Source/ofxAudioAnalyzer/algorithms/ofxAAVectorComplexOutputAlgorithm.h"/>
+      <FILE id="GOqqRN" name="ofxAAVectorVectorOutputAlgorithm.h" compile="0"
+            resource="0" file="Source/ofxAudioAnalyzer/algorithms/ofxAAVectorVectorOutputAlgorithm.h"/>
+      <FILE id="jeD7AX" name="ofxAudioAnalyzer.cpp" compile="1" resource="0"
+            file="Source/ofxAudioAnalyzer/ofxAudioAnalyzer.cpp"/>
+      <FILE id="YtwgEx" name="ofxAudioAnalyzer.h" compile="0" resource="0"
+            file="Source/ofxAudioAnalyzer/ofxAudioAnalyzer.h"/>
+      <FILE id="qSqoEK" name="ofxAudioAnalyzerAlgorithms.h" compile="0" resource="0"
+            file="Source/ofxAudioAnalyzer/ofxAudioAnalyzerAlgorithms.h"/>
+      <FILE id="n31O9h" name="ofxAudioAnalyzerUnit.cpp" compile="1" resource="0"
+            file="Source/ofxAudioAnalyzer/ofxAudioAnalyzerUnit.cpp"/>
+      <FILE id="qtk99b" name="ofxAudioAnalyzerUnit.h" compile="0" resource="0"
+            file="Source/ofxAudioAnalyzer/ofxAudioAnalyzerUnit.h"/>
+    </GROUP>
+    <GROUP id="{2094C181-A987-B8CA-0C24-B1C939A168AB}" name="Source">
+      <FILE id="l1wk69" name="OnsetsMeterUnit.cpp" compile="1" resource="0"
+            file="Source/OnsetsMeterUnit.cpp"/>
+      <FILE id="A3WQRC" name="OnsetsMeterUnit.h" compile="0" resource="0"
+            file="Source/OnsetsMeterUnit.h"/>
+      <FILE id="QFd7Sf" name="MeterUnit.h" compile="0" resource="0" file="Source/MeterUnit.h"/>
+      <FILE id="FtOYAH" name="MeterUnit.cpp" compile="1" resource="0" file="Source/MeterUnit.cpp"/>
+      <FILE id="TYryDi" name="StringUtils.cpp" compile="1" resource="0" file="Source/StringUtils.cpp"/>
+      <FILE id="hdQhsE" name="StringUtils.h" compile="0" resource="0" file="Source/StringUtils.h"/>
+      <FILE id="Po0dmH" name="PluginProcessor.cpp" compile="1" resource="0"
+            file="Source/PluginProcessor.cpp"/>
+      <FILE id="sIt9QF" name="PluginProcessor.h" compile="0" resource="0"
+            file="Source/PluginProcessor.h"/>
+      <FILE id="NZQWla" name="PluginEditor.cpp" compile="1" resource="0"
+            file="Source/PluginEditor.cpp"/>
+      <FILE id="kGqmZO" name="PluginEditor.h" compile="0" resource="0" file="Source/PluginEditor.h"/>
+    </GROUP>
+    <GROUP id="{E63883A0-6834-96D3-F481-BB1593C4FB84}" name="Resources">
+      <FILE id="ZcuUJE" name="magic.xml" compile="0" resource="1" file="Resources/magic.xml"/>
+    </GROUP>
+  </MAINGROUP>
+  <JUCEOPTIONS JUCE_STRICT_REFCOUNTEDPOINTER="1" JUCE_VST3_CAN_REPLACE_VST2="0"/>
+  <EXPORTFORMATS>
+    <XCODE_MAC targetFolder="Builds/MacOSX" externalLibraries="essentia&#10;fftw3f"
+               xcodeValidArchs="i386,x86_64">
+      <CONFIGURATIONS>
+        <CONFIGURATION isDebug="1" name="Debug" targetName="EssentiaTest" headerPath="../../Libs/essentia/include/essentia&#10;../../Libs/fftw3f/include&#10;../../Source/ofxAudioAnalyzer/algorithms&#10;../../Source/ofxAudioAnalyzer"
+                       libraryPath="../../Libs/essentia/lib&#10;../../Libs/fftw3f/lib"/>
+        <CONFIGURATION isDebug="0" name="Release" targetName="EssentiaTest" headerPath="../../Libs/essentia/include/essentia&#10;../../Libs/fftw3f/include&#10;../../Source/ofxAudioAnalyzer/algorithms&#10;../../Source/ofxAudioAnalyzer"
+                       libraryPath="../../Libs/essentia/lib&#10;../../Libs/fftw3f/lib"
+                       defines="FOLEYS_SHOW_GUI_EDITOR_PALLETTE=0"/>
+      </CONFIGURATIONS>
+      <MODULEPATHS>
+        <MODULEPATH id="juce_audio_basics" path="../../modules"/>
+        <MODULEPATH id="juce_audio_devices" path="../../modules"/>
+        <MODULEPATH id="juce_audio_formats" path="../../modules"/>
+        <MODULEPATH id="juce_audio_plugin_client" path="../../modules"/>
+        <MODULEPATH id="juce_audio_processors" path="../../modules"/>
+        <MODULEPATH id="juce_audio_utils" path="../../modules"/>
+        <MODULEPATH id="juce_core" path="../../modules"/>
+        <MODULEPATH id="juce_data_structures" path="../../modules"/>
+        <MODULEPATH id="juce_events" path="../../modules"/>
+        <MODULEPATH id="juce_graphics" path="../../modules"/>
+        <MODULEPATH id="juce_gui_basics" path="../../modules"/>
+        <MODULEPATH id="juce_gui_extra" path="../../modules"/>
+        <MODULEPATH id="foleys_gui_magic" path="modules"/>
+        <MODULEPATH id="juce_dsp" path="../../modules"/>
+        <MODULEPATH id="juce_cryptography" path="../../modules"/>
+        <MODULEPATH id="juce_osc" path="../../modules"/>
+      </MODULEPATHS>
+    </XCODE_MAC>
+  </EXPORTFORMATS>
+  <MODULES>
+    <MODULE id="foleys_gui_magic" showAllCode="1" useLocalCopy="0" useGlobalPath="0"/>
+    <MODULE id="juce_audio_basics" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_audio_devices" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_audio_formats" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_audio_plugin_client" showAllCode="1" useLocalCopy="0"
+            useGlobalPath="1"/>
+    <MODULE id="juce_audio_processors" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_audio_utils" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_core" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_cryptography" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_data_structures" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_dsp" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_events" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_graphics" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_gui_basics" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_gui_extra" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_osc" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+  </MODULES>
+  <LIVE_SETTINGS>
+    <OSX/>
+  </LIVE_SETTINGS>
+</JUCERPROJECT>

@@ -5,13 +5,13 @@
 	<key>BuildMachineOSBuild</key>
 	<string>19H15</string>
 	<key>CFBundleDisplayName</key>
-	<string>EssentiaTest</string>
+	<string>EssentiaPlugin</string>
 	<key>CFBundleExecutable</key>
 	<string>EssentiaTest</string>
 	<key>CFBundleIdentifier</key>
-	<string>com.yourcompany.EssentiaTest</string>
+	<string>com.OleoLab.EssentiaPlugin</string>
 	<key>CFBundleName</key>
-	<string>EssentiaTest</string>
+	<string>EssentiaPlugin</string>
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
