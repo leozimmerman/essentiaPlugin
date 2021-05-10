@@ -71,16 +71,32 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "00EC6D40-B540-4C43-B621-181E6F5A11A8"
+            uuid = "8A502F5B-1378-4400-8619-86BCF71A3585"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../../modules/foleys_gui_magic/State/foleys_MagicProcessorState.cpp"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "174"
+            endingLineNumber = "174"
+            landmarkName = "MagicProcessorState::setLastEditorSize(width, height)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "7FAC1E53-8855-4B74-B333-49BEF7DB8650"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "../../modules/foleys_gui_magic/General/foleys_MagicPluginEditor.cpp"
+            filePath = "../../modules/foleys_gui_magic/State/foleys_MagicProcessorState.cpp"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "150"
-            endingLineNumber = "150"
-            landmarkName = "MagicPluginEditor::setConfigTree(gui)"
+            startingLineNumber = "180"
+            endingLineNumber = "180"
+            landmarkName = "MagicProcessorState::getLastEditorSize(width, height)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

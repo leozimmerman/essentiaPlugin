@@ -88,6 +88,12 @@ public:
      */
     void setLastEditorSize (int  width, int  height);
     bool getLastEditorSize (int& width, int& height);
+    
+    void setLastHostAddress(juce::String address);
+    bool getLastHostAddress(juce::String& address);
+    
+    void setLastMainId(juce::String identifier);
+    bool getLastMaindId(juce::String& identifier);
 
     /**
      This method will serialise the plugin state from AudioProcessorValueTreeState for

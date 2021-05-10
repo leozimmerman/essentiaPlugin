@@ -120,12 +120,14 @@ std::unique_ptr<juce::ButtonParameterAttachment> MagicProcessorState::createAtta
 void MagicProcessorState::setOscIPAdress(const juce::String address) {
     if (oscListener != nullptr) {
         oscListener->oscHostHasChanged(address);
+        setLastHostAddress(address);
     }
 }
 
 void MagicProcessorState::setOscMainID(const juce::String mainID) {
     if (oscListener != nullptr) {
         oscListener->oscMainIDHasChanged(mainID);
+        setLastMainId(mainID);
     }
 }
 
@@ -133,6 +135,38 @@ juce::AudioProcessor* MagicProcessorState::getProcessor()
 {
     return &processor;
 }
+
+//----------------------------------------
+// MARK: OSC
+void MagicProcessorState::setLastHostAddress(juce::String address) {
+    auto oscNode = getValueTree().getOrCreateChildWithName (IDs::oscData, nullptr);
+    oscNode.setProperty (IDs::hostAddress,  address,  nullptr);
+}
+
+bool MagicProcessorState::getLastHostAddress(juce::String& address) {
+    auto oscNode = getValueTree().getOrCreateChildWithName (IDs::oscData, nullptr);
+    if (oscNode.hasProperty (IDs::hostAddress) == false)
+        return false;
+
+    address  = oscNode.getProperty (IDs::hostAddress);
+    return true;
+}
+
+void MagicProcessorState::setLastMainId(juce::String identifier) {
+    auto oscNode = getValueTree().getOrCreateChildWithName (IDs::oscData, nullptr);
+    oscNode.setProperty (IDs::mainId,  identifier,  nullptr);
+}
+
+bool MagicProcessorState::getLastMaindId(juce::String& identifier) {
+    auto oscNode = getValueTree().getOrCreateChildWithName (IDs::oscData, nullptr);
+    if (oscNode.hasProperty (IDs::mainId) == false)
+        return false;
+
+    identifier  = oscNode.getProperty (IDs::mainId);
+    return true;
+}
+
+//----------------------------------------
 
 void MagicProcessorState::setLastEditorSize (int  width, int  height)
 {

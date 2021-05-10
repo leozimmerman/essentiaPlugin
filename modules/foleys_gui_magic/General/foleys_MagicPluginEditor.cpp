@@ -58,7 +58,7 @@ MagicPluginEditor::MagicPluginEditor (MagicProcessorState& stateToUse, std::uniq
 #if FOLEYS_SAVE_EDITED_GUI_IN_PLUGIN_STATE
     auto guiTree = processorState.getValueTree().getChildWithName ("magic");
     if (guiTree.isValid())
-        ////*** setConfigTree (guiTree);
+        ///*** setConfigTree (guiTree);
         builder->createGUI (*this);
     else
         builder->createGUI (*this);
@@ -95,8 +95,15 @@ MagicPluginEditor::MagicPluginEditor (MagicProcessorState& stateToUse, std::uniq
     mainIDLabel.setJustificationType (juce::Justification::centredRight);
     mainIDLabel.addListener(this);
     
-    mainIDLabel.setText ("trackId", juce::sendNotification);
-    hostLabel.setText ("127.0.0.1", juce::sendNotification);
+    
+    juce::String hostAddress = "127.0.0.1"; // Initial default host
+    processorState.getLastHostAddress(hostAddress);
+    
+    juce::String mainId = "trackId"; // Initial default trackID
+    processorState.getLastMaindId(mainId);;
+
+    mainIDLabel.setText (mainId, juce::sendNotification);
+    hostLabel.setText (hostAddress, juce::sendNotification);
 }
 
 MagicPluginEditor::~MagicPluginEditor()
@@ -118,8 +125,8 @@ void MagicPluginEditor::updateSize()
 {
     const auto rootNode = builder->getGuiRootNode();
 
-    int width = rootNode.getProperty (IDs::width, 600);
-    int height = rootNode.getProperty (IDs::height, 400);
+    int width = rootNode.getProperty (IDs::width, 770); // Initial default width
+    int height = rootNode.getProperty (IDs::height, 560); // Initial default height
 
     bool resizable = builder->getStyleProperty (IDs::resizable, builder->getGuiRootNode());
     bool resizeCorner = builder->getStyleProperty (IDs::resizeCorner, builder->getGuiRootNode());

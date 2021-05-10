@@ -11,7 +11,6 @@
 #include "StringUtils.h"
 /**
  TODO:
- - Check initial OSC state
  - Fix initial window size
  - Check state saving
  - Rename project
