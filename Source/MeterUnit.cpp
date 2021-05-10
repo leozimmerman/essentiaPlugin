@@ -83,10 +83,16 @@ unique_ptr<juce::AudioProcessorParameterGroup> MeterUnit::getParameterGroup() {
         auto name = utils::valueTypeToString(ofxaaValue);
         options.add(name);
     }
-    generator->addChild (std::make_unique<juce::AudioParameterChoice>(algorithmTypeId, "Type", options, 0),
-                         std::make_unique<juce::AudioParameterFloat>(smoothingId, "Smoothing", juce::NormalisableRange<float>(0.0, 1.0, 0.01), 0.0f),
-                         std::make_unique<juce::AudioParameterFloat>(maxEstimatedId, "Max Estimated", juce::NormalisableRange<float>(0.0, 100000.0, 0.01), 1.0f),
-                         std::make_unique<juce::AudioParameterBool>(resetMaxId, "Reset Max", true));
+    
+    string typeParameterName = "Type:" + std::to_string(_idx+1);
+    string smoothingParameterName = "Smoothing:" + std::to_string(_idx+1);
+    string maxEstimatedParameterName = "MaxEstimated:" + std::to_string(_idx+1);
+    string resetMaxParameterName = "ResetMax:" + std::to_string(_idx+1);
+    
+    generator->addChild (std::make_unique<juce::AudioParameterChoice>(algorithmTypeId, typeParameterName, options, 0),
+                         std::make_unique<juce::AudioParameterFloat>(smoothingId, smoothingParameterName, juce::NormalisableRange<float>(0.0, 1.0, 0.01), 0.0f),
+                         std::make_unique<juce::AudioParameterFloat>(maxEstimatedId, maxEstimatedParameterName, juce::NormalisableRange<float>(0.0, 100000.0, 0.01), 1.0f),
+                         std::make_unique<juce::AudioParameterBool>(resetMaxId, resetMaxParameterName, true));
     
     return generator;
 }
@@ -119,6 +125,10 @@ bool MeterUnit::isEnabled() {
 
 float MeterUnit::getValue() {
     return outputMeter->getNormalizedValue();
+}
+
+string MeterUnit::getTypeName() {
+    return utils::valueTypeToString(currentOfxaaValue);
 }
 
 void MeterUnit::setOfxaaValue(ofxAAValue value) {

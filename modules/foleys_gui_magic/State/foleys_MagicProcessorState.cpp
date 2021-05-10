@@ -118,9 +118,14 @@ std::unique_ptr<juce::ButtonParameterAttachment> MagicProcessorState::createAtta
 }
 
 void MagicProcessorState::setOscIPAdress(const juce::String address) {
-    oscSendIPAddress = address;
     if (oscListener != nullptr) {
-        oscListener->oscHostHasChanged(oscSendIPAddress);
+        oscListener->oscHostHasChanged(address);
+    }
+}
+
+void MagicProcessorState::setOscMainID(const juce::String mainID) {
+    if (oscListener != nullptr) {
+        oscListener->oscMainIDHasChanged(mainID);
     }
 }
 

@@ -22,11 +22,13 @@ public:
     void prepareToPlay (double sampleRate, int samplesPerBlock);
     void process();
     
-    int getId() { return _idx; }
+    
     unique_ptr<juce::AudioProcessorParameterGroup> getParameterGroup();
     
+    int getId() { return _idx; }
     bool isEnabled();
     float getValue();
+    string getTypeName();
     
     juce::String meterId;
     juce::String algorithmTypeId;

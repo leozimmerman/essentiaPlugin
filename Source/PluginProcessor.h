@@ -51,6 +51,7 @@ public:
     void changeProgramName (int index, const juce::String& newName) override;
     
     void oscHostHasChanged(juce::String newOscHostAdress) override;
+    void oscMainIDHasChanged (juce::String newOscMainID) override;
     void oscPortHasChanged(int newOscPort);
     void parameterChanged (const juce::String& param, float value) override;
     
@@ -72,6 +73,7 @@ private:
     
     juce::OSCSender oscSender;
     juce::String _oscHost = "127.0.0.1"; ///*** check on saving test
+    juce::String _mainID = "";
     int _oscPort = 0;
     //==============================================================================
 

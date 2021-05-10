@@ -77,13 +77,26 @@ MagicPluginEditor::MagicPluginEditor (MagicProcessorState& stateToUse, std::uniq
     builder->attachToolboxToWindow (*this);
 #endif
     
-    addAndMakeVisible (titleLabel);
-    titleLabel.setFont (juce::Font (20.0, juce::Font::bold));
-    titleLabel.setEditable(true);
-    titleLabel.setText ("-OSC Host-", juce::dontSendNotification);
-    titleLabel.setColour (juce::Label::textColourId, juce::Colours::lightgreen);
-    titleLabel.setJustificationType (juce::Justification::centredLeft);
-    titleLabel.addListener(this);
+    addAndMakeVisible (hostLabel);
+    hostLabel.setFont (juce::Font (20.0, juce::Font::bold));
+    hostLabel.setComponentID("hostLabel");
+    hostLabel.setEditable(true);
+    
+    hostLabel.setColour (juce::Label::textColourId, juce::Colours::lightgreen);
+    hostLabel.setJustificationType (juce::Justification::centredRight);
+    hostLabel.addListener(this);
+    
+    addAndMakeVisible (mainIDLabel);
+    mainIDLabel.setComponentID("mainIDLabel");
+    mainIDLabel.setFont (juce::Font (20.0, juce::Font::bold));
+    mainIDLabel.setEditable(true);
+    
+    mainIDLabel.setColour (juce::Label::textColourId, juce::Colours::lightblue);
+    mainIDLabel.setJustificationType (juce::Justification::centredRight);
+    mainIDLabel.addListener(this);
+    
+    mainIDLabel.setText ("trackId", juce::sendNotification);
+    hostLabel.setText ("127.0.0.1", juce::sendNotification);
 }
 
 MagicPluginEditor::~MagicPluginEditor()
@@ -94,7 +107,11 @@ MagicPluginEditor::~MagicPluginEditor()
 }
 
 void MagicPluginEditor::labelTextChanged (juce::Label* labelThatHasChanged) {
-    processorState.setOscIPAdress(labelThatHasChanged->getText());
+    if (labelThatHasChanged->getComponentID() == "hostLabel") {
+        processorState.setOscIPAdress(labelThatHasChanged->getText());
+    } else if (labelThatHasChanged->getComponentID() == "mainIDLabel") {
+        processorState.setOscMainID(labelThatHasChanged->getText());
+    }
 }
 
 void MagicPluginEditor::updateSize()
@@ -161,7 +178,10 @@ void MagicPluginEditor::resized()
 
     processorState.setLastEditorSize (getWidth(), getHeight());
     
-    titleLabel.setBounds (10,  getHeight() - 30, 200,  30);
+    int portCompWidth = 200;
+    int labelWidth = 200;
+    hostLabel.setBounds (getWidth() - portCompWidth - labelWidth - 10,  getHeight() - 30, labelWidth,  30);
+    mainIDLabel.setBounds (10,  getHeight() - 30, 100,  30);
 }
 
 } // namespace foleys

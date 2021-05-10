@@ -44,6 +44,7 @@ class OscHostListener
 public:
     virtual ~OscHostListener() = default;
     virtual void oscHostHasChanged (juce::String newOscHostAdress) = 0;
+    virtual void oscMainIDHasChanged (juce::String newOscMainID) = 0;
 };
 
 /**
@@ -108,6 +109,7 @@ public:
     void setStateInformation (const void* data, int sizeInBytes, juce::AudioProcessorEditor* editor = nullptr);
     
     void setOscIPAdress(const juce::String address);
+    void setOscMainID(const juce::String mainID);
     void addOscListener(OscHostListener* listener) { oscListener = listener; }
     /**
      Returns a parameter for a parameter ID
@@ -168,7 +170,6 @@ private:
     std::atomic<bool>   isPlaying;
     std::atomic<bool>   isRecording;
     
-    juce::String oscSendIPAddress = "";
     OscHostListener* oscListener;
 
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (MagicProcessorState)

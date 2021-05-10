@@ -91,7 +91,8 @@ private:
 
     juce::TooltipWindow tooltip      { this };
     
-    juce::Label titleLabel;
+    juce::Label hostLabel;
+    juce::Label mainIDLabel;
 
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (MagicPluginEditor)
 };

@@ -11,10 +11,11 @@
 #include "StringUtils.h"
 /**
  TODO:
-
- - Remove algorithms that are not going to be used from network
- 
+ - Check initial OSC state
+ - Fix initial window size
  - Check state saving
+ - Rename project
+ - Debug
  */
 
 juce::AudioProcessorValueTreeState::ParameterLayout createParameterLayout(const vector<MeterUnit*>* meterUnits, OnsetsMeterUnit* onsetsMeterUnit)
@@ -102,6 +103,10 @@ void EssentiaTestAudioProcessor::parameterChanged (const juce::String& param, fl
     }
 }
 
+void EssentiaTestAudioProcessor::oscMainIDHasChanged (juce::String newOscMainID) {
+    _mainID = newOscMainID;
+}
+
 void EssentiaTestAudioProcessor::oscHostHasChanged (juce::String newOscHostAdress) {
     _oscHost = newOscHostAdress;
     std::cout<< "HOST: "<< newOscHostAdress << std::endl;
@@ -122,17 +127,18 @@ void EssentiaTestAudioProcessor::connectOscSender(const juce::String& targetHost
 }
 
 void EssentiaTestAudioProcessor::sendOscData() {
-    string root = "/analyzer";
-    for (int i=0; i<meterUnits.size(); ++i) {
-        if (meterUnits[i]->isEnabled()) {
-            juce::String address = root + "/" + std::to_string(i+1);
+    juce::String root = "/" + _mainID;
+    
+    for (auto unit: meterUnits) {
+        if (unit->isEnabled()) {
+            juce::String address = root + "/" + unit->getTypeName();
             juce::OSCAddressPattern addressPattern = juce::OSCAddressPattern(address);
-            oscSender.send(addressPattern, meterUnits[i]->getValue());
+            oscSender.send(addressPattern, unit->getValue());
         }
     }
-    
+     
     if (onsetsMeterUnit.isEnabled()) {
-        juce::String address = root + "/onsets";
+        juce::String address = root + "/" + onsetsMeterUnit.getTypeName();
         juce::OSCAddressPattern addressPattern = juce::OSCAddressPattern(address);
         oscSender.send(addressPattern, onsetsMeterUnit.getValue());
     }

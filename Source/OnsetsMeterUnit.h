@@ -26,6 +26,7 @@ public:
     
     bool isEnabled();
     float getValue();
+    string getTypeName();
     
     int getId() { return _idx; }
     unique_ptr<juce::AudioProcessorParameterGroup> getParameterGroup();

@@ -58,11 +58,17 @@ unique_ptr<juce::AudioProcessorParameterGroup> OnsetsMeterUnit::getParameterGrou
     auto name = utils::valueTypeToString(ONSETS);
     options.add(name);
 
-    generator->addChild (std::make_unique<juce::AudioParameterChoice>(algorithmTypeId, "Type", options, 0),
-                         std::make_unique<juce::AudioParameterFloat>(alphaId, "Alpha", juce::NormalisableRange<float>(0.0, 1.0, 0.01), 0.001f),
-                         std::make_unique<juce::AudioParameterFloat>(silenceTresholdId, "Silence Treshold", juce::NormalisableRange<float>(0.0, 1.0, 0.01), 0.01f),
-                         std::make_unique<juce::AudioParameterFloat>(timeTresholdId, "Time Treshold", juce::NormalisableRange<float>(0.0, 1000.0, 1.0), 1.0f),
-                         std::make_unique<juce::AudioParameterBool>(resetId, "Reset", true));
+    string typeParameterName = "Type:Onsets";
+    string alphaParameterName = "Alpha:Onsets";
+    string silenceTrshParameterName = "SilenceTreshold:Onsets";
+    string timeTrshParameterName = "TimeTreshold:Onsets";
+    string resetParameterName = "Reset:Onsets";
+    
+    generator->addChild (std::make_unique<juce::AudioParameterChoice>(algorithmTypeId, typeParameterName, options, 0),
+                         std::make_unique<juce::AudioParameterFloat>(alphaId, alphaParameterName, juce::NormalisableRange<float>(0.0, 1.0, 0.01), 0.001f),
+                         std::make_unique<juce::AudioParameterFloat>(silenceTresholdId, silenceTrshParameterName, juce::NormalisableRange<float>(0.0, 1.0, 0.01), 0.01f),
+                         std::make_unique<juce::AudioParameterFloat>(timeTresholdId, timeTrshParameterName, juce::NormalisableRange<float>(0.0, 1000.0, 1.0), 1.0f),
+                         std::make_unique<juce::AudioParameterBool>(resetId, resetParameterName, true));
     
     return generator;
 }
@@ -97,6 +103,10 @@ bool OnsetsMeterUnit::isEnabled() {
 
 float OnsetsMeterUnit::getValue() {
     return outputMeter->getNormalizedValue();
+}
+
+string OnsetsMeterUnit::getTypeName() {
+    return utils::valueTypeToString(currentOfxaaValue);
 }
 
 void OnsetsMeterUnit::updateOnsetPtr() {
