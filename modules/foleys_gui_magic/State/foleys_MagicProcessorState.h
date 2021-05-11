@@ -114,9 +114,11 @@ public:
      */
     void setStateInformation (const void* data, int sizeInBytes, juce::AudioProcessorEditor* editor = nullptr);
     
+    void prepareOscData();
+    
     void setOscIPAdress(const juce::String address);
     void setOscMainID(const juce::String mainID);
-    void addOscListener(OscHostListener* listener) { oscListener = listener; }
+    void addOscListener(OscHostListener* listener);
     /**
      Returns a parameter for a parameter ID
      */

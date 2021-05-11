@@ -56,6 +56,8 @@ treeState (*this, nullptr, "PARAMETERS", createParameterLayout(&meterUnits, &ons
     onsetsMeterUnit.setup(&magicState, &treeState, &audioAnalyzer);
     treeState.addParameterListener (IDs::oscPort, this);
     magicState.setGuiValueTree (BinaryData::magic_xml, BinaryData::magic_xmlSize);
+    
+    magicState.addOscListener(this);
 }
 
 EssentiaTestAudioProcessor::~EssentiaTestAudioProcessor()
@@ -71,6 +73,7 @@ void EssentiaTestAudioProcessor::prepareToPlay (double sampleRate, int samplesPe
         unit->prepareToPlay(sampleRate, samplesPerBlock);
     }
     onsetsMeterUnit.prepareToPlay(sampleRate, samplesPerBlock);
+    magicState.prepareOscData();
     magicState.prepareToPlay (sampleRate, samplesPerBlock);
 }
 

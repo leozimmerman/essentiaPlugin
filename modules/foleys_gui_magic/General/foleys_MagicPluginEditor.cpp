@@ -96,14 +96,14 @@ MagicPluginEditor::MagicPluginEditor (MagicProcessorState& stateToUse, std::uniq
     mainIDLabel.addListener(this);
     
     
-    juce::String hostAddress = "127.0.0.1"; // Initial default host
+    juce::String hostAddress = "";
     processorState.getLastHostAddress(hostAddress);
     
-    juce::String mainId = "trackId"; // Initial default trackID
-    processorState.getLastMaindId(mainId);;
+    juce::String mainId = "";
+    processorState.getLastMaindId(mainId);
 
-    mainIDLabel.setText (mainId, juce::sendNotification);
-    hostLabel.setText (hostAddress, juce::sendNotification);
+    mainIDLabel.setText (mainId, juce::dontSendNotification);
+    hostLabel.setText (hostAddress, juce::dontSendNotification);
 }
 
 MagicPluginEditor::~MagicPluginEditor()

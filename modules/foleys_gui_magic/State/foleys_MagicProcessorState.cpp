@@ -138,6 +138,10 @@ juce::AudioProcessor* MagicProcessorState::getProcessor()
 
 //----------------------------------------
 // MARK: OSC
+void MagicProcessorState::addOscListener(OscHostListener* listener) {
+    oscListener = listener;
+}
+
 void MagicProcessorState::setLastHostAddress(juce::String address) {
     auto oscNode = getValueTree().getOrCreateChildWithName (IDs::oscData, nullptr);
     oscNode.setProperty (IDs::hostAddress,  address,  nullptr);
@@ -184,6 +188,16 @@ bool MagicProcessorState::getLastEditorSize (int& width, int& height)
     width  = sizeNode.getProperty (IDs::width);
     height = sizeNode.getProperty (IDs::height);
     return true;
+}
+
+void MagicProcessorState::prepareOscData() {
+    juce::String hostAddress = "127.0.0.1"; // Initial default host
+    getLastHostAddress(hostAddress);
+    setOscIPAdress(hostAddress);
+    
+    juce::String mainId = "trackId"; // Initial default trackID
+    getLastMaindId(mainId);
+    setOscMainID(mainId);
 }
 
 void MagicProcessorState::getStateInformation (juce::MemoryBlock& destData)
