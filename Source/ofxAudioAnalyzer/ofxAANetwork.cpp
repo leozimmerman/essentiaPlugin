@@ -202,31 +202,31 @@ namespace ofxaa {
 //        algorithms.push_back(nsgConstantQ); // HIGH CPU CONSUMING ALGORITHM
       
         //MARK: -MelBands
-        // Removed MFCC because it cant work with small buffers
+        /// Removed MFCC because it cant work with small buffers
 //        mfcc = new ofxAATwoVectorsOutputAlgorithm(Mfcc, sr, fs, MELBANDS_NUMBER_BANDS, 13);
 //        mfcc->hasLogarithmicValues = true;
 //        algorithms.push_back(mfcc);
         
-        melBands = new ofxAAOneVectorOutputAlgorithm(MelBands, sr, fs, MELBANDS_NUMBER_BANDS);
-        melBands->hasLogarithmicValues = true;
-        //algorithms.push_back(melBands);
-        
-        melBands_centralMoments = new ofxAAOneVectorOutputAlgorithm(CentralMoments, sr, fs);
-        ofxaa::configureCentralMoments(melBands_centralMoments->algorithm, "pdf", MELBANDS_NUMBER_BANDS-1);
-        // algorithms.push_back(melBands_centralMoments);
-        
-        melBands_distributionShape = new ofxAADistributionShapeAlgorithm(sr, fs);
-        melBands_distributionShape->setMinEstimatedValues(distributionShapeMinValues);
-        melBands_distributionShape->setMaxEstimatedValues(distributionShapeMaxValues);
-        //algorithms.push_back(melBands_distributionShape);
-        
-        melBands_flatnessDb = new ofxAASingleOutputAlgorithm(FlatnessDB, sr, fs);
-        melBands_flatnessDb->isNormalizedByDefault = true;
-        //algorithms.push_back(melBands_flatnessDb);
-        
-        melBands_crest = new ofxAASingleOutputAlgorithm(Crest, sr, fs);
-        melBands_crest->maxEstimatedValue = CREST_MAX_VALUE;
-        // algorithms.push_back(melBands_crest);
+//        melBands = new ofxAAOneVectorOutputAlgorithm(MelBands, sr, fs, MELBANDS_NUMBER_BANDS);
+//        melBands->hasLogarithmicValues = true;
+//        //algorithms.push_back(melBands);
+//
+//        melBands_centralMoments = new ofxAAOneVectorOutputAlgorithm(CentralMoments, sr, fs);
+//        ofxaa::configureCentralMoments(melBands_centralMoments->algorithm, "pdf", MELBANDS_NUMBER_BANDS-1);
+//        // algorithms.push_back(melBands_centralMoments);
+//
+//        melBands_distributionShape = new ofxAADistributionShapeAlgorithm(sr, fs);
+//        melBands_distributionShape->setMinEstimatedValues(distributionShapeMinValues);
+//        melBands_distributionShape->setMaxEstimatedValues(distributionShapeMaxValues);
+//        //algorithms.push_back(melBands_distributionShape);
+//
+//        melBands_flatnessDb = new ofxAASingleOutputAlgorithm(FlatnessDB, sr, fs);
+//        melBands_flatnessDb->isNormalizedByDefault = true;
+//        //algorithms.push_back(melBands_flatnessDb);
+//
+//        melBands_crest = new ofxAASingleOutputAlgorithm(Crest, sr, fs);
+//        melBands_crest->maxEstimatedValue = CREST_MAX_VALUE;
+//        // algorithms.push_back(melBands_crest);
         
         //MARK: -ERB Bands
         gfcc = new ofxAATwoVectorsOutputAlgorithm(Gfcc, sr, fs, GFCC_NUMBER_BANDS, 13);
@@ -518,22 +518,22 @@ namespace ofxaa {
 //        mfcc->algorithm->output("bands").set(mfcc->outputValues);
 //        mfcc->algorithm->output("mfcc").set(mfcc->outputValues_2);
         
-        melBands->algorithm->input("spectrum").set(spectrum->outputValues);
-        melBands->algorithm->output("bands").set(melBands->outputValues);
-        
-        melBands_centralMoments->algorithm->input("array").set(melBands->outputValues);
-        melBands_centralMoments->algorithm->output("centralMoments").set(melBands_centralMoments->outputValues);
-        
-        melBands_distributionShape->algorithm->input("centralMoments").set(melBands_centralMoments->outputValues);
-        melBands_distributionShape->algorithm->output("kurtosis").set(melBands_distributionShape->outputValues[0]);
-        melBands_distributionShape->algorithm->output("spread").set(melBands_distributionShape->outputValues[1]);
-        melBands_distributionShape->algorithm->output("skewness").set(melBands_distributionShape->outputValues[2]);
-        
-        melBands_flatnessDb->algorithm->input("array").set(melBands->outputValues);
-        melBands_flatnessDb->algorithm->output("flatnessDB").set(melBands_flatnessDb->outputValue);
-        
-        melBands_crest->algorithm->input("array").set(melBands->outputValues);
-        melBands_crest->algorithm->output("crest").set(melBands_crest->outputValue);
+//        melBands->algorithm->input("spectrum").set(spectrum->outputValues);
+//        melBands->algorithm->output("bands").set(melBands->outputValues);
+//        
+//        melBands_centralMoments->algorithm->input("array").set(melBands->outputValues);
+//        melBands_centralMoments->algorithm->output("centralMoments").set(melBands_centralMoments->outputValues);
+//        
+//        melBands_distributionShape->algorithm->input("centralMoments").set(melBands_centralMoments->outputValues);
+//        melBands_distributionShape->algorithm->output("kurtosis").set(melBands_distributionShape->outputValues[0]);
+//        melBands_distributionShape->algorithm->output("spread").set(melBands_distributionShape->outputValues[1]);
+//        melBands_distributionShape->algorithm->output("skewness").set(melBands_distributionShape->outputValues[2]);
+//        
+//        melBands_flatnessDb->algorithm->input("array").set(melBands->outputValues);
+//        melBands_flatnessDb->algorithm->output("flatnessDB").set(melBands_flatnessDb->outputValue);
+//        
+//        melBands_crest->algorithm->input("array").set(melBands->outputValues);
+//        melBands_crest->algorithm->output("crest").set(melBands_crest->outputValue);
         
         //MARK: -ERB Bands
         gfcc->algorithm->input("spectrum").set(spectrum->outputValues);
