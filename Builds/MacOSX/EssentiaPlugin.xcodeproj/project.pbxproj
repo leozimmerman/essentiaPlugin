@@ -211,7 +211,7 @@
 		7AFAE92325C3FEDD6331AB21 /* include_juce_data_structures.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; name = include_juce_data_structures.mm; path = ../../JuceLibraryCode/include_juce_data_structures.mm; sourceTree = SOURCE_ROOT; };
 		7F356001BE558E133E0C142A /* PluginEditor.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = PluginEditor.cpp; path = ../../Source/PluginEditor.cpp; sourceTree = SOURCE_ROOT; };
 		7F9705635FC1774262C709D2 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
-		7FF4A7485394E7E7D0A82597 /* EssentiaTest.vst3 */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EssentiaTest.vst3; sourceTree = BUILT_PRODUCTS_DIR; };
+		7FF4A7485394E7E7D0A82597 /* EssentiaPlugin.vst3 */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EssentiaPlugin.vst3; sourceTree = BUILT_PRODUCTS_DIR; };
 		8036A00C9CA030CB9F98B1AC /* include_juce_audio_plugin_client_AU_1.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; name = include_juce_audio_plugin_client_AU_1.mm; path = ../../JuceLibraryCode/include_juce_audio_plugin_client_AU_1.mm; sourceTree = SOURCE_ROOT; };
 		8345B53EB73BD671D1F0FD33 /* include_juce_cryptography.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; name = include_juce_cryptography.mm; path = ../../JuceLibraryCode/include_juce_cryptography.mm; sourceTree = SOURCE_ROOT; };
 		86BEB31878B2B9F529D3291D /* ofxAAOneVectorOutputAlgorithm.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ofxAAOneVectorOutputAlgorithm.h; path = ../../Source/ofxAudioAnalyzer/algorithms/ofxAAOneVectorOutputAlgorithm.h; sourceTree = SOURCE_ROOT; };
@@ -220,7 +220,7 @@
 		8C28633300DC3644856B1D09 /* RecentFilesMenuTemplate.nib */ = {isa = PBXFileReference; lastKnownFileType = file.nib; path = RecentFilesMenuTemplate.nib; sourceTree = SOURCE_ROOT; };
 		8EF0D3041AF214CE1F683EB9 /* ofxAAOneVectorOutputAlgorithm.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = ofxAAOneVectorOutputAlgorithm.cpp; path = ../../Source/ofxAudioAnalyzer/algorithms/ofxAAOneVectorOutputAlgorithm.cpp; sourceTree = SOURCE_ROOT; };
 		8F382E29268EE0C6E5417892 /* ofxAAConfigurations.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ofxAAConfigurations.h; path = ../../Source/ofxAudioAnalyzer/ofxAAConfigurations.h; sourceTree = SOURCE_ROOT; };
-		93F5E52E2EAAF752CBAE5EB1 /* EssentiaTest.component */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EssentiaTest.component; sourceTree = BUILT_PRODUCTS_DIR; };
+		93F5E52E2EAAF752CBAE5EB1 /* EssentiaPlugin.component */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EssentiaPlugin.component; sourceTree = BUILT_PRODUCTS_DIR; };
 		9B5E1F1D3FCA97717F41919F /* ofxAABaseAlgorithm.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = ofxAABaseAlgorithm.cpp; path = ../../Source/ofxAudioAnalyzer/algorithms/ofxAABaseAlgorithm.cpp; sourceTree = SOURCE_ROOT; };
 		9C460D8CD9B1CF6FDF8ECE57 /* include_juce_audio_plugin_client_AU_2.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; name = include_juce_audio_plugin_client_AU_2.mm; path = ../../JuceLibraryCode/include_juce_audio_plugin_client_AU_2.mm; sourceTree = SOURCE_ROOT; };
 		9C748E79961BA38832AACA34 /* juce_audio_processors */ = {isa = PBXFileReference; lastKnownFileType = folder; name = juce_audio_processors; path = /Users/leo/Development/JUCE/modules/juce_audio_processors; sourceTree = "<absolute>"; };
@@ -254,9 +254,9 @@
 		EBE8FA83D639607458112D80 /* ofxAAConfigurations.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = ofxAAConfigurations.cpp; path = ../../Source/ofxAudioAnalyzer/ofxAAConfigurations.cpp; sourceTree = SOURCE_ROOT; };
 		ED1E98C6B897B8625A7CC0AB /* BinaryData.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = BinaryData.h; path = ../../JuceLibraryCode/BinaryData.h; sourceTree = SOURCE_ROOT; };
 		EE62B90B6E4A66614A00F348 /* include_juce_events.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; name = include_juce_events.mm; path = ../../JuceLibraryCode/include_juce_events.mm; sourceTree = SOURCE_ROOT; };
-		EF2508C9057997CAED462B3F /* libEssentiaTest.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libEssentiaTest.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		EF2508C9057997CAED462B3F /* libEssentiaPlugin.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libEssentiaPlugin.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		F3EB72D715C2E611FA737322 /* CoreMIDI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMIDI.framework; path = System/Library/Frameworks/CoreMIDI.framework; sourceTree = SDKROOT; };
-		F460A46C3893072DFB00C577 /* EssentiaTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EssentiaTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		F460A46C3893072DFB00C577 /* EssentiaPlugin.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EssentiaPlugin.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F83CCDB36E93BE1F669DD470 /* StringUtils.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = StringUtils.cpp; path = ../../Source/StringUtils.cpp; sourceTree = SOURCE_ROOT; };
 		FB2F2B91D93BCF218E519BF6 /* foleys_gui_magic */ = {isa = PBXFileReference; lastKnownFileType = folder; name = foleys_gui_magic; path = ../../modules/foleys_gui_magic; sourceTree = SOURCE_ROOT; };
 		FF1188C63020C12ACEB775C1 /* ofxAudioAnalyzerUnit.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = ofxAudioAnalyzerUnit.cpp; path = ../../Source/ofxAudioAnalyzer/ofxAudioAnalyzerUnit.cpp; sourceTree = SOURCE_ROOT; };
@@ -381,10 +381,10 @@
 		5217DF942C2C71E74BC1E1FD /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				7FF4A7485394E7E7D0A82597 /* EssentiaTest.vst3 */,
-				93F5E52E2EAAF752CBAE5EB1 /* EssentiaTest.component */,
-				F460A46C3893072DFB00C577 /* EssentiaTest.app */,
-				EF2508C9057997CAED462B3F /* libEssentiaTest.a */,
+				7FF4A7485394E7E7D0A82597 /* EssentiaPlugin.vst3 */,
+				93F5E52E2EAAF752CBAE5EB1 /* EssentiaPlugin.component */,
+				F460A46C3893072DFB00C577 /* EssentiaPlugin.app */,
+				EF2508C9057997CAED462B3F /* libEssentiaPlugin.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -525,7 +525,7 @@
 			);
 			name = "EssentiaPlugin - VST3";
 			productName = EssentiaPlugin;
-			productReference = 7FF4A7485394E7E7D0A82597 /* EssentiaTest.vst3 */;
+			productReference = 7FF4A7485394E7E7D0A82597 /* EssentiaPlugin.vst3 */;
 			productType = "com.apple.product-type.bundle";
 		};
 		095F8432F7E2F9DBDC9D06F1 /* EssentiaPlugin - Shared Code */ = {
@@ -540,7 +540,7 @@
 			);
 			name = "EssentiaPlugin - Shared Code";
 			productName = EssentiaPlugin;
-			productReference = EF2508C9057997CAED462B3F /* libEssentiaTest.a */;
+			productReference = EF2508C9057997CAED462B3F /* libEssentiaPlugin.a */;
 			productType = "com.apple.product-type.library.static";
 		};
 		DCAF22D470608CC0DEF07AAF /* EssentiaPlugin - Standalone Plugin */ = {
@@ -558,7 +558,7 @@
 			);
 			name = "EssentiaPlugin - Standalone Plugin";
 			productName = EssentiaPlugin;
-			productReference = F460A46C3893072DFB00C577 /* EssentiaTest.app */;
+			productReference = F460A46C3893072DFB00C577 /* EssentiaPlugin.app */;
 			productType = "com.apple.product-type.application";
 		};
 		E4E29CE3050900286AC91A2C /* EssentiaPlugin - AU */ = {
@@ -577,7 +577,7 @@
 			);
 			name = "EssentiaPlugin - AU";
 			productName = EssentiaPlugin;
-			productReference = 93F5E52E2EAAF752CBAE5EB1 /* EssentiaTest.component */;
+			productReference = 93F5E52E2EAAF752CBAE5EB1 /* EssentiaPlugin.component */;
 			productType = "com.apple.product-type.bundle";
 		};
 /* End PBXNativeTarget section */
@@ -1046,13 +1046,13 @@
 				MTL_HEADER_SEARCH_PATHS = "/Users/leo/Development/JUCE/modules/juce_audio_processors/format_types/VST3_SDK $(SRCROOT)/../../JuceLibraryCode $(SRCROOT)/../../modules /Users/leo/Development/JUCE/modules $(SRCROOT)/../../Libs/essentia/include/essentia $(SRCROOT)/../../Libs/fftw3f/include $(SRCROOT)/../../Source/ofxAudioAnalyzer/algorithms $(SRCROOT)/../../Source/ofxAudioAnalyzer /Users/leo/Development/JUCE/modules/juce_audio_plugin_client";
 				OTHER_LDFLAGS = (
 					"-bundle",
-					"-lEssentiaTest",
+					"-lEssentiaPlugin",
 					"-lessentia",
 					"-lfftw3f",
 				);
 				OTHER_REZFLAGS = "-d ppc_$ppc -d i386_$i386 -d ppc64_$ppc64 -d x86_64_$x86_64 -I /System/Library/Frameworks/CoreServices.framework/Frameworks/CarbonCore.framework/Versions/A/Headers -I \"$(DEVELOPER_DIR)/Extras/CoreAudio/AudioUnits/AUPublic/AUBase\" -I \"$(DEVELOPER_DIR)/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks/AudioUnit.framework/Headers\"";
 				PRODUCT_BUNDLE_IDENTIFIER = com.OleoLab.EssentiaPlugin;
-				PRODUCT_NAME = EssentiaTest;
+				PRODUCT_NAME = EssentiaPlugin;
 				USE_HEADERMAP = NO;
 				VALID_ARCHS = "i386 x86_64";
 				WRAPPER_EXTENSION = component;
@@ -1173,12 +1173,12 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				MTL_HEADER_SEARCH_PATHS = "/Users/leo/Development/JUCE/modules/juce_audio_processors/format_types/VST3_SDK $(SRCROOT)/../../JuceLibraryCode $(SRCROOT)/../../modules /Users/leo/Development/JUCE/modules $(SRCROOT)/../../Libs/essentia/include/essentia $(SRCROOT)/../../Libs/fftw3f/include $(SRCROOT)/../../Source/ofxAudioAnalyzer/algorithms $(SRCROOT)/../../Source/ofxAudioAnalyzer /Users/leo/Development/JUCE/modules/juce_audio_plugin_client";
 				OTHER_LDFLAGS = (
-					"-lEssentiaTest",
+					"-lEssentiaPlugin",
 					"-lessentia",
 					"-lfftw3f",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.OleoLab.EssentiaPlugin;
-				PRODUCT_NAME = EssentiaTest;
+				PRODUCT_NAME = EssentiaPlugin;
 				USE_HEADERMAP = NO;
 				VALID_ARCHS = "i386 x86_64";
 			};
@@ -1304,12 +1304,12 @@
 				MTL_HEADER_SEARCH_PATHS = "/Users/leo/Development/JUCE/modules/juce_audio_processors/format_types/VST3_SDK $(SRCROOT)/../../JuceLibraryCode $(SRCROOT)/../../modules /Users/leo/Development/JUCE/modules $(SRCROOT)/../../Libs/essentia/include/essentia $(SRCROOT)/../../Libs/fftw3f/include $(SRCROOT)/../../Source/ofxAudioAnalyzer/algorithms $(SRCROOT)/../../Source/ofxAudioAnalyzer /Users/leo/Development/JUCE/modules/juce_audio_plugin_client";
 				OTHER_LDFLAGS = (
 					"-bundle",
-					"-lEssentiaTest",
+					"-lEssentiaPlugin",
 					"-lessentia",
 					"-lfftw3f",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.OleoLab.EssentiaPlugin;
-				PRODUCT_NAME = EssentiaTest;
+				PRODUCT_NAME = EssentiaPlugin;
 				USE_HEADERMAP = NO;
 				VALID_ARCHS = "i386 x86_64";
 				WRAPPER_EXTENSION = vst3;
@@ -1487,12 +1487,12 @@
 				MTL_HEADER_SEARCH_PATHS = "/Users/leo/Development/JUCE/modules/juce_audio_processors/format_types/VST3_SDK $(SRCROOT)/../../JuceLibraryCode $(SRCROOT)/../../modules /Users/leo/Development/JUCE/modules $(SRCROOT)/../../Libs/essentia/include/essentia $(SRCROOT)/../../Libs/fftw3f/include $(SRCROOT)/../../Source/ofxAudioAnalyzer/algorithms $(SRCROOT)/../../Source/ofxAudioAnalyzer /Users/leo/Development/JUCE/modules/juce_audio_plugin_client";
 				OTHER_LDFLAGS = (
 					"-bundle",
-					"-lEssentiaTest",
+					"-lEssentiaPlugin",
 					"-lessentia",
 					"-lfftw3f",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.OleoLab.EssentiaPlugin;
-				PRODUCT_NAME = EssentiaTest;
+				PRODUCT_NAME = EssentiaPlugin;
 				USE_HEADERMAP = NO;
 				VALID_ARCHS = "i386 x86_64";
 				WRAPPER_EXTENSION = vst3;
@@ -1623,12 +1623,12 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				MTL_HEADER_SEARCH_PATHS = "/Users/leo/Development/JUCE/modules/juce_audio_processors/format_types/VST3_SDK $(SRCROOT)/../../JuceLibraryCode $(SRCROOT)/../../modules /Users/leo/Development/JUCE/modules $(SRCROOT)/../../Libs/essentia/include/essentia $(SRCROOT)/../../Libs/fftw3f/include $(SRCROOT)/../../Source/ofxAudioAnalyzer/algorithms $(SRCROOT)/../../Source/ofxAudioAnalyzer /Users/leo/Development/JUCE/modules/juce_audio_plugin_client";
 				OTHER_LDFLAGS = (
-					"-lEssentiaTest",
+					"-lEssentiaPlugin",
 					"-lessentia",
 					"-lfftw3f",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.OleoLab.EssentiaPlugin;
-				PRODUCT_NAME = EssentiaTest;
+				PRODUCT_NAME = EssentiaPlugin;
 				USE_HEADERMAP = NO;
 				VALID_ARCHS = "i386 x86_64";
 			};
@@ -1748,7 +1748,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				MTL_HEADER_SEARCH_PATHS = "/Users/leo/Development/JUCE/modules/juce_audio_processors/format_types/VST3_SDK $(SRCROOT)/../../JuceLibraryCode $(SRCROOT)/../../modules /Users/leo/Development/JUCE/modules $(SRCROOT)/../../Libs/essentia/include/essentia $(SRCROOT)/../../Libs/fftw3f/include $(SRCROOT)/../../Source/ofxAudioAnalyzer/algorithms $(SRCROOT)/../../Source/ofxAudioAnalyzer /Users/leo/Development/JUCE/modules/juce_audio_plugin_client";
 				PRODUCT_BUNDLE_IDENTIFIER = com.OleoLab.EssentiaPlugin;
-				PRODUCT_NAME = EssentiaTest;
+				PRODUCT_NAME = EssentiaPlugin;
 				SKIP_INSTALL = YES;
 				USE_HEADERMAP = NO;
 				VALID_ARCHS = "i386 x86_64";
@@ -1875,13 +1875,13 @@
 				MTL_HEADER_SEARCH_PATHS = "/Users/leo/Development/JUCE/modules/juce_audio_processors/format_types/VST3_SDK $(SRCROOT)/../../JuceLibraryCode $(SRCROOT)/../../modules /Users/leo/Development/JUCE/modules $(SRCROOT)/../../Libs/essentia/include/essentia $(SRCROOT)/../../Libs/fftw3f/include $(SRCROOT)/../../Source/ofxAudioAnalyzer/algorithms $(SRCROOT)/../../Source/ofxAudioAnalyzer /Users/leo/Development/JUCE/modules/juce_audio_plugin_client";
 				OTHER_LDFLAGS = (
 					"-bundle",
-					"-lEssentiaTest",
+					"-lEssentiaPlugin",
 					"-lessentia",
 					"-lfftw3f",
 				);
 				OTHER_REZFLAGS = "-d ppc_$ppc -d i386_$i386 -d ppc64_$ppc64 -d x86_64_$x86_64 -I /System/Library/Frameworks/CoreServices.framework/Frameworks/CarbonCore.framework/Versions/A/Headers -I \"$(DEVELOPER_DIR)/Extras/CoreAudio/AudioUnits/AUPublic/AUBase\" -I \"$(DEVELOPER_DIR)/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks/AudioUnit.framework/Headers\"";
 				PRODUCT_BUNDLE_IDENTIFIER = com.OleoLab.EssentiaPlugin;
-				PRODUCT_NAME = EssentiaTest;
+				PRODUCT_NAME = EssentiaPlugin;
 				USE_HEADERMAP = NO;
 				VALID_ARCHS = "i386 x86_64";
 				WRAPPER_EXTENSION = component;
@@ -2004,7 +2004,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				MTL_HEADER_SEARCH_PATHS = "/Users/leo/Development/JUCE/modules/juce_audio_processors/format_types/VST3_SDK $(SRCROOT)/../../JuceLibraryCode $(SRCROOT)/../../modules /Users/leo/Development/JUCE/modules $(SRCROOT)/../../Libs/essentia/include/essentia $(SRCROOT)/../../Libs/fftw3f/include $(SRCROOT)/../../Source/ofxAudioAnalyzer/algorithms $(SRCROOT)/../../Source/ofxAudioAnalyzer /Users/leo/Development/JUCE/modules/juce_audio_plugin_client";
 				PRODUCT_BUNDLE_IDENTIFIER = com.OleoLab.EssentiaPlugin;
-				PRODUCT_NAME = EssentiaTest;
+				PRODUCT_NAME = EssentiaPlugin;
 				SKIP_INSTALL = YES;
 				USE_HEADERMAP = NO;
 				VALID_ARCHS = "i386 x86_64";
