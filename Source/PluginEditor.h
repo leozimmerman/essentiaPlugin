@@ -14,11 +14,11 @@
 //==============================================================================
 /**
 */
-class EssentiaTestAudioProcessorEditor  : public juce::AudioProcessorEditor
+class EssentiaPluginAudioProcessorEditor  : public juce::AudioProcessorEditor
 {
 public:
-    EssentiaTestAudioProcessorEditor (EssentiaTestAudioProcessor&);
-    ~EssentiaTestAudioProcessorEditor() override;
+    EssentiaPluginAudioProcessorEditor (EssentiaPluginAudioProcessor&);
+    ~EssentiaPluginAudioProcessorEditor() override;
 
     //==============================================================================
     void paint (juce::Graphics&) override;
@@ -27,7 +27,7 @@ public:
 private:
     // This reference is provided as a quick way for your editor to
     // access the processor object that created it.
-    EssentiaTestAudioProcessor& audioProcessor;
+    EssentiaPluginAudioProcessor& audioProcessor;
 
-    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (EssentiaTestAudioProcessorEditor)
+    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (EssentiaPluginAudioProcessorEditor)
 };

@@ -1,6 +1,6 @@
 //
 //  MeterUnit.hpp
-//  EssentiaTest
+//  EssentiaPlugin
 //
 //  Created by Leo on 05/05/2021.
 //

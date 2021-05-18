@@ -34,7 +34,7 @@ juce::AudioProcessorValueTreeState::ParameterLayout createParameterLayout(const 
 
 //==============================================================================
 // MARK: Init
-EssentiaTestAudioProcessor::EssentiaTestAudioProcessor()
+EssentiaPluginAudioProcessor::EssentiaPluginAudioProcessor()
 #ifndef JucePlugin_PreferredChannelConfigurations
      : MagicProcessor (BusesProperties()
                      #if ! JucePlugin_IsMidiEffect
@@ -60,12 +60,12 @@ treeState (*this, nullptr, "PARAMETERS", createParameterLayout(&meterUnits, &ons
     magicState.addOscListener(this);
 }
 
-EssentiaTestAudioProcessor::~EssentiaTestAudioProcessor()
+EssentiaPluginAudioProcessor::~EssentiaPluginAudioProcessor()
 {
 }
 
 // MARK: Preparte to play
-void EssentiaTestAudioProcessor::prepareToPlay (double sampleRate, int samplesPerBlock)
+void EssentiaPluginAudioProcessor::prepareToPlay (double sampleRate, int samplesPerBlock)
 {
     audioAnalyzer.reset(sampleRate, samplesPerBlock, getTotalNumOutputChannels());
    
@@ -78,7 +78,7 @@ void EssentiaTestAudioProcessor::prepareToPlay (double sampleRate, int samplesPe
 }
 
 // MARK: Process block
-void EssentiaTestAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer, juce::MidiBuffer& midiMessages)
+void EssentiaPluginAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer, juce::MidiBuffer& midiMessages)
 {
     juce::ScopedNoDenormals noDenormals;
     auto totalNumInputChannels  = getTotalNumInputChannels();
@@ -98,36 +98,36 @@ void EssentiaTestAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer,
 }
 //==============================================================================
 // MARK: OSC
-void EssentiaTestAudioProcessor::parameterChanged (const juce::String& param, float value) {
+void EssentiaPluginAudioProcessor::parameterChanged (const juce::String& param, float value) {
     if (param == IDs::oscPort) {
         oscPortHasChanged(value);
     }
 }
 
-void EssentiaTestAudioProcessor::oscMainIDHasChanged (juce::String newOscMainID) {
+void EssentiaPluginAudioProcessor::oscMainIDHasChanged (juce::String newOscMainID) {
     _mainID = newOscMainID;
 }
 
-void EssentiaTestAudioProcessor::oscHostHasChanged (juce::String newOscHostAdress) {
+void EssentiaPluginAudioProcessor::oscHostHasChanged (juce::String newOscHostAdress) {
     _oscHost = newOscHostAdress;
     std::cout<< "HOST: "<< newOscHostAdress << std::endl;
     connectOscSender(_oscHost, _oscPort);
 }
 
-void EssentiaTestAudioProcessor::oscPortHasChanged(int newOscPort) {
+void EssentiaPluginAudioProcessor::oscPortHasChanged(int newOscPort) {
     _oscPort = newOscPort;
     std::cout<< "PORT: "<< newOscPort << std::endl;
     connectOscSender(_oscHost, _oscPort);
 }
 
-void EssentiaTestAudioProcessor::connectOscSender(const juce::String& targetHostName, int targetPortNumber) {
+void EssentiaPluginAudioProcessor::connectOscSender(const juce::String& targetHostName, int targetPortNumber) {
     oscSender.disconnect();
     if (! oscSender.connect (targetHostName, targetPortNumber)) {
         juce::Logger::outputDebugString(&"Error: could not connect to UDP port:" [ targetPortNumber]);
     }
 }
 
-void EssentiaTestAudioProcessor::sendOscData() {
+void EssentiaPluginAudioProcessor::sendOscData() {
     juce::String root = "/" + _mainID;
     
     for (auto unit: meterUnits) {
@@ -147,12 +147,12 @@ void EssentiaTestAudioProcessor::sendOscData() {
     
 //==============================================================================
 
-const juce::String EssentiaTestAudioProcessor::getName() const
+const juce::String EssentiaPluginAudioProcessor::getName() const
 {
     return JucePlugin_Name;
 }
 
-bool EssentiaTestAudioProcessor::acceptsMidi() const
+bool EssentiaPluginAudioProcessor::acceptsMidi() const
 {
    #if JucePlugin_WantsMidiInput
     return true;
@@ -161,7 +161,7 @@ bool EssentiaTestAudioProcessor::acceptsMidi() const
    #endif
 }
 
-bool EssentiaTestAudioProcessor::producesMidi() const
+bool EssentiaPluginAudioProcessor::producesMidi() const
 {
    #if JucePlugin_ProducesMidiOutput
     return true;
@@ -170,7 +170,7 @@ bool EssentiaTestAudioProcessor::producesMidi() const
    #endif
 }
 
-bool EssentiaTestAudioProcessor::isMidiEffect() const
+bool EssentiaPluginAudioProcessor::isMidiEffect() const
 {
    #if JucePlugin_IsMidiEffect
     return true;
@@ -179,46 +179,46 @@ bool EssentiaTestAudioProcessor::isMidiEffect() const
    #endif
 }
 
-double EssentiaTestAudioProcessor::getTailLengthSeconds() const
+double EssentiaPluginAudioProcessor::getTailLengthSeconds() const
 {
     return 0.0;
 }
 
-int EssentiaTestAudioProcessor::getNumPrograms()
+int EssentiaPluginAudioProcessor::getNumPrograms()
 {
     return 1;   // NB: some hosts don't cope very well if you tell them there are 0 programs,
                 // so this should be at least 1, even if you're not really implementing programs.
 }
 
-int EssentiaTestAudioProcessor::getCurrentProgram()
+int EssentiaPluginAudioProcessor::getCurrentProgram()
 {
     return 0;
 }
 
-void EssentiaTestAudioProcessor::setCurrentProgram (int index)
+void EssentiaPluginAudioProcessor::setCurrentProgram (int index)
 {
 }
 
-const juce::String EssentiaTestAudioProcessor::getProgramName (int index)
+const juce::String EssentiaPluginAudioProcessor::getProgramName (int index)
 {
     return {};
 }
 
-void EssentiaTestAudioProcessor::changeProgramName (int index, const juce::String& newName)
+void EssentiaPluginAudioProcessor::changeProgramName (int index, const juce::String& newName)
 {
 }
 
 //==============================================================================
 
 
-void EssentiaTestAudioProcessor::releaseResources()
+void EssentiaPluginAudioProcessor::releaseResources()
 {
     // When playback stops, you can use this as an opportunity to free up any
     // spare memory, etc.
 }
 
 #ifndef JucePlugin_PreferredChannelConfigurations
-bool EssentiaTestAudioProcessor::isBusesLayoutSupported (const BusesLayout& layouts) const
+bool EssentiaPluginAudioProcessor::isBusesLayoutSupported (const BusesLayout& layouts) const
 {
   #if JucePlugin_IsMidiEffect
     juce::ignoreUnused (layouts);
@@ -247,5 +247,5 @@ bool EssentiaTestAudioProcessor::isBusesLayoutSupported (const BusesLayout& layo
 // This creates new instances of the plugin..
 juce::AudioProcessor* JUCE_CALLTYPE createPluginFilter()
 {
-    return new EssentiaTestAudioProcessor();
+    return new EssentiaPluginAudioProcessor();
 }

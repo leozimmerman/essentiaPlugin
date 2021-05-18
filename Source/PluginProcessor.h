@@ -18,12 +18,12 @@ using namespace std;
 //==============================================================================
 /**
 */
-class EssentiaTestAudioProcessor  : public foleys::MagicProcessor, private juce::AudioProcessorValueTreeState::Listener
+class EssentiaPluginAudioProcessor  : public foleys::MagicProcessor, private juce::AudioProcessorValueTreeState::Listener
 {
 public:
     //==============================================================================
-    EssentiaTestAudioProcessor();
-    ~EssentiaTestAudioProcessor() override;
+    EssentiaPluginAudioProcessor();
+    ~EssentiaPluginAudioProcessor() override;
 
     //==============================================================================
     void prepareToPlay (double sampleRate, int samplesPerBlock) override;
@@ -77,5 +77,5 @@ private:
     int _oscPort = 0;
     //==============================================================================
 
-    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (EssentiaTestAudioProcessor)
+    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (EssentiaPluginAudioProcessor)
 };
