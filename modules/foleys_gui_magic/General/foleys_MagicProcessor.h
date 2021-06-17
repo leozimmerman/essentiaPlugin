@@ -55,7 +55,8 @@ namespace foleys
  \endcode
  */
 class MagicProcessor  : public juce::AudioProcessor,
-                        public OscHostListener
+                        public OscHostListener,
+                        public PaintListener
 {
 public:
     MagicProcessor();
@@ -76,6 +77,8 @@ public:
      If there is anything you need to do after a new state was loaded you can override this method
      */
     virtual void postSetStateInformation() {}
+    
+    virtual void didPaint() {}
 
     //==============================================================================
     juce::AudioProcessorEditor* createEditor() override;
@@ -133,7 +136,7 @@ public:
 #endif
 
 protected:
-    
+    MagicPluginEditor* magicEditor;
 
 private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (MagicProcessor)

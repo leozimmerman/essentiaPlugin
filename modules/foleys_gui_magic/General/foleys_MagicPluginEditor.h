@@ -36,8 +36,19 @@
 
 #pragma once
 
+#define DEFAULT_OSC_HOST "127.0.0.1"
+#define DEFAULT_OSC_MAIN_ID "trackId"
+
 namespace foleys
 {
+
+class PaintListener
+{
+public:
+    virtual ~PaintListener() = default;
+    virtual void didPaint() = 0;
+};
+
 
 /**
  This is a generic AudioProcessorEditor, that is completely
@@ -62,7 +73,10 @@ public:
      @param gui the ValueTree that defines the GUI of the editor
      */
     void setConfigTree (const juce::ValueTree& gui);
-
+    
+    void setPaintListener(PaintListener* listener) {
+        paintListener = listener;
+    }
     /**
      Grants access to the MagicGUIBuilder
      */
@@ -73,6 +87,8 @@ public:
     void resized() override;
     
     void labelTextChanged (juce::Label* labelThatHasChanged) override;
+    
+    void updateOscLabelsTexts(bool sendNotification);
 
 private:
 
@@ -84,7 +100,7 @@ private:
 #if JUCE_MODULE_AVAILABLE_juce_opengl && FOLEYS_ENABLE_OPEN_GL_CONTEXT
     juce::OpenGLContext oglContext;
 #endif
-
+    PaintListener* paintListener;
     MagicProcessorState& processorState;
 
     std::unique_ptr<MagicGUIBuilder> builder;

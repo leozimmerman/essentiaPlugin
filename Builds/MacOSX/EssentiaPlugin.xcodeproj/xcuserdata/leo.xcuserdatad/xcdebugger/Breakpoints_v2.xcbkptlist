@@ -5,18 +5,30 @@
    version = "2.0">
    <Breakpoints>
       <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         BreakpointExtensionID = "Xcode.Breakpoint.ExceptionBreakpoint">
          <BreakpointContent
-            uuid = "A202F930-B517-4DCC-BDF8-E464072B2D19"
-            shouldBeEnabled = "No"
+            uuid = "75A0DD75-58C8-43DD-A9F5-B4B85C9B4200"
+            shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "../../modules/foleys_gui_magic/State/foleys_MagicProcessorState.cpp"
+            breakpointStackSelectionBehavior = "1"
+            scope = "1"
+            stopOnStyle = "0">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "0A11F000-9E1F-4190-8C28-021CA748BF53"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../../Source/PluginProcessor.cpp"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "205"
-            endingLineNumber = "205"
-            landmarkName = "MagicProcessorState::getStateInformation(destData)"
+            startingLineNumber = "136"
+            endingLineNumber = "136"
+            landmarkName = "EssentiaPluginAudioProcessor::didPaint()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

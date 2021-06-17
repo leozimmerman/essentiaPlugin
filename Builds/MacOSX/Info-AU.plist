@@ -29,9 +29,9 @@
     <array>
       <dict>
         <key>name</key>
-        <string>Oleo Lab: EssentiaPlugin</string>
+        <string>Oleo Lab: Essentia Plugin</string>
         <key>description</key>
-        <string>EssentiaPlugin</string>
+        <string>Essentia analyzer with OSC data sending</string>
         <key>factoryFunction</key>
         <string>EssentiaPluginAUFactory</string>
         <key>manufacturer</key>

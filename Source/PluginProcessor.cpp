@@ -9,12 +9,7 @@
 #include "PluginProcessor.h"
 #include "PluginEditor.h"
 #include "StringUtils.h"
-/**
- TODO:
- - Rename project
- - Upload repo
- - Debug
- */
+
 
 juce::AudioProcessorValueTreeState::ParameterLayout createParameterLayout(const vector<MeterUnit*>* meterUnits, OnsetsMeterUnit* onsetsMeterUnit)
 {
@@ -27,7 +22,11 @@ juce::AudioProcessorValueTreeState::ParameterLayout createParameterLayout(const 
     layout.add(std::move (onsetsGenerator));
     
     auto oscGenerator = std::make_unique<juce::AudioProcessorParameterGroup>("OSC", TRANS ("OSC"), "|");
-    oscGenerator->addChild(std::make_unique<juce::AudioParameterFloat>(IDs::oscPort, "OSC PORT", juce::NormalisableRange<float>(1, 65535, 1), 9001));
+    oscGenerator->addChild(std::make_unique<juce::AudioParameterInt>(IDs::oscPort,            // parameterID
+                                                                     IDs::oscPortName,            // parameter name
+                                                                     MIN_OSC_PORT,              // minimum value
+                                                                     MAX_OSC_PORT,              // maximum value
+                                                                     DEFAULT_OSC_PORT));
     layout.add(std::move (oscGenerator));
     return layout;
 }
@@ -58,6 +57,7 @@ treeState (*this, nullptr, "PARAMETERS", createParameterLayout(&meterUnits, &ons
     magicState.setGuiValueTree (BinaryData::magic_xml, BinaryData::magic_xmlSize);
     
     magicState.addOscListener(this);
+ ///***   magicEditor->setPaintListener(this);
 }
 
 EssentiaPluginAudioProcessor::~EssentiaPluginAudioProcessor()
@@ -94,7 +94,7 @@ void EssentiaPluginAudioProcessor::processBlock (juce::AudioBuffer<float>& buffe
     }
     onsetsMeterUnit.process();
     
-    sendOscData();
+    ///*** sendOscData();
 }
 //==============================================================================
 // MARK: OSC
@@ -105,44 +105,35 @@ void EssentiaPluginAudioProcessor::parameterChanged (const juce::String& param, 
 }
 
 void EssentiaPluginAudioProcessor::oscMainIDHasChanged (juce::String newOscMainID) {
-    _mainID = newOscMainID;
+    oscManager.setMaindId(newOscMainID);
 }
 
 void EssentiaPluginAudioProcessor::oscHostHasChanged (juce::String newOscHostAdress) {
-    _oscHost = newOscHostAdress;
-    std::cout<< "HOST: "<< newOscHostAdress << std::endl;
-    connectOscSender(_oscHost, _oscPort);
+    oscManager.setOscHost(newOscHostAdress);
 }
 
 void EssentiaPluginAudioProcessor::oscPortHasChanged(int newOscPort) {
-    _oscPort = newOscPort;
-    std::cout<< "PORT: "<< newOscPort << std::endl;
-    connectOscSender(_oscHost, _oscPort);
-}
-
-void EssentiaPluginAudioProcessor::connectOscSender(const juce::String& targetHostName, int targetPortNumber) {
-    oscSender.disconnect();
-    if (! oscSender.connect (targetHostName, targetPortNumber)) {
-        juce::Logger::outputDebugString(&"Error: could not connect to UDP port:" [ targetPortNumber]);
-    }
+    oscManager.setOscPort(newOscPort);
 }
 
 void EssentiaPluginAudioProcessor::sendOscData() {
-    juce::String root = "/" + _mainID;
-    
     for (auto unit: meterUnits) {
         if (unit->isEnabled()) {
-            juce::String address = root + "/" + unit->getTypeName();
-            juce::OSCAddressPattern addressPattern = juce::OSCAddressPattern(address);
-            oscSender.send(addressPattern, unit->getValue());
+            oscManager.sendValue(unit->getValue(), unit->getTypeName());
         }
     }
      
     if (onsetsMeterUnit.isEnabled()) {
-        juce::String address = root + "/" + onsetsMeterUnit.getTypeName();
-        juce::OSCAddressPattern addressPattern = juce::OSCAddressPattern(address);
-        oscSender.send(addressPattern, onsetsMeterUnit.getValue());
+        oscManager.sendValue(onsetsMeterUnit.getValue(), onsetsMeterUnit.getTypeName());
     }
+}
+
+void EssentiaPluginAudioProcessor::postSetStateInformation() {
+    magicEditor->updateOscLabelsTexts(true);
+}
+
+void EssentiaPluginAudioProcessor::didPaint() {
+    sendOscData();
 }
     
 //==============================================================================

@@ -57,5 +57,7 @@ private:
     atomic<float>* timeTreshold  = nullptr;
     atomic<float>* silenceTreshold  = nullptr;
     
+    bool hasBufferedOnset = false;
+    
 };
 

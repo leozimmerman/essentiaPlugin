@@ -12,13 +12,15 @@
 #include "ofxAudioAnalyzer.h"
 #include "MeterUnit.h"
 #include "OnsetsMeterUnit.h"
+#include "OscManager.h"
 
 using namespace std;
 
 //==============================================================================
 /**
 */
-class EssentiaPluginAudioProcessor  : public foleys::MagicProcessor, private juce::AudioProcessorValueTreeState::Listener
+class EssentiaPluginAudioProcessor  : public foleys::MagicProcessor,
+                                      private juce::AudioProcessorValueTreeState::Listener
 {
 public:
     //==============================================================================
@@ -55,6 +57,9 @@ public:
     void oscPortHasChanged(int newOscPort);
     void parameterChanged (const juce::String& param, float value) override;
     
+    void postSetStateInformation() override;
+    void didPaint() override;
+    
 private:
     void connectOscSender(const juce::String& targetHostName, int targetPortNumber);
     void sendOscData();
@@ -70,12 +75,7 @@ private:
     OnsetsMeterUnit onsetsMeterUnit = OnsetsMeterUnit(99);
  
     juce::AudioProcessorValueTreeState treeState;
-    
-    juce::OSCSender oscSender;
-    juce::String _oscHost = "127.0.0.1"; ///*** check on saving test
-    juce::String _mainID = "";
-    int _oscPort = 0;
+    OscManager oscManager;
     //==============================================================================
-
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (EssentiaPluginAudioProcessor)
 };

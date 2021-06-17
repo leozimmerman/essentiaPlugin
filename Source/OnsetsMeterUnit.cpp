@@ -95,6 +95,7 @@ void OnsetsMeterUnit::parameterChanged (const juce::String& param, float value)
 void OnsetsMeterUnit::prepareToPlay (double sampleRate, int samplesPerBlock) {
     outputMeter->setupSource (1); ///*** remove channels
     updateOnsetPtr();
+    hasBufferedOnset = false;
 }
 
 bool OnsetsMeterUnit::isEnabled() {
@@ -102,6 +103,7 @@ bool OnsetsMeterUnit::isEnabled() {
 }
 
 float OnsetsMeterUnit::getValue() {
+    hasBufferedOnset = false;
     return outputMeter->getNormalizedValue();
 }
 
@@ -123,7 +125,11 @@ void OnsetsMeterUnit::setOfxaaValue(ofxAAValue value) {
 
 void OnsetsMeterUnit::process() {
     if (currentOfxaaValue == ONSETS) {
-        bool onsetValue = onsetPtr->getValue();//getValue(currentOfxaaValue, 0, *smoothing, false);
+        if (hasBufferedOnset) return;
+        
+        bool onsetValue = onsetPtr->getValue();
+        hasBufferedOnset = onsetValue;
+        
         float value = onsetValue ? 1.0 : 0.0;
         outputMeter->setValues(value, value);
         oscilloscope->pushValue(value);

@@ -166,7 +166,7 @@ namespace IDs
     static juce::Identifier properties  { "Properties" };
     static juce::Identifier lastSize    { "last-size" };
     
-    static juce::Identifier oscData     { "osc-data" };
+    static juce::Identifier oscData     { "OSC" };
     static juce::Identifier hostAddress { "host-address" };
     static juce::Identifier mainId      { "main-id" };
 }

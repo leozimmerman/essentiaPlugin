@@ -2,7 +2,8 @@
 
 <JUCERPROJECT id="bhBawh" name="EssentiaPlugin" projectType="audioplug" useAppConfig="0"
               addUsingNamespaceToJuceHeader="0" displaySplashScreen="1" jucerFormatVersion="1"
-              companyName="Oleo Lab">
+              companyName="Oleo Lab" pluginName="Essentia Plugin" pluginDesc="Essentia analyzer with OSC data sending"
+              pluginManufacturer="Oleo Lab">
   <MAINGROUP id="KbgizU" name="EssentiaPlugin">
     <GROUP id="{5A311EF0-835E-CBDB-19D7-F249356217F3}" name="ofxAudioAnalyzer">
       <FILE id="m9W9dN" name="ofxAAAlgorithmTypes.h" compile="0" resource="0"
@@ -62,6 +63,7 @@
             file="Source/ofxAudioAnalyzer/ofxAudioAnalyzerUnit.h"/>
     </GROUP>
     <GROUP id="{2094C181-A987-B8CA-0C24-B1C939A168AB}" name="Source">
+      <FILE id="zdnxFj" name="OscManager.h" compile="0" resource="0" file="Source/OscManager.h"/>
       <FILE id="l1wk69" name="OnsetsMeterUnit.cpp" compile="1" resource="0"
             file="Source/OnsetsMeterUnit.cpp"/>
       <FILE id="A3WQRC" name="OnsetsMeterUnit.h" compile="0" resource="0"
@@ -87,9 +89,9 @@
     <XCODE_MAC targetFolder="Builds/MacOSX" externalLibraries="essentia&#10;fftw3f"
                xcodeValidArchs="i386,x86_64">
       <CONFIGURATIONS>
-        <CONFIGURATION isDebug="1" name="Debug" targetName="EssentiaTest" headerPath="../../Libs/essentia/include/essentia&#10;../../Libs/fftw3f/include&#10;../../Source/ofxAudioAnalyzer/algorithms&#10;../../Source/ofxAudioAnalyzer"
+        <CONFIGURATION isDebug="1" name="Debug" targetName="EssentiaPlugin" headerPath="../../Libs/essentia/include/essentia&#10;../../Libs/fftw3f/include&#10;../../Source/ofxAudioAnalyzer/algorithms&#10;../../Source/ofxAudioAnalyzer"
                        libraryPath="../../Libs/essentia/lib&#10;../../Libs/fftw3f/lib"/>
-        <CONFIGURATION isDebug="0" name="Release" targetName="EssentiaTest" headerPath="../../Libs/essentia/include/essentia&#10;../../Libs/fftw3f/include&#10;../../Source/ofxAudioAnalyzer/algorithms&#10;../../Source/ofxAudioAnalyzer"
+        <CONFIGURATION isDebug="0" name="Release" targetName="EssentiaPlugin" headerPath="../../Libs/essentia/include/essentia&#10;../../Libs/fftw3f/include&#10;../../Source/ofxAudioAnalyzer/algorithms&#10;../../Source/ofxAudioAnalyzer"
                        libraryPath="../../Libs/essentia/lib&#10;../../Libs/fftw3f/lib"
                        defines="FOLEYS_SHOW_GUI_EDITOR_PALLETTE=0"/>
       </CONFIGURATIONS>

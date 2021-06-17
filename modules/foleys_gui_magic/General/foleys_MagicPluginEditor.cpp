@@ -34,8 +34,6 @@
  ==============================================================================
  */
 
-
-
 namespace foleys
 {
 
@@ -95,15 +93,7 @@ MagicPluginEditor::MagicPluginEditor (MagicProcessorState& stateToUse, std::uniq
     mainIDLabel.setJustificationType (juce::Justification::centredRight);
     mainIDLabel.addListener(this);
     
-    
-    juce::String hostAddress = "";
-    processorState.getLastHostAddress(hostAddress);
-    
-    juce::String mainId = "";
-    processorState.getLastMaindId(mainId);
-
-    mainIDLabel.setText (mainId, juce::dontSendNotification);
-    hostLabel.setText (hostAddress, juce::dontSendNotification);
+    updateOscLabelsTexts(false);
 }
 
 MagicPluginEditor::~MagicPluginEditor()
@@ -111,6 +101,18 @@ MagicPluginEditor::~MagicPluginEditor()
 #if JUCE_MODULE_AVAILABLE_juce_opengl && FOLEYS_ENABLE_OPEN_GL_CONTEXT
     oglContext.detach();
 #endif
+}
+
+void MagicPluginEditor::updateOscLabelsTexts(bool sendNotification) {
+    juce::String hostAddress = DEFAULT_OSC_HOST;
+    processorState.getLastHostAddress(hostAddress);
+    
+    juce::String mainId = DEFAULT_OSC_MAIN_ID;
+    processorState.getLastMaindId(mainId);
+
+    auto doSend = sendNotification ? juce::sendNotification : juce::dontSendNotification;
+    mainIDLabel.setText (mainId, doSend);
+    hostLabel.setText (hostAddress, doSend);
 }
 
 void MagicPluginEditor::labelTextChanged (juce::Label* labelThatHasChanged) {
@@ -177,6 +179,7 @@ MagicGUIBuilder& MagicPluginEditor::getGUIBuilder()
 void MagicPluginEditor::paint (juce::Graphics& g)
 {
     g.fillAll (juce::Colours::black);
+    paintListener->didPaint() ;
 }
 
 void MagicPluginEditor::resized()

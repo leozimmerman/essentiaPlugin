@@ -38,10 +38,10 @@
  #define JucePlugin_Enable_IAA             0
 #endif
 #ifndef  JucePlugin_Name
- #define JucePlugin_Name                   "EssentiaPlugin"
+ #define JucePlugin_Name                   "Essentia Plugin"
 #endif
 #ifndef  JucePlugin_Desc
- #define JucePlugin_Desc                   "EssentiaPlugin"
+ #define JucePlugin_Desc                   "Essentia analyzer with OSC data sending"
 #endif
 #ifndef  JucePlugin_Manufacturer
  #define JucePlugin_Manufacturer           "Oleo Lab"
@@ -149,7 +149,7 @@
  #define JucePlugin_IAASubType             JucePlugin_PluginCode
 #endif
 #ifndef  JucePlugin_IAAName
- #define JucePlugin_IAAName                "Oleo Lab: EssentiaPlugin"
+ #define JucePlugin_IAAName                "Oleo Lab: Essentia Plugin"
 #endif
 #ifndef  JucePlugin_VSTNumMidiInputs
  #define JucePlugin_VSTNumMidiInputs       16

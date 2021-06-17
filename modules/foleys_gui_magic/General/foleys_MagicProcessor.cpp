@@ -72,8 +72,10 @@ juce::AudioProcessorEditor* MagicProcessor::createEditor()
 
     auto builder = std::make_unique<MagicGUIBuilder>(magicState);
     initialiseBuilder (*builder);
-
-    return new MagicPluginEditor (magicState, std::move (builder));
+    magicEditor = new MagicPluginEditor (magicState, std::move (builder));
+    magicEditor->setPaintListener(dynamic_cast<MagicProcessor*>(this));
+    
+    return magicEditor;
 }
 
 //==============================================================================
@@ -85,7 +87,6 @@ void MagicProcessor::getStateInformation (juce::MemoryBlock& destData)
 void MagicProcessor::setStateInformation (const void* data, int sizeInBytes)
 {
     magicState.setStateInformation (data, sizeInBytes, getActiveEditor());
-
     postSetStateInformation();
 }
 

@@ -191,11 +191,11 @@ bool MagicProcessorState::getLastEditorSize (int& width, int& height)
 }
 
 void MagicProcessorState::prepareOscData() {
-    juce::String hostAddress = "127.0.0.1"; // Initial default host
+    juce::String hostAddress = DEFAULT_OSC_HOST;
     getLastHostAddress(hostAddress);
     setOscIPAdress(hostAddress);
     
-    juce::String mainId = "trackId"; // Initial default trackID
+    juce::String mainId = DEFAULT_OSC_MAIN_ID;
     getLastMaindId(mainId);
     setOscMainID(mainId);
 }

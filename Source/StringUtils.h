@@ -56,6 +56,7 @@ namespace IDs
     static juce::String silenceTreshold  { "silenceTreshold" };
 
     static juce::String oscPort  { "oscPort" };
+    static juce::String oscPortName  { "Osc Port" };
 
     static juce::String IDwithIdx(juce::String ID, int idx) {
         return ID +":" + juce::String(idx);
