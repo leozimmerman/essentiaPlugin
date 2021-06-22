@@ -57,7 +57,6 @@ treeState (*this, nullptr, "PARAMETERS", createParameterLayout(&meterUnits, &ons
     magicState.setGuiValueTree (BinaryData::magic_xml, BinaryData::magic_xmlSize);
     
     magicState.addOscListener(this);
- ///***   magicEditor->setPaintListener(this);
 }
 
 EssentiaPluginAudioProcessor::~EssentiaPluginAudioProcessor()
@@ -93,8 +92,7 @@ void EssentiaPluginAudioProcessor::processBlock (juce::AudioBuffer<float>& buffe
         unit->process();
     }
     onsetsMeterUnit.process();
-    
-    ///*** sendOscData();
+    sendOscData();
 }
 //==============================================================================
 // MARK: OSC
@@ -131,11 +129,6 @@ void EssentiaPluginAudioProcessor::sendOscData() {
 void EssentiaPluginAudioProcessor::postSetStateInformation() {
     magicEditor->updateOscLabelsTexts(true);
 }
-
-void EssentiaPluginAudioProcessor::didPaint() {
-    sendOscData();
-}
-    
 //==============================================================================
 
 const juce::String EssentiaPluginAudioProcessor::getName() const

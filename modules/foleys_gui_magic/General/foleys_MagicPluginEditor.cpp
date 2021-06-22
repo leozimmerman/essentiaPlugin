@@ -179,7 +179,6 @@ MagicGUIBuilder& MagicPluginEditor::getGUIBuilder()
 void MagicPluginEditor::paint (juce::Graphics& g)
 {
     g.fillAll (juce::Colours::black);
-    paintListener->didPaint() ;
 }
 
 void MagicPluginEditor::resized()

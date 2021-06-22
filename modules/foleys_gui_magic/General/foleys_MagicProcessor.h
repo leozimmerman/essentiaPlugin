@@ -55,8 +55,7 @@ namespace foleys
  \endcode
  */
 class MagicProcessor  : public juce::AudioProcessor,
-                        public OscHostListener,
-                        public PaintListener
+                        public OscHostListener
 {
 public:
     MagicProcessor();
@@ -77,8 +76,6 @@ public:
      If there is anything you need to do after a new state was loaded you can override this method
      */
     virtual void postSetStateInformation() {}
-    
-    virtual void didPaint() {}
 
     //==============================================================================
     juce::AudioProcessorEditor* createEditor() override;

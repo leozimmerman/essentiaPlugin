@@ -58,7 +58,6 @@ public:
     void parameterChanged (const juce::String& param, float value) override;
     
     void postSetStateInformation() override;
-    void didPaint() override;
     
 private:
     void connectOscSender(const juce::String& targetHostName, int targetPortNumber);

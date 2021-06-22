@@ -67,6 +67,7 @@ void ofxAudioAnalyzer::reset(int sampleRate, int bufferSize, int channels){
         channelAnalyzerUnits.push_back(aaUnit);
     }
     
+    loadStoredMaxEstimatedValues();
 }
 //-------------------------------------------------------
 void ofxAudioAnalyzer::analyze(const juce::AudioBuffer<float>& buffer){
@@ -156,6 +157,7 @@ void ofxAudioAnalyzer::setMaxEstimatedValue(int channel, ofxAAValue valueType, f
     }
     
     channelAnalyzerUnits[channel]->setMaxEstimatedValue(valueType, value);
+    storedMaxEstimatedValues[valueType] = value;
 }
 //-------------------------------------------------------
 void ofxAudioAnalyzer::setMaxEstimatedValue(int channel, ofxAABinsValue valueType, float value){
@@ -180,7 +182,15 @@ void ofxAudioAnalyzer::setOnsetsParameters(int channel, float alpha, float silen
     onsets->setOnsetTimeThreshold(timeTresh);
     onsets->setUseTimeThreshold(useTimeTresh);
 }
-
+//-------------------------------------------------------
+void ofxAudioAnalyzer::loadStoredMaxEstimatedValues() {
+    map<ofxAAValue, float>::iterator it;
+    for(it=storedMaxEstimatedValues.begin(); it!=storedMaxEstimatedValues.end(); ++it) {
+        for(int ch=0; ch<_channels; ch++){
+            setMaxEstimatedValue(ch, it->first, it->second);
+        }
+    }
+}
 
 
 

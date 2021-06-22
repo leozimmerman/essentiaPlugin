@@ -42,14 +42,6 @@
 namespace foleys
 {
 
-class PaintListener
-{
-public:
-    virtual ~PaintListener() = default;
-    virtual void didPaint() = 0;
-};
-
-
 /**
  This is a generic AudioProcessorEditor, that is completely
  defined and styled by drag and drop. There is an XML representation,
@@ -73,10 +65,6 @@ public:
      @param gui the ValueTree that defines the GUI of the editor
      */
     void setConfigTree (const juce::ValueTree& gui);
-    
-    void setPaintListener(PaintListener* listener) {
-        paintListener = listener;
-    }
     /**
      Grants access to the MagicGUIBuilder
      */
@@ -100,7 +88,6 @@ private:
 #if JUCE_MODULE_AVAILABLE_juce_opengl && FOLEYS_ENABLE_OPEN_GL_CONTEXT
     juce::OpenGLContext oglContext;
 #endif
-    PaintListener* paintListener;
     MagicProcessorState& processorState;
 
     std::unique_ptr<MagicGUIBuilder> builder;

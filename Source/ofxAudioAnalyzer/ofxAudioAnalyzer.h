@@ -78,9 +78,13 @@ class ofxAudioAnalyzer{
 
  private:
     
+    void loadStoredMaxEstimatedValues();
+    
     int _samplerate;
     int _buffersize;
     int _channels;
+    
+    map<ofxAAValue, float> storedMaxEstimatedValues;
     
     vector<ofxAudioAnalyzerUnit*> channelAnalyzerUnits;
     
