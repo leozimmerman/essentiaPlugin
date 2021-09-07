@@ -1,4 +1,9 @@
-# Audio Analysis Plug-in 
+# Audio Analysis Sender Plug-in 
+
+### Analyses audio data and sends it over OSC 
+
+![alt text](screenshot/screenshot.png)
+
 
 ## Built with: 
 
