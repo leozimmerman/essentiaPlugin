@@ -1,4 +1,4 @@
-# Audio Analysis Sender Plug-in 
+# Essentia Plug-in 
 
 ### Analyses audio data and sends it over OSC 
 
