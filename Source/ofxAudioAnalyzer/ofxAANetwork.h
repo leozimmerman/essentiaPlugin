@@ -70,7 +70,7 @@ namespace ofxaa {
         int _framesize;
         
         vector<Real> _audioSignal;
-        vector<Real> _accumulatedAudioSignal;
+        //vector<Real> _accumulatedAudioSignal;
         
         vector<ofxAABaseAlgorithm*> algorithms;
         

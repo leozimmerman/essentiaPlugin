@@ -117,6 +117,20 @@ float ofxAudioAnalyzer::getValue(ofxAAValue valueType, int channel, float smooth
     return channelAnalyzerUnits[channel]->getValue(valueType, smooth, normalized);
 }
 //-------------------------------------------------------
+float ofxAudioAnalyzer::getAverageValue(ofxAAValue valueType, float smooth, bool normalized) const {
+    auto size = channelAnalyzerUnits.size();
+    if (size <= 0){
+        juce::Logger::outputDebugString("ofxAudioAnalyzer: channel for getting value is incorrect.");
+        return 0.0;
+    }
+    float value = 0.0;
+    for (int i=0; i<size; i++) {
+        value += channelAnalyzerUnits[i]->getValue(valueType, smooth, normalized);
+    }
+    value /= size;
+    return value;
+}
+//-------------------------------------------------------
 vector<float>& ofxAudioAnalyzer::getValues(ofxAABinsValue valueType, int channel, float smooth, bool normalized){
     
     if (channel >= _channels){

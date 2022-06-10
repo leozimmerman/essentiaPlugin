@@ -22,6 +22,8 @@
  *
  */
 
+// NETWORK DIAGRAM:
+// https://app.diagrams.net/#G14q2cA6zyjloAdpmDFluz4zcrpQkGqIXO
 
 #include "ofxAANetwork.h"
 #include "ofxAAConfigurations.h"
@@ -65,7 +67,7 @@ namespace ofxaa {
         _samplerate = sr;
         
         _audioSignal.resize(bufferSize);
-        _accumulatedAudioSignal.resize(bufferSize * ACCUMULATED_SIGNAL_MULTIPLIER, 0.0);
+        //_accumulatedAudioSignal.resize(bufferSize * ACCUMULATED_SIGNAL_MULTIPLIER, 0.0);
         
         createAlgorithms();
         connectAlgorithms();
@@ -232,24 +234,24 @@ namespace ofxaa {
         gfcc = new ofxAATwoVectorsOutputAlgorithm(Gfcc, sr, fs, GFCC_NUMBER_BANDS, 13);
         gfcc->maxEstimatedValue = GFCC_MAX_VALUE ;
         gfcc->hasLogarithmicValues = true;
-        algorithms.push_back(gfcc);
+        //algorithms.push_back(gfcc);
         
         erbBands_centralMoments = new ofxAAOneVectorOutputAlgorithm(CentralMoments, sr, fs);
         ofxaa::configureCentralMoments(erbBands_centralMoments->algorithm, "pdf", GFCC_NUMBER_BANDS-1);
-        algorithms.push_back(erbBands_centralMoments);
+        //algorithms.push_back(erbBands_centralMoments);
         
         erbBands_distributionShape = new ofxAADistributionShapeAlgorithm(sr, fs);
         erbBands_distributionShape->setMinEstimatedValues(distributionShapeMinValues);
         erbBands_distributionShape->setMaxEstimatedValues(distributionShapeMaxValues);
-        algorithms.push_back(erbBands_distributionShape);
+        //algorithms.push_back(erbBands_distributionShape);
         
         erbBands_flatnessDb = new ofxAASingleOutputAlgorithm(FlatnessDB, sr, fs);
         erbBands_flatnessDb->isNormalizedByDefault = true;
-        algorithms.push_back(erbBands_flatnessDb);
+        //algorithms.push_back(erbBands_flatnessDb);
         
         erbBands_crest = new ofxAASingleOutputAlgorithm(Crest, sr, fs);
         erbBands_crest->maxEstimatedValue = CREST_MAX_VALUE;
-        algorithms.push_back(erbBands_crest);
+        //algorithms.push_back(erbBands_crest);
         
         //MARK: -BarkBands
         barkBands = new ofxAAOneVectorOutputAlgorithm(BarkBands, sr, fs, BARKBANDS_NUMBER_BANDS);
@@ -305,7 +307,7 @@ namespace ofxaa {
         spectral_decrease = new ofxAASingleOutputAlgorithm(Decrease, sr, fs);
         ofxaa::configureDecrease(spectral_decrease->algorithm, sr/2);
         spectral_decrease->hasLogarithmicValues = true;
-        algorithms.push_back(spectral_decrease);
+        //algorithms.push_back(spectral_decrease);
         
         spectral_centroid = new ofxAASingleOutputAlgorithm(Centroid, sr, fs);
         ofxaa::configureCentroid(spectral_centroid->algorithm, sr/2);
@@ -354,14 +356,14 @@ namespace ofxaa {
         //algorithms.push_back(spectral_distributionShape);
         
         spectralPeaks = new ofxAATwoVectorsOutputAlgorithm(SpectralPeaks, sr, fs);
-        //algorithms.push_back(spectralPeaks);
+        algorithms.push_back(spectralPeaks);
         
         dissonance = new ofxAASingleOutputAlgorithm(Dissonance, sr, fs);
         dissonance->isNormalizedByDefault = true;
         algorithms.push_back(dissonance);
         
         harmonicPeaks = new ofxAATwoVectorsOutputAlgorithm(HarmonicPeaks, sr, fs);
-        //algorithms.push_back(harmonicPeaks);
+        algorithms.push_back(harmonicPeaks);
         
         inharmonicity = new ofxAASingleOutputAlgorithm(Inharmonicity, sr, fs);
         inharmonicity->isNormalizedByDefault = true;
@@ -389,11 +391,11 @@ namespace ofxaa {
         
         hpcp_entropy = new ofxAASingleOutputAlgorithm(Entropy, sr, fs);
         hpcp_entropy->maxEstimatedValue = ENTROPY_MAX_VALUE;
-        algorithms.push_back(hpcp_entropy);
+        //algorithms.push_back(hpcp_entropy);
         
         hpcp_crest = new ofxAASingleOutputAlgorithm(Crest, sr, fs);
         hpcp_crest->maxEstimatedValue = CREST_MAX_VALUE;
-        algorithms.push_back(hpcp_crest);
+        //algorithms.push_back(hpcp_crest);
         
         chordsDetection = new ofxAATwoTypesVectorOutputAlgorithm(ChordsDetection, sr, fs);
         // algorithms.push_back(chordsDetection);
@@ -436,6 +438,7 @@ namespace ofxaa {
         silenceRate->algorithm->output("threshold_1").set(silenceRate->outputValues[1]);
         silenceRate->algorithm->output("threshold_2").set(silenceRate->outputValues[2]);
         
+        /*
         dynamicComplexity->algorithm->input("signal").set(_accumulatedAudioSignal);
         dynamicComplexity->algorithm->output("dynamicComplexity").set(dynamicComplexity->outputValues[0]);
         dynamicComplexity->algorithm->output("loudness").set(dynamicComplexity->outputValues[1]);
@@ -481,7 +484,7 @@ namespace ofxaa {
         derivativeSFX->algorithm->output("derAvAfterMax").set(derivativeSFX->outputValues[0]);
         derivativeSFX->algorithm->output("maxDerBeforeMax").set(derivativeSFX->outputValues[1]);
        
-     
+         */
         //MARK: PITCH
         //source: standard_pitchdemo.cpp
         pitchYinFFT->algorithm->input("spectrum").set(spectrum->outputValues);
@@ -679,7 +682,7 @@ namespace ofxaa {
     void Network::computeAlgorithms(vector<Real>& signal, vector<Real>& accumulatedSignal){
         
         _audioSignal = signal;
-        _accumulatedAudioSignal = accumulatedSignal;
+        //_accumulatedAudioSignal = accumulatedSignal;
         
 //        for (auto algorithm : algorithms){
         int size = algorithms.size();//70

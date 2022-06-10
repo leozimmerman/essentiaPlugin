@@ -29,19 +29,17 @@ vector<ofxAAValue> availableValues {
     SILENCE_RATE_30dB,
     SILENCE_RATE_60dB,
     
-    SPECTRAL_KURTOSIS,
-    SPECTRAL_SPREAD,
-    SPECTRAL_SKEWNESS,
-    SPECTRAL_DECREASE,
+    ENERGY_BAND_LOW,
+    ENERGY_BAND_MID_LOW,
+    ENERGY_BAND_MID_HI,
+    ENERGY_BAND_HI,
+    
     SPECTRAL_ROLLOFF,
     SPECTRAL_ENERGY,
     SPECTRAL_ENTROPY,
     SPECTRAL_CENTROID,
     SPECTRAL_COMPLEXITY,
-    SPECTRAL_FLUX,
-   
-    HPCP_CREST,
-    HPCP_ENTROPY
+    SPECTRAL_FLUX
 };
 
 MeterUnit::MeterUnit(int idx) {
@@ -143,8 +141,8 @@ void MeterUnit::prepareToPlay (double sampleRate, int samplesPerBlock) {
 
 void MeterUnit::process() {
     if (isEnabled()) {
-        float value = _audioAnalyzer->getValue(currentOfxaaValue, 0, *smoothing, false);
-        float normalizedValue = _audioAnalyzer->getValue(currentOfxaaValue, 0, *smoothing, true);
+        float value = _audioAnalyzer->getAverageValue(currentOfxaaValue, *smoothing, false);
+        float normalizedValue = _audioAnalyzer->getAverageValue(currentOfxaaValue, *smoothing, true);
         outputMeter->setValues(value, normalizedValue);
         oscilloscope->pushValue(normalizedValue);
     } else {
