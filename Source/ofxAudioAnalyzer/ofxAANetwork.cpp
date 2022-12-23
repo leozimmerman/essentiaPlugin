@@ -685,7 +685,7 @@ namespace ofxaa {
         //_accumulatedAudioSignal = accumulatedSignal;
         
 //        for (auto algorithm : algorithms){
-        int size = algorithms.size();//70
+        int size = algorithms.size();//29
         for (int i=0; i<algorithms.size(); i++){
             if (algorithms[i]->getType() == TCToTotal || algorithms[i]->getType() == StrongDecay){
                 if(envelope->outputValues[0] != 0.0){

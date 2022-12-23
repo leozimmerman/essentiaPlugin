@@ -43,7 +43,7 @@
       <PathRunnable
          runnableDebuggingMode = "0"
          BundleIdentifier = "com.ableton.live"
-         FilePath = "/Applications/Ableton Live 10 Suite.app">
+         FilePath = "/Applications/Ableton Live 11 Suite.app">
       </PathRunnable>
    </LaunchAction>
    <ProfileAction

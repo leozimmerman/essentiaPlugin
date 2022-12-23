@@ -82,7 +82,6 @@ void ofxAudioAnalyzer::analyze(const juce::AudioBuffer<float>& buffer){
         return;
     }
     
-    
     for (int i=0; i<_channels; i++){
         const float * channelPtr = buffer.getReadPointer(i);
         vector<float> bufferCopy;

@@ -89,6 +89,5 @@ class ofxAudioAnalyzer{
     
     vector<ofxAudioAnalyzerUnit*> channelAnalyzerUnits;
     
-    
 };
 

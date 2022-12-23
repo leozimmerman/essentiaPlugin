@@ -26,32 +26,33 @@
 #include "ofxAAConfigurations.h"
 
 #pragma mark - Main funcs
+#define ACCUMULATED_BUFFER_SIZE 1024
 
 ofxAudioAnalyzerUnit::ofxAudioAnalyzerUnit(int sampleRate, int bufferSize) {
     samplerate = sampleRate;
-    framesize = bufferSize;
+    framesize = ACCUMULATED_BUFFER_SIZE;
     
-    audioBuffer.resize(bufferSize);
-    accumulatedAudioBuffer.resize(bufferSize * ACCUMULATED_SIGNAL_MULTIPLIER, 0.0);
+    audioBuffer.resize(bufferSize, 0.0);
+    accumulatedAudioBuffer.resize(ACCUMULATED_BUFFER_SIZE, 0.0);
     
     network = new ofxaa::Network(samplerate, framesize);
 }
 //--------------------------------------------------------------
 void ofxAudioAnalyzerUnit::analyze(const vector<float> & inBuffer){
     
-    if(inBuffer.size() != framesize){
-        cout<<"ofxAudioAnalyzerUnit: buffer requested to analyze size(" <<inBuffer.size()<<")doesnt match the buffer size already set: "<<framesize<< endl;
-    }
+//    if(inBuffer.size() != framesize){
+//        cout<<"ofxAudioAnalyzerUnit: buffer requested to analyze size(" <<inBuffer.size()<<")doesnt match the buffer size already set: "<<framesize<< endl;
+//    }
     
     //Cast of incoming audio buffer to Real
     for (int i=0; i<inBuffer.size();i++){
         audioBuffer[i] = (Real) inBuffer[i];
     }
     
-    accumulatedAudioBuffer.erase(accumulatedAudioBuffer.begin(), accumulatedAudioBuffer.begin()+framesize);
+    accumulatedAudioBuffer.erase(accumulatedAudioBuffer.begin(), accumulatedAudioBuffer.begin()+inBuffer.size());
     accumulatedAudioBuffer.insert(accumulatedAudioBuffer.end(), audioBuffer.begin(), audioBuffer.end());
     
-    network->computeAlgorithms(audioBuffer, accumulatedAudioBuffer);
+    network->computeAlgorithms(accumulatedAudioBuffer, accumulatedAudioBuffer);
 }
 
 //--------------------------------------------------------------
