@@ -96,6 +96,7 @@ private:
     
     juce::Label hostLabel;
     juce::Label mainIDLabel;
+    juce::Label pluginVersionLabel;
 
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (MagicPluginEditor)
 };

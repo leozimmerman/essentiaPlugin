@@ -34,6 +34,9 @@
  ==============================================================================
  */
 
+#define PLUGIN_VERSION "v0.0.1"
+
+
 namespace foleys
 {
 
@@ -74,6 +77,15 @@ MagicPluginEditor::MagicPluginEditor (MagicProcessorState& stateToUse, std::uniq
 
     builder->attachToolboxToWindow (*this);
 #endif
+    
+    addAndMakeVisible (pluginVersionLabel);
+    pluginVersionLabel.setFont (juce::Font (10.0, juce::Font::bold));
+    pluginVersionLabel.setComponentID("pluginVersionLabel");
+    pluginVersionLabel.setEditable(false);
+    pluginVersionLabel.setColour (juce::Label::textColourId, juce::Colours::white);
+    pluginVersionLabel.setJustificationType (juce::Justification::centredRight);
+    pluginVersionLabel.setText(PLUGIN_VERSION, juce::dontSendNotification);
+    
     
     addAndMakeVisible (hostLabel);
     hostLabel.setFont (juce::Font (20.0, juce::Font::bold));
@@ -191,6 +203,8 @@ void MagicPluginEditor::resized()
     int labelWidth = 200;
     hostLabel.setBounds (getWidth() - portCompWidth - labelWidth - 10,  getHeight() - 30, labelWidth,  30);
     mainIDLabel.setBounds (10,  getHeight() - 30, 100,  30);
+    pluginVersionLabel.setBounds (portCompWidth,  getHeight() - 20, 100,  30);
+
 }
 
 } // namespace foleys
