@@ -115,69 +115,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "0FA492CC-AC96-45F1-8211-7D986C3D6B71"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "../../Source/ofxAudioAnalyzer/ofxAudioAnalyzerUnit.cpp"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "55"
-            endingLineNumber = "55"
-            landmarkName = "ofxAudioAnalyzerUnit::analyze(inBuffer)"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "0FA492CC-AC96-45F1-8211-7D986C3D6B71 - 515c5afeb320977e"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "ofxAudioAnalyzerUnit::analyze(std::__1::vector&lt;float, std::__1::allocator&lt;float&gt; &gt; const&amp;)"
-                  moduleName = "EssentiaPlugin"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/leo/Development/JUCE/myProjects/essentiaPlugin/Source/ofxAudioAnalyzer/ofxAudioAnalyzerUnit.cpp"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "55"
-                  endingLineNumber = "55"
-                  offsetFromSymbolStart = "500">
-               </Location>
-               <Location
-                  uuid = "0FA492CC-AC96-45F1-8211-7D986C3D6B71 - 515c5afeb320977e"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "ofxAudioAnalyzerUnit::analyze(std::__1::vector&lt;float, std::__1::allocator&lt;float&gt; &gt; const&amp;)"
-                  moduleName = "EssentiaPlugin"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/leo/Development/JUCE/myProjects/essentiaPlugin/Source/ofxAudioAnalyzer/ofxAudioAnalyzerUnit.cpp"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "55"
-                  endingLineNumber = "55"
-                  offsetFromSymbolStart = "379">
-               </Location>
-               <Location
-                  uuid = "0FA492CC-AC96-45F1-8211-7D986C3D6B71 - 515c5afeb320977e"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "ofxAudioAnalyzerUnit::analyze(std::__1::vector&lt;float, std::__1::allocator&lt;float&gt; &gt; const&amp;)"
-                  moduleName = "EssentiaPlugin"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/leo/Development/JUCE/myProjects/essentiaPlugin/Source/ofxAudioAnalyzer/ofxAudioAnalyzerUnit.cpp"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "55"
-                  endingLineNumber = "55"
-                  offsetFromSymbolStart = "380">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "5A11ABC2-6FB7-4C69-BB99-2A428D81D4D5"
             shouldBeEnabled = "No"
             ignoreCount = "0"
@@ -194,16 +131,16 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "93C9E9C7-8DE9-4D09-AC58-D4725CE5464E"
-            shouldBeEnabled = "Yes"
+            uuid = "14113236-2143-4D4A-B780-031A6561B144"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../../Source/ofxAudioAnalyzer/ofxAudioAnalyzerUnit.cpp"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "38"
-            endingLineNumber = "38"
-            landmarkName = "ofxAudioAnalyzerUnit::ofxAudioAnalyzerUnit(sampleRate, bufferSize)"
+            startingLineNumber = "56"
+            endingLineNumber = "56"
+            landmarkName = "ofxAudioAnalyzerUnit::analyze(inBuffer)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

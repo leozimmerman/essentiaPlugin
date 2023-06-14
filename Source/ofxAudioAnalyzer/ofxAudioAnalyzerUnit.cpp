@@ -52,6 +52,10 @@ void ofxAudioAnalyzerUnit::analyze(const vector<float> & inBuffer){
     accumulatedAudioBuffer.erase(accumulatedAudioBuffer.begin(), accumulatedAudioBuffer.begin()+inBuffer.size());
     accumulatedAudioBuffer.insert(accumulatedAudioBuffer.end(), audioBuffer.begin(), audioBuffer.end());
     
+    if (accumulatedAudioBuffer.size() != ACCUMULATED_BUFFER_SIZE) {
+        cout<<"ALTO:"<< accumulatedAudioBuffer.size() << endl;
+    }
+    
     network->computeAlgorithms(accumulatedAudioBuffer, accumulatedAudioBuffer);
 }
 

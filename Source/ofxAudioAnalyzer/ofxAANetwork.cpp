@@ -371,7 +371,7 @@ namespace ofxaa {
         
         oddToEven = new ofxAASingleOutputAlgorithm(OddToEven, sr, fs);
         oddToEven->maxEstimatedValue = ODD_TO_EVEN_MAX_VALUE;
-        algorithms.push_back(oddToEven);
+        //algorithms.push_back(oddToEven);
         
         tristimulus = new ofxAAOneVectorOutputAlgorithm(Tristimulus, sr, fs, 3);
         tristimulus->isNormalizedByDefault = true;
@@ -648,9 +648,9 @@ namespace ofxaa {
         inharmonicity->algorithm->input("magnitudes").set(harmonicPeaks->outputValues_2);
         inharmonicity->algorithm->output("inharmonicity").set(inharmonicity->outputValue);
         
-        oddToEven->algorithm->input("frequencies").set(harmonicPeaks->outputValues);
-        oddToEven->algorithm->input("magnitudes").set(harmonicPeaks->outputValues_2);
-        oddToEven->algorithm->output("oddToEvenHarmonicEnergyRatio").set(oddToEven->outputValue);
+//        oddToEven->algorithm->input("frequencies").set(harmonicPeaks->outputValues);
+//        oddToEven->algorithm->input("magnitudes").set(harmonicPeaks->outputValues_2);
+//        oddToEven->algorithm->output("oddToEvenHarmonicEnergyRatio").set(oddToEven->outputValue);
         
         tristimulus->algorithm->input("frequencies").set(harmonicPeaks->outputValues);
         tristimulus->algorithm->input("magnitudes").set(harmonicPeaks->outputValues_2);

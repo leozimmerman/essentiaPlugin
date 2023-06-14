@@ -22,7 +22,7 @@ vector<ofxAAValue> availableValues {
     PITCH_SALIENCE,
     
     INHARMONICITY,
-    ODD_TO_EVEN,
+    //ODD_TO_EVEN,
     STRONG_PEAK,
 
     SILENCE_RATE_20dB,
