@@ -969,7 +969,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.OleoLab.EssentiaPlugin;
 				PRODUCT_NAME = "EssentiaPlugin";
 				USE_HEADERMAP = NO;
-				VALID_ARCHS = "i386 x86_64";
+				VALID_ARCHS = "i386 x86_64 arm64 arm64e";
 				WRAPPER_EXTENSION = component;
 			};
 			name = Release;
@@ -1091,7 +1091,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.OleoLab.EssentiaPlugin;
 				PRODUCT_NAME = "EssentiaPlugin";
 				USE_HEADERMAP = NO;
-				VALID_ARCHS = "i386 x86_64";
+				VALID_ARCHS = "i386 x86_64 arm64 arm64e";
 			};
 			name = Debug;
 		};
@@ -1217,7 +1217,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.OleoLab.EssentiaPlugin;
 				PRODUCT_NAME = "EssentiaPlugin";
 				USE_HEADERMAP = NO;
-				VALID_ARCHS = "i386 x86_64";
+				VALID_ARCHS = "i386 x86_64 arm64 arm64e";
 				WRAPPER_EXTENSION = vst3;
 			};
 			name = Debug;
@@ -1395,7 +1395,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.OleoLab.EssentiaPlugin;
 				PRODUCT_NAME = "EssentiaPlugin";
 				USE_HEADERMAP = NO;
-				VALID_ARCHS = "i386 x86_64";
+				VALID_ARCHS = "i386 x86_64 arm64 arm64e";
 				WRAPPER_EXTENSION = vst3;
 			};
 			name = Release;
@@ -1527,7 +1527,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.OleoLab.EssentiaPlugin;
 				PRODUCT_NAME = "EssentiaPlugin";
 				USE_HEADERMAP = NO;
-				VALID_ARCHS = "i386 x86_64";
+				VALID_ARCHS = "i386 x86_64 arm64 arm64e";
 			};
 			name = Release;
 		};
@@ -1648,7 +1648,7 @@
 				PRODUCT_NAME = "EssentiaPlugin";
 				SKIP_INSTALL = YES;
 				USE_HEADERMAP = NO;
-				VALID_ARCHS = "i386 x86_64";
+				VALID_ARCHS = "i386 x86_64 arm64 arm64e";
 			};
 			name = Debug;
 		};
@@ -1775,7 +1775,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.OleoLab.EssentiaPlugin;
 				PRODUCT_NAME = "EssentiaPlugin";
 				USE_HEADERMAP = NO;
-				VALID_ARCHS = "i386 x86_64";
+				VALID_ARCHS = "i386 x86_64 arm64 arm64e";
 				WRAPPER_EXTENSION = component;
 			};
 			name = Debug;
@@ -1899,7 +1899,7 @@
 				PRODUCT_NAME = "EssentiaPlugin";
 				SKIP_INSTALL = YES;
 				USE_HEADERMAP = NO;
-				VALID_ARCHS = "i386 x86_64";
+				VALID_ARCHS = "i386 x86_64 arm64 arm64e";
 			};
 			name = Release;
 		};

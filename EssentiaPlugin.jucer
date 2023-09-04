@@ -86,8 +86,7 @@
   </MAINGROUP>
   <JUCEOPTIONS JUCE_STRICT_REFCOUNTEDPOINTER="1" JUCE_VST3_CAN_REPLACE_VST2="0"/>
   <EXPORTFORMATS>
-    <XCODE_MAC targetFolder="Builds/MacOSX" externalLibraries="essentia&#10;fftw3f"
-               xcodeValidArchs="i386,x86_64">
+    <XCODE_MAC targetFolder="Builds/MacOSX" externalLibraries="essentia&#10;fftw3f">
       <CONFIGURATIONS>
         <CONFIGURATION isDebug="1" name="Debug" targetName="EssentiaPlugin" headerPath="../../Libs/essentia/include/essentia&#10;../../Libs/fftw3f/include&#10;../../Source/ofxAudioAnalyzer/algorithms&#10;../../Source/ofxAudioAnalyzer"
                        libraryPath="../../Libs/essentia/lib&#10;../../Libs/fftw3f/lib"/>
